@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import Link from 'next/link';
-import { ReactNode, useMemo } from 'react';
+import { ReactElement, useMemo } from 'react';
 import { Footer, Navbar } from 'ui';
 import { Container } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
@@ -13,7 +13,7 @@ const pageList = [
 ];
 
 type MainLayoutProps = {
-  children: ReactNode;
+  children: ReactElement;
 };
 
 const StyledMainLayout = styled.div``;
@@ -29,7 +29,7 @@ export const MainLayout = (props: MainLayoutProps) => {
   const pageItems = useMemo(() => {
     return pageList.map((v) => ({
       name: v.name,
-      wrapperFn: (component) => (
+      wrapperFn: (component: ReactElement) => (
         <Link href={v.path} key={v.path}>
           <a>{component}</a>
         </Link>
@@ -39,6 +39,7 @@ export const MainLayout = (props: MainLayoutProps) => {
 
   return (
     <StyledMainLayout>
+      {/* @ts-expect-error TODO: fix type error */}
       <Navbar pageItems={pageItems} selectedIndex={selectedIndex} />
       <Container py={{ base: '8', md: '12' }}>{children}</Container>
       <Footer />

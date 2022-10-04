@@ -20,7 +20,7 @@ type NavbarProps = {
   pageItems: {
     name: string;
     // Next.js 依存にしないために render func を受ける
-    wrapperFn?: (component: ReactElement) => ReactElement;
+    wrapperFn?: (component: ReactElement) => JSX.Element;
   }[];
   selectedIndex?: number;
 };

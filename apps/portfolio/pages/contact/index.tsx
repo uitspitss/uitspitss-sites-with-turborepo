@@ -35,14 +35,16 @@ export const Contact = (_props: ContactProps) => {
 
   return (
     <MainLayout>
-      <PageHeader title="Contact" />
-      <PageContent>
-        {isSubmitted ? (
-          <ContactComplete />
-        ) : (
-          <ContactForm onSubmit={onSubmit} t={t} />
-        )}
-      </PageContent>
+      <>
+        <PageHeader title="Contact" />
+        <PageContent>
+          {isSubmitted ? (
+            <ContactComplete />
+          ) : (
+            <ContactForm onSubmit={onSubmit} t={t} />
+          )}
+        </PageContent>
+      </>
     </MainLayout>
   );
 };

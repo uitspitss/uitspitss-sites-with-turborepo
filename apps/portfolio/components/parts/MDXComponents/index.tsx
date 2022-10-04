@@ -8,6 +8,9 @@ import {
   Box,
 } from '@chakra-ui/react';
 import Image, { ImageProps } from 'next/image';
+import { ComponentPropsWithoutRef } from 'react';
+
+type IframeProps = ComponentPropsWithoutRef<'iframe'>;
 
 // NOTE: MDXProvider の props にそのまま渡せるように
 // components としてまとめて export するので、各 component の命名に注意
@@ -32,8 +35,8 @@ export const ul = (props: ListProps) => <UnorderedList {...props} />;
 
 export const li = (props: ListItemProps) => <ListItem {...props} />;
 
-export const iframe = (props) => (
+export const iframe = (props: IframeProps) => (
   <Box my={{ base: '4', md: '6' }}>
-    <iframe margin="8" {...props} />
+    <iframe {...props} />
   </Box>
 );

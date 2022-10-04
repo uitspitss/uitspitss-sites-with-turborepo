@@ -25,17 +25,14 @@ const handler: NextApiHandler = async (req, res) => {
       },
     ],
     templateId: SG_CONTACT_TEMPLATE_ID,
+    content: [{ type: '', value: '' }],
   };
 
   try {
     await sgMail.send(msg);
   } catch (error) {
-    console.error(error);
-    if (error.response) {
-      console.error(error.response.body);
-    }
-
-    res.status(400).json({ error: { message: 'error of sending message' } });
+    console.error('error while sending message');
+    res.status(400).json({ error: { message: 'error while sending message' } });
   }
 
   res.status(200).end();

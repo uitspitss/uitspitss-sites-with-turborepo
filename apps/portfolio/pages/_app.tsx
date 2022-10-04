@@ -41,6 +41,7 @@ const CustomApp = ({ Component, pageProps }: AppPropsWithLayout) => {
         )}
       </Head>
       <ChakraProvider theme={theme}>
+        {/* @ts-expect-error TODO: fix type error */}
         {getLayout(<Component {...pageProps} />)}
       </ChakraProvider>
     </>
