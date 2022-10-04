@@ -1,0 +1,47 @@
+import { MDXProvider } from '@mdx-js/react';
+
+import { PageHeader, PageContent } from 'ui';
+import { MainLayout } from '../components/layouts/MainLayout';
+import components from '../components/parts/MDXComponents';
+
+# I am uitspitss! 🙋‍♂️
+
+<img src="/img/icon2018_min.jpg" alt="icon of uitspitss" />
+
+## Job 💻
+
+- Web Developer
+
+## Like about Programming
+
+- Mac
+- Linux
+
+- React
+- GCP
+- VSCode
+
+- Emacs (but I mainly use VSCode with Emacs Keybindings)
+
+## Like past
+
+- Python
+- Django
+
+## Like contents
+
+- Music
+- Movies
+- Arts
+- S.F.
+
+export default ({ children }) => (
+  <>
+    <MDXProvider components={components}>
+      <MainLayout>
+        <PageHeader title="About Me" subtitle="uitspitss" />
+        <PageContent>{children}</PageContent>
+      </MainLayout>
+    </MDXProvider>
+  </>
+);

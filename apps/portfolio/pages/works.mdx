@@ -1,0 +1,89 @@
+import { MDXProvider } from '@mdx-js/react';
+
+import { PageHeader, PageContent } from 'ui';
+import { MainLayout } from '../components/layouts/MainLayout';
+import components from '../components/parts/MDXComponents';
+
+## monsters
+
+- for my friends
+- Original Card Collection Website
+- Website → [Original Monster Zukan](https://zukan.monsters.soy/)
+- GCE
+- Django
+- Celery
+
+## ml2lm
+
+- for my experience
+- url shortner with updating playlists
+- Website → [ml2lm](https://ml2lm.uitspitss.dev)
+- Repository → [uitspitss/ml2lm](https://github.com/uitspitss/ml2lm)
+- GAE
+- Django
+- React
+- Apollo Client
+
+## portfolio (this site)
+
+- for myself
+- portfolio site
+- Repository → [uitspitss/portfolio](https://github.com/uitspitss/portfolio)
+- React
+- next.js (TypeScript)
+- material-ui
+- Firebase (hosting, functions)
+
+## google search extra time period
+
+- for my experience
+- searching extensions on google search
+- on Google Webstore → [google search extra time period](https://chrome.google.com/webstore/detail/google-search-extra-time/kmndgdjageaiaghcllekfknjnnjihibn)
+- Repository → [uitspitss/google-search-extra-time-period](https://github.com/uitspitss/google-search-extra-time-period)
+- Google Chrome Extension
+- TypeScript
+
+## ano-site
+
+- for myself
+- user profile linked with Twitter
+- Website → [ano-site](https://ano-site.web.app)
+- Repository → [uitspitss/ano-site](https://github.com/uitspitss/ano-site)
+- React
+- next.js (TypeScript)
+- semantic-ui
+- Firebase(hosting, functions, authentication, database)
+
+## ytl-switcher (YouTube Switcher)
+
+- for myself
+- watch some streams of YouTube Live efficiently
+- Website → [ytl-switcher](https://ytl-switcher.now.sh)
+- Repository → [uitspitss/ytl-switcher](https://github.com/uitspitss/ytl-switcher)
+- React
+- next.js (TypeScript)
+- material-ui
+- Vercel(it used to be ZEIT now)
+- useReducer + useContext
+- IndexedDB
+
+## 360T-shirt
+
+- for myself(PoC)
+- print 360 degrees image to T-shirt
+- Website → [360tshirt](https://360tshirt.vercel.app/)
+- React
+- next.js (TypeScript)
+- TailwindCSS
+- Vercel
+
+export default ({ children }) => (
+  <>
+    <MDXProvider components={components}>
+      <MainLayout>
+        <PageHeader title="Works" />
+        <PageContent>{children}</PageContent>
+      </MainLayout>
+    </MDXProvider>
+  </>
+);

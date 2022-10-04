@@ -1,0 +1,69 @@
+import { MDXProvider } from '@mdx-js/react';
+
+import { PageHeader, PageContent } from 'ui';
+import { MainLayout } from '../components/layouts/MainLayout';
+import components from '../components/parts/MDXComponents';
+
+## year 2013
+
+- I worked at a science museum. (planetarium)
+
+## year 2014
+
+- I worked at a science museum. (planetarium)
+- I created a projection exhibition with [openFrameworks(oF)](https://openframeworks.cc).
+
+<iframe
+  width="100%"
+  height="315"
+  src="https://www.youtube.com/embed/kZomOjGT5uI"
+  frameBorder="0"
+  allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+  allowFullScreen
+/>
+
+## year 2015
+
+- I worked at a science museum. (planetarium)
+- I created domemaster movies with [openFrameworks(oF)](https://openframeworks.cc).
+
+<iframe
+  width="100%"
+  height="315"
+  src="https://www.youtube.com/embed/Heynd3t--Jo"
+  frameBorder="0"
+  allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+  allowFullScreen
+/>
+
+music by [Chouchou](https://chouchou.cc/)
+
+## year 2016
+
+- I worked at a science museum. (planetarium)
+- I planed a programming lecture for children. it is used Digispark.)
+
+## year 2017 ~
+
+- I worked at a company located in Tokyo.
+  - Python, Django
+
+## year 2020
+
+- I worked at a compay located in Tokyo.
+  - Something
+
+## year 2020 ~
+
+- I'm working as a freelance.
+
+export default ({ children }) => (
+  <>
+    <MDXProvider components={components}>
+      <MainLayout>
+        <PageHeader title="Jobs" />
+        <PageContent>{children}</PageContent>
+      </MainLayout>
+    </MDXProvider>
+  </>
+);
