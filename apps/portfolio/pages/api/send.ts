@@ -11,25 +11,21 @@ const handler: NextApiHandler = async (req, res) => {
     res.status(405).end();
   }
 
-  const msg: MailDataRequired = {
-    from: 'mail@uitspitss.net',
-    personalizations: [
-      {
-        to: req.body.email,
-        bcc: 'mail@uitspitss.net',
-        dynamicTemplateData: {
-          name: req.body.name,
-          subject: req.body.subject,
-          message: req.body.message,
-        },
-      },
-    ],
+  const msg = {
     templateId: SG_CONTACT_TEMPLATE_ID,
-    content: [{ type: '', value: '' }],
+    from: 'mail@uitspitss.net',
+    to: req.body.email,
+    bcc: 'mail@uitspitss.net',
+    dynamicTemplateData: {
+      name: req.body.name,
+      subject: req.body.subject,
+      message: req.body.message,
+    },
   };
 
   try {
-    await sgMail.send(msg);
+    // TODO: MailDataRequired is required the content field
+    await sgMail.send(msg as MailDataRequired);
   } catch (error) {
     console.error('error while sending message');
     res.status(400).json({ error: { message: 'error while sending message' } });
