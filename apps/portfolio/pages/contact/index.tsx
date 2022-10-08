@@ -3,6 +3,8 @@ import { MainLayout } from '../../components/layouts/MainLayout';
 import { ContactComplete } from '../../components/projects/ContactComplete';
 import { ComponentProps, useState } from 'react';
 import { useTranslation } from 'next-i18next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { GetServerSideProps } from 'next';
 
 type SubmitHandler = ComponentProps<typeof ContactForm>['onSubmit'];
 
@@ -48,5 +50,11 @@ export const Contact = (_props: ContactProps) => {
     </MainLayout>
   );
 };
+
+export const getServerSideProps: GetServerSideProps = async ({ locale }) => ({
+  props: {
+    ...(await serverSideTranslations(locale ?? 'en', ['common'])),
+  },
+});
 
 export default Contact;
