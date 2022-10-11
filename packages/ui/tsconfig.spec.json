@@ -8,13 +8,9 @@
   "include": [
     "jest.config.ts",
     "jest.setup.ts",
-    "**/*.test.ts",
     "**/*.spec.ts",
-    "**/*.test.tsx",
     "**/*.spec.tsx",
-    "**/*.test.js",
     "**/*.spec.js",
-    "**/*.test.jsx",
     "**/*.spec.jsx",
     "**/*.d.ts"
   ]

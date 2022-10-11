@@ -31,6 +31,7 @@
     "eslint-config-custom": "*",
     "jest": "^29.1.2",
     "next-transpile-modules": "9.0.0",
+    "ts-jest": "^29.0.3",
     "tsconfig": "*",
     "typescript": "^4.5.3"
   }
