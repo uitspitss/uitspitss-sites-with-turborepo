@@ -1,8 +1,10 @@
+const rootPreview = require('storybook-config/preview.js');
+
 import { ChakraProvider } from '@chakra-ui/react';
 import theme from '../src/theme';
 
 export const parameters = {
-  actions: { argTypesRegex: '^on.*' },
+  ...rootPreview.parameters,
   chakra: {
     theme,
   },

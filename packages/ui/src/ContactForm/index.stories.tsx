@@ -5,6 +5,13 @@ import { ContactForm } from '.';
 export default {
   title: 'ContactForm',
   component: ContactForm,
+  decorators: [
+    (Story) => (
+      <div style={{ margin: '3em' }}>
+        <Story />
+      </div>
+    ),
+  ],
 } as ComponentMeta<typeof ContactForm>;
 
 export const Default = {

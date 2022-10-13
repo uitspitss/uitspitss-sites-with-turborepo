@@ -1,5 +1,10 @@
 {
   "extends": "tsconfig/react-library.json",
+  "compilerOptions": {
+    "outDir": "../../../dist/out-tsc",
+    "module": "commonjs",
+    "types": ["jest", "node"]
+  },
   "include": ["."],
   "exclude": ["dist", "build", "node_modules"]
 }
