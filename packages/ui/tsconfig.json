@@ -1,10 +1,13 @@
 {
   "extends": "tsconfig/react-library.json",
-  "compilerOptions": {
-    "outDir": "../../../dist/out-tsc",
-    "module": "commonjs",
-    "types": ["jest", "node"]
-  },
   "include": ["."],
-  "exclude": ["dist", "build", "node_modules"]
+  "exclude": ["dist", "build", "node_modules"],
+  // for storybook
+  // REF: https://zenn.dev/kazuma1989/scraps/41384241ae7f27
+  "ts-node": {
+    "transpileOnly": true,
+    "compilerOptions": {
+      "module": "CommonJS"
+    }
+  }
 }

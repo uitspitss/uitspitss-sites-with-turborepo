@@ -8,10 +8,6 @@ const { Default } = composeStories(stories);
 describe('Button', () => {
   const onClick = jest.fn();
 
-  afterEach(() => {
-    jest.clearAllMocks();
-  });
-
   it('should render successfully', () => {
     const { baseElement } = render(<Default onClick={onClick} />);
     expect(baseElement).toBeTruthy();

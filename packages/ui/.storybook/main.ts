@@ -1,4 +1,4 @@
-const rootMain = require('storybook-config/main.js');
+import rootMain from 'storybook-config/main';
 
 const config = {
   ...rootMain,

@@ -13,7 +13,7 @@ const { Default, Valid, Invalid } = composeStories(stories);
 describe('ContactForm', () => {
   const onSubmit = jest.fn();
 
-  afterEach(() => {
+  beforeEach(() => {
     jest.clearAllMocks();
   });
 
@@ -53,10 +53,10 @@ describe('ContactForm', () => {
 
     await waitForElementToBeRemoved(screen.getByText(/Loading.../));
 
+    expect(onSubmit).not.toHaveBeenCalled();
     expect(screen.getByText('Invalid email')).toBeInTheDocument();
     expect(
       screen.getByText('String must contain at least 10 character(s)')
     ).toBeInTheDocument();
-    expect(onSubmit).not.toHaveBeenCalled();
   });
 });
