@@ -1,7 +1,8 @@
 import { ColorModeScript } from '@chakra-ui/react';
 import NextDocument, { Html, Head, Main, NextScript } from 'next/document';
+import React from 'react';
 import theme from '../theme';
-import i18NextConfig from '../next-i18next.config';
+import i18NextConfig from '../../next-i18next.config';
 
 export default class Document extends NextDocument {
   currentLocale =

@@ -4,6 +4,7 @@ import { ReactElement, useMemo } from 'react';
 import { Footer, Navbar } from 'ui';
 import { Container } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
+import React from 'react';
 
 const pageList = [
   { name: 'about', path: '/' },

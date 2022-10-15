@@ -1,14 +1,8 @@
 import { theme as proTheme } from '@chakra-ui/pro-theme';
-import { extendTheme, ThemeConfig } from '@chakra-ui/react';
-
-const config: ThemeConfig = {
-  initialColorMode: 'light',
-  useSystemColorMode: false,
-};
+import { extendTheme } from '@chakra-ui/react';
 
 const theme = extendTheme(
   {
-    config,
     colors: { ...proTheme['colors'], brand: proTheme['colors'].gray },
     fonts: {
       heading: `'Open Sans', sans-serif`,

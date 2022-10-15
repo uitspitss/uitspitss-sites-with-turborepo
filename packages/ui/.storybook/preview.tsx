@@ -11,5 +11,9 @@ export const parameters = {
 };
 
 export const decorators = [
-  (Story: Function) => <ChakraProvider theme={theme}>{Story()}</ChakraProvider>,
+  (Story: Function) => (
+    <ChakraProvider theme={theme}>
+      <Story />
+    </ChakraProvider>
+  ),
 ];

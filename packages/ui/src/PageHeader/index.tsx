@@ -6,11 +6,11 @@ import {
   Text,
   useBreakpointValue,
 } from '@chakra-ui/react';
-import { ReactNode } from 'react';
+import { ReactElement } from 'react';
 
 type PageHeaderProps = {
-  title: ReactNode;
-  subtitle?: ReactNode;
+  title: ReactElement;
+  subtitle?: ReactElement;
 };
 
 export const PageHeader = (props: PageHeaderProps) => {

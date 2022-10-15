@@ -1,5 +1,6 @@
 import { Box, Stack, Text } from '@chakra-ui/react';
 import { useTranslation, Trans } from 'next-i18next';
+import React from 'react';
 
 /* eslint-disable-next-line */
 export type ContactCompleteProps = {};

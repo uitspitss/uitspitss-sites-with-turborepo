@@ -8,7 +8,7 @@ import {
   Box,
 } from '@chakra-ui/react';
 import Image, { ImageProps } from 'next/image';
-import { ComponentPropsWithoutRef } from 'react';
+import React, { ComponentPropsWithoutRef } from 'react';
 
 type IframeProps = ComponentPropsWithoutRef<'iframe'>;
 
@@ -40,3 +40,4 @@ export const iframe = (props: IframeProps) => (
     <iframe {...props} />
   </Box>
 );
+Â;

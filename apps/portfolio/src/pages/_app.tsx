@@ -6,6 +6,7 @@ import Head from 'next/head';
 import Script from 'next/script';
 import { ChakraProvider } from '@chakra-ui/react';
 import { appWithTranslation } from 'next-i18next';
+import React from 'react';
 
 import theme from '../theme';
 import { NextPageWithLayout } from '../types/page';
@@ -45,7 +46,6 @@ const CustomApp = ({ Component, pageProps }: AppPropsWithLayout) => {
         )}
       </Head>
       <ChakraProvider theme={theme}>
-        {/* @ts-expect-error TODO: fix type error */}
         {getLayout(<Component {...pageProps} />)}
       </ChakraProvider>
     </>

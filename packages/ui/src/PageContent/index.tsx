@@ -1,8 +1,8 @@
 import { Box, Container } from '@chakra-ui/react';
-import { ReactNode } from 'react';
+import { ReactElement } from 'react';
 
 type PageContentProps = {
-  children: ReactNode;
+  children: ReactElement;
 };
 
 export const PageContent = (props: PageContentProps) => {
