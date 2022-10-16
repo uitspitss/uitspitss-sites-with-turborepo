@@ -11,11 +11,16 @@ const config = {
   //     ...config,
   //     node: {
   //       ...config.node,
+  //       fs: 'empty',
   //     },
   //   };
   // },
   staticDirs: ['../public'],
-  addons: [...rootMain.addons, 'storybook-addon-next-router'],
+  addons: [
+    ...rootMain.addons,
+    'storybook-addon-next-router',
+    'storybook-react-i18next',
+  ],
 };
 
 module.exports = config;

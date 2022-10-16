@@ -1,12 +1,11 @@
 import { parameters as rootParameters } from 'storybook-config/preview';
-import { I18nextProvider } from 'react-i18next';
 import { RouterContext } from 'next/dist/shared/lib/router-context';
 
 import React from 'react';
 
 import { ChakraProvider } from '@chakra-ui/react';
 import theme from '../src/theme';
-import i18n from './i18n';
+import i18n from './i18next';
 
 export const parameters = {
   ...rootParameters,
@@ -16,14 +15,18 @@ export const parameters = {
   nextRouter: {
     Provider: RouterContext.Provider,
   },
+  i18n,
+  locale: 'en',
+  locales: {
+    en: 'English',
+    ja: '日本語',
+  },
 };
 
 export const decorators = [
   (Story: Function) => (
-    <I18nextProvider i18n={i18n}>
-      <ChakraProvider theme={theme}>
-        <Story />
-      </ChakraProvider>
-    </I18nextProvider>
+    <ChakraProvider theme={theme}>
+      <Story />
+    </ChakraProvider>
   ),
 ];

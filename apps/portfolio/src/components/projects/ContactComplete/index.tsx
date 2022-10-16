@@ -1,19 +1,20 @@
 import { Box, Stack, Text } from '@chakra-ui/react';
-import { useTranslation, Trans } from 'next-i18next';
+import { type TFunction, Trans } from 'react-i18next';
 import React from 'react';
 
-/* eslint-disable-next-line */
-export type ContactCompleteProps = {};
+export type ContactCompleteProps = {
+  t?: TFunction;
+};
 
-export const ContactComplete = (_props: ContactCompleteProps) => {
-  const { t } = useTranslation();
+export const ContactComplete = (props: ContactCompleteProps) => {
+  const { t } = props;
 
   return (
     <Box pt="8" pb="16">
       <Stack spacing={{ base: '4', md: '6' }} textAlign="center">
         <Stack spacing="4">
           <Text fontWeight="semibold" color="accent" fontSize="3xl">
-            {t('Submitted!')}
+            {t?.('Submitted!') || 'Submitted!'}
           </Text>
         </Stack>
         <Text fontSize={{ base: 'lg', md: 'xl' }} maxW="2xl" color="muted">
