@@ -41,7 +41,7 @@ export const Contact = (_props: ContactProps) => {
         <PageHeader title="Contact" />
         <PageContent>
           {isSubmitted ? (
-            <ContactComplete />
+            <ContactComplete t={t} />
           ) : (
             <ContactForm onSubmit={onSubmit} t={t} />
           )}
