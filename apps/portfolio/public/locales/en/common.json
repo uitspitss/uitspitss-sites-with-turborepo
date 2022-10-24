@@ -1,5 +1,9 @@
 {
   "An auto-reply email has been sent to you.<br/>Please check your inbox.": "An auto-reply email has been sent to you.<br/>Please check your inbox.",
   "Contact": "Contact",
-  "Submitted!": "Submitted!"
+  "Submitted!": "Submitted!",
+  "about": "about",
+  "contact": "contact",
+  "jobs": "jobs",
+  "works": "works"
 }

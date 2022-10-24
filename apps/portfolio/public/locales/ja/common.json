@@ -1,5 +1,9 @@
 {
   "An auto-reply email has been sent to you.<br/>Please check your inbox.": "自動返信メールをお送りしました。受信ボックスをご確認ください。",
   "Contact": "お問い合わせ",
-  "Submitted!": "送信しました!"
+  "Submitted!": "送信しました!",
+  "about": "私について",
+  "contact": "お問い合わせ",
+  "jobs": "仕事",
+  "works": "成果物"
 }

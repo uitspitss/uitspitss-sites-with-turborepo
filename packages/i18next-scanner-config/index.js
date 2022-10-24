@@ -35,7 +35,7 @@ module.exports = {
     },
     lngs: ['en', 'ja'],
     defaultLng: 'en',
-    defaultNs: 'ui',
+    defaultNs: 'common',
     resource: {
       loadPath: 'static/locales/{{lng}}/{{ns}}.json',
       savePath: 'static/locales/{{lng}}/{{ns}}.json',
