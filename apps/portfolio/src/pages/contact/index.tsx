@@ -12,8 +12,7 @@ type SubmitHandler = ComponentProps<typeof ContactForm>['onSubmit'];
 export type ContactProps = {};
 
 export const Contact = (_props: ContactProps) => {
-  const { t } = useTranslation();
-
+  const { t } = useTranslation('common');
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   const onSubmit: SubmitHandler = async (data) => {
@@ -38,12 +37,12 @@ export const Contact = (_props: ContactProps) => {
   return (
     <MainLayout>
       <>
-        <PageHeader title="Contact" />
+        <PageHeader title={t('Contact')} />
         <PageContent>
           {isSubmitted ? (
-            <ContactComplete t={t} />
+            <ContactComplete />
           ) : (
-            <ContactForm onSubmit={onSubmit} t={t} />
+            <ContactForm onSubmit={onSubmit} />
           )}
         </PageContent>
       </>
@@ -53,7 +52,7 @@ export const Contact = (_props: ContactProps) => {
 
 export const getServerSideProps: GetServerSideProps = async ({ locale }) => ({
   props: {
-    ...(await serverSideTranslations(locale ?? 'en', ['common'])),
+    ...(await serverSideTranslations(locale ?? 'en', ['common', 'ui'])),
   },
 });
 

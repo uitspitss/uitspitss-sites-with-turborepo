@@ -5,12 +5,12 @@ import theme from '../theme';
 import i18NextConfig from '../../next-i18next.config';
 
 export default class Document extends NextDocument {
-  currentLocale =
-    this.props.__NEXT_DATA__.locale || i18NextConfig.i18n.defaultLocale;
-
   render() {
+    const currentLocale =
+      this.props.__NEXT_DATA__.locale || i18NextConfig.i18n.defaultLocale;
+
     return (
-      <Html lang={this.currentLocale}>
+      <Html lang={currentLocale}>
         <Head />
         <body>
           <ColorModeScript initialColorMode={theme.config.initialColorMode} />

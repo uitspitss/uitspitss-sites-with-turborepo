@@ -12,7 +12,6 @@ export default {
       </div>
     ),
   ],
-  args: { t: (str: string) => str },
   argTypes: {
     onSubmit: { action: 'submitted' },
   },

@@ -4,7 +4,7 @@ const typescript = require('typescript');
 
 module.exports = {
   input: [
-    'src/{pages,components}/**/*.{js,jsx,ts,tsx}',
+    'src/**/*.{js,jsx,ts,tsx}',
     // Use ! to filter out files or directories
     '!**/*.spec.{js,jsx,ts,tsx}',
     '!**/*.stories.{js,jsx,ts,tsx}',
@@ -35,10 +35,10 @@ module.exports = {
     },
     lngs: ['en', 'ja'],
     defaultLng: 'en',
-    defaultNs: 'common',
+    defaultNs: 'ui',
     resource: {
-      loadPath: 'public/locales/{{lng}}/{{ns}}.json',
-      savePath: 'public/locales/{{lng}}/{{ns}}.json',
+      loadPath: 'static/locales/{{lng}}/{{ns}}.json',
+      savePath: 'static/locales/{{lng}}/{{ns}}.json',
       jsonIndent: 2,
       lineEnding: '\n',
     },

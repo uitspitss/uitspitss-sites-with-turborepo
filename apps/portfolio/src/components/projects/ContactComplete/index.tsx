@@ -1,13 +1,11 @@
 import { Box, Stack, VStack, Text } from '@chakra-ui/react';
-import { type TFunction, Trans } from 'react-i18next';
+import { useTranslation, Trans } from 'react-i18next';
 import React from 'react';
 
-export type ContactCompleteProps = {
-  t: TFunction;
-};
+export type ContactCompleteProps = {};
 
-export const ContactComplete = (props: ContactCompleteProps) => {
-  const { t } = props;
+export const ContactComplete = (_props: ContactCompleteProps) => {
+  const { t } = useTranslation('common');
 
   return (
     <Box pt="8" pb="16">
@@ -18,7 +16,7 @@ export const ContactComplete = (props: ContactCompleteProps) => {
           </Text>
         </Stack>
         <Text fontSize={{ base: 'lg', md: 'xl' }} maxW="3xl" color="muted">
-          <Trans>
+          <Trans t={t}>
             An auto-reply email has been sent to you.
             <br />
             Please check your inbox.

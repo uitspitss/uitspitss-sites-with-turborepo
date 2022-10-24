@@ -13,7 +13,7 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useCallback } from 'react';
 import { z } from 'zod';
-import type { TFunction } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 
 const schema = z.object({
   email: z.string().email(),
@@ -26,11 +26,12 @@ type FormData = z.infer<typeof schema>;
 
 export type ContactFormProps = {
   onSubmit: (data: FormData) => Promise<void>;
-  t: TFunction;
 };
 
 export const ContactForm = (props: ContactFormProps) => {
-  const { onSubmit, t } = props;
+  const { onSubmit } = props;
+  const { t } = useTranslation('ui');
+
   const {
     register,
     handleSubmit,
