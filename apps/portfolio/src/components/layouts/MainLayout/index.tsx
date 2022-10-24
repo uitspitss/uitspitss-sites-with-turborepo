@@ -20,7 +20,7 @@ export const MainLayout = (props: MainLayoutProps) => {
 
   const pageList = useMemo(
     () => [
-      { name: t('about'), path: '/' },
+      { name: t('about me'), path: '/' },
       { name: t('jobs'), path: '/jobs' },
       { name: t('works'), path: '/works' },
       { name: t('contact'), path: '/contact' },

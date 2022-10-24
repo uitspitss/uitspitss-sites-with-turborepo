@@ -1,9 +1,3 @@
-import { MDXProvider } from '@mdx-js/react';
-
-import { PageHeader, PageContent } from 'ui';
-import { MainLayout } from '../components/layouts/MainLayout';
-import components from '../components/parts/MDXComponents';
-
 ## year 2013
 
 - I worked at a science museum. (planetarium)
@@ -56,14 +50,3 @@ music by [Chouchou](https://chouchou.cc/)
 ## year 2020 ~
 
 - I'm working as a freelance.
-
-export default ({ children }) => (
-  <>
-    <MDXProvider components={components}>
-      <MainLayout>
-        <PageHeader title="Jobs" />
-        <PageContent>{children}</PageContent>
-      </MainLayout>
-    </MDXProvider>
-  </>
-);

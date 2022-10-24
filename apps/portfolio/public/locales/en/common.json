@@ -1,8 +1,11 @@
 {
+  "About Me": "About Me",
   "An auto-reply email has been sent to you.<br/>Please check your inbox.": "An auto-reply email has been sent to you.<br/>Please check your inbox.",
   "Contact": "Contact",
+  "Jobs": "Jobs",
   "Submitted!": "Submitted!",
-  "about": "about",
+  "Works": "Works",
+  "about me": "about me",
   "contact": "contact",
   "jobs": "jobs",
   "works": "works"

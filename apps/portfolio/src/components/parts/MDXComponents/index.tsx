@@ -40,3 +40,13 @@ export const iframe = (props: IframeProps) => (
     <iframe {...props} />
   </Box>
 );
+
+export default {
+  img,
+  h1,
+  h2,
+  h3,
+  ul,
+  li,
+  iframe,
+};

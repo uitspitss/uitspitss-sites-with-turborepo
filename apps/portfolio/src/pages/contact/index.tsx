@@ -9,9 +9,9 @@ import { GetServerSideProps } from 'next';
 type SubmitHandler = ComponentProps<typeof ContactForm>['onSubmit'];
 
 /* eslint-disable-next-line */
-export type ContactProps = {};
+export type PageProps = {};
 
-export const Contact = (_props: ContactProps) => {
+export const Page = (_props: PageProps) => {
   const { t } = useTranslation('common');
   const [isSubmitted, setIsSubmitted] = useState(false);
 
@@ -56,4 +56,4 @@ export const getServerSideProps: GetServerSideProps = async ({ locale }) => ({
   },
 });
 
-export default Contact;
+export default Page;

@@ -1,9 +1,3 @@
-import { MDXProvider } from '@mdx-js/react';
-
-import { PageHeader, PageContent } from 'ui';
-import { MainLayout } from '../components/layouts/MainLayout';
-import components from '../components/parts/MDXComponents';
-
 ## monsters
 
 - for my friends
@@ -76,14 +70,3 @@ import components from '../components/parts/MDXComponents';
 - next.js (TypeScript)
 - TailwindCSS
 - Vercel
-
-export default ({ children }) => (
-  <>
-    <MDXProvider components={components}>
-      <MainLayout>
-        <PageHeader title="Works" />
-        <PageContent>{children}</PageContent>
-      </MainLayout>
-    </MDXProvider>
-  </>
-);
