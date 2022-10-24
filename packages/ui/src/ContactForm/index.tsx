@@ -26,7 +26,7 @@ type FormData = z.infer<typeof schema>;
 
 export type ContactFormProps = {
   onSubmit: (data: FormData) => Promise<void>;
-  t?: TFunction;
+  t: TFunction;
 };
 
 export const ContactForm = (props: ContactFormProps) => {
@@ -50,7 +50,7 @@ export const ContactForm = (props: ContactFormProps) => {
         <Stack spacing="10">
           <FormControl isRequired isInvalid={errors.email && dirtyFields.email}>
             <FormLabel htmlFor="email" variant="floating" size="md">
-              {t?.('email address') || 'email address'}
+              {t('email address')}
             </FormLabel>
             <Input id="email" size="md" type="email" {...register('email')} />
             {errors.email && (
@@ -59,7 +59,7 @@ export const ContactForm = (props: ContactFormProps) => {
           </FormControl>
           <FormControl isRequired isInvalid={errors.name && dirtyFields.name}>
             <FormLabel htmlFor="name" variant="floating" size="md">
-              {t?.('name') || 'name'}
+              {t('name')}
             </FormLabel>
             <Input id="name" size="md" {...register('name')} />
             {errors.name && (
@@ -71,7 +71,7 @@ export const ContactForm = (props: ContactFormProps) => {
             isInvalid={errors.subject && dirtyFields.subject}
           >
             <FormLabel htmlFor="subject" variant="floating" size="md">
-              {t?.('subject') || 'subject'}
+              {t('subject')}
             </FormLabel>
             <Input id="subject" size="md" {...register('subject')} />
             {errors.subject && (
@@ -83,7 +83,7 @@ export const ContactForm = (props: ContactFormProps) => {
             isInvalid={errors.message && dirtyFields.message}
           >
             <FormLabel htmlFor="message" variant="floating" size="md">
-              {t?.('message') || 'message'}
+              {t('message')}
             </FormLabel>
             <Textarea
               id="message"
@@ -97,7 +97,7 @@ export const ContactForm = (props: ContactFormProps) => {
             )}
           </FormControl>
           <Button type="submit" isLoading={isSubmitting}>
-            {t?.('submit') || 'submit'}
+            {t('submit')}
           </Button>
         </Stack>
       </form>

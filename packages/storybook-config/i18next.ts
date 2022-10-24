@@ -5,16 +5,6 @@ import LanguageDetector from 'i18next-browser-languagedetector';
 
 const ns = ['common'];
 const supportedLngs = ['en', 'ja'];
-const resources = ns.reduce((acc, n) => {
-  supportedLngs.forEach((lng) => {
-    if (!acc[lng]) acc[lng] = {};
-    acc[lng] = {
-      ...acc[lng],
-      [n]: require(`../public/locales/${lng}/${n}.json`),
-    };
-  });
-  return acc;
-}, {});
 
 i18n
   .use(initReactI18next)
@@ -29,7 +19,6 @@ i18n
     interpolation: { escapeValue: false },
     react: { useSuspense: false },
     supportedLngs,
-    resources,
   });
 
 export default i18n;

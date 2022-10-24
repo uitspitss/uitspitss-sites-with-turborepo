@@ -1,4 +1,7 @@
-import { parameters as rootParameters } from 'storybook-config/preview';
+import {
+  parameters as rootParameters,
+  decorators as rootDecorators,
+} from 'storybook-config/preview';
 
 import { ChakraProvider } from '@chakra-ui/react';
 import theme from '../src/theme';
@@ -11,6 +14,7 @@ export const parameters = {
 };
 
 export const decorators = [
+  ...rootDecorators,
   (Story: Function) => (
     <ChakraProvider theme={theme}>
       <Story />

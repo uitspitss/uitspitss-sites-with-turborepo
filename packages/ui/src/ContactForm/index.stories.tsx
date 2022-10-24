@@ -12,16 +12,15 @@ export default {
       </div>
     ),
   ],
-} as ComponentMeta<typeof ContactForm>;
-
-export const Default = {
+  args: { t: (str: string) => str },
   argTypes: {
     onSubmit: { action: 'submitted' },
   },
-};
+} as ComponentMeta<typeof ContactForm>;
+
+export const Default = {};
 
 export const Valid = {
-  ...Default,
   play: async ({ canvasElement }: { canvasElement: HTMLElement }) => {
     const canvas = within(canvasElement);
 
@@ -35,7 +34,6 @@ export const Valid = {
 };
 
 export const Invalid = {
-  ...Default,
   play: async ({ canvasElement }: { canvasElement: HTMLElement }) => {
     const canvas = within(canvasElement);
 

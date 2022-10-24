@@ -16,11 +16,7 @@ const config = {
   //   };
   // },
   staticDirs: ['../public'],
-  addons: [
-    ...rootMain.addons,
-    'storybook-addon-next-router',
-    'storybook-react-i18next',
-  ],
+  addons: [...rootMain.addons, 'storybook-addon-next-router'],
 };
 
 module.exports = config;

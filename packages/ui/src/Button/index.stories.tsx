@@ -6,13 +6,13 @@ import { Button } from '.';
 export default {
   component: Button,
   title: 'Button',
-} as ComponentMeta<typeof Button>;
-
-export const Default = {
   args: { children: 'button' },
   argTypes: {
     onClick: { action: 'clicked' },
   },
+} as ComponentMeta<typeof Button>;
+
+export const Default = {
   play: async ({ canvasElement }: { canvasElement: HTMLElement }) => {
     const canvas = within(canvasElement);
 
