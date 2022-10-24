@@ -4,8 +4,8 @@ const typescript = require('typescript');
 
 module.exports = {
   input: [
-    '{pages,components}/**/*.{js,jsx,ts,tsx}',
-    '../../libs/shared/ui/src/lib/**/*.{js,jsx,ts,tsx}',
+    'src/{pages,components}/**/*.{js,jsx,ts,tsx}',
+    '../../packages/**/*.{js,jsx,ts,tsx}',
     // Use ! to filter out files or directories
     '!**/*.spec.{js,jsx,ts,tsx}',
     '!**/*.stories.{js,jsx,ts,tsx}',
