@@ -1,8 +1,5 @@
 {
   "extends": "tsconfig/nextjs.json",
-  "compilerOptions": {
-    "jsx": "preserve"
-  },
   // for storybook
   // REF: https://zenn.dev/kazuma1989/scraps/41384241ae7f27
   "ts-node": {

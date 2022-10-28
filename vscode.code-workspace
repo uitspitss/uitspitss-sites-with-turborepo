@@ -1,0 +1,29 @@
+{
+  "folders": [
+    {
+      "name": "root",
+      "path": "."
+    },
+    {
+      "name": "portfolio",
+      "path": "apps/portfolio"
+    },
+    {
+      "name": "ui",
+      "path": "packages/ui"
+    },
+    {
+      "name": "packages",
+      "path": "packages"
+    }
+  ],
+  "settings": {
+    "jest.autoRun": {
+      "watch": false,
+      "onSave": "test-file"
+    },
+    "jest.jestCommandLine": "yarn test",
+    "jest.disabledWorkspaceFolders": ["root"],
+    "typescript.tsdk": "root/node_modules/typescript/lib"
+  }
+}

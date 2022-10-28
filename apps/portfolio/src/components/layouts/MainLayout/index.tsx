@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import Link from 'next/link';
-import { ReactElement, useMemo } from 'react';
+import { ReactNode, useMemo } from 'react';
 import { Footer, Navbar } from 'ui';
 import { Container } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
@@ -8,7 +8,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 
 type MainLayoutProps = {
-  children: ReactElement;
+  children: ReactNode;
 };
 
 const StyledMainLayout = styled.div``;
@@ -19,12 +19,15 @@ export const MainLayout = (props: MainLayoutProps) => {
   const { t } = useTranslation('common');
 
   const pageList = useMemo(
-    () => [
-      { name: t('about me'), path: '/' },
-      { name: t('jobs'), path: '/jobs' },
-      { name: t('works'), path: '/works' },
-      { name: t('contact'), path: '/contact' },
-    ],
+    () =>
+      t
+        ? [
+            { name: t('about me'), path: '/' },
+            { name: t('jobs'), path: '/jobs' },
+            { name: t('works'), path: '/works' },
+            { name: t('contact'), path: '/contact' },
+          ]
+        : [],
     [t]
   );
 
@@ -36,7 +39,7 @@ export const MainLayout = (props: MainLayoutProps) => {
   const pageItems = useMemo(() => {
     return pageList.map((v) => ({
       name: v.name,
-      wrapperFn: (component: ReactElement) => (
+      wrapperFn: (component: ReactNode) => (
         <Link href={v.path} key={v.path}>
           <a>{component}</a>
         </Link>

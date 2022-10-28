@@ -28,6 +28,7 @@ describe('ContactForm', () => {
   });
 
   it('can submit with valid values', async () => {
+    // @ts-expect-error test
     const { container } = render(<Valid onSubmit={onSubmit} />);
 
     await waitFor(() => {
@@ -46,6 +47,7 @@ describe('ContactForm', () => {
   });
 
   it("can't submit with invalid values", async () => {
+    // @ts-expect-error test
     const { container } = render(<Invalid onSubmit={onSubmit} />);
 
     await waitFor(() => {

@@ -1,13 +1,17 @@
 import { render } from '@testing-library/react';
+import { composeStories } from '@storybook/testing-react';
+import React from 'react';
 
-import { PageContent } from './index';
+import * as stories from './index.stories';
+
+const { Default } = composeStories(stories);
 
 describe('PageContent', () => {
   it('should render successfully', () => {
     const { baseElement } = render(
-      <PageContent>
+      <Default>
         <span>content</span>
-      </PageContent>
+      </Default>
     );
     expect(baseElement).toBeTruthy();
   });

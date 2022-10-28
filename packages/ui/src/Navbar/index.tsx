@@ -12,7 +12,7 @@ import {
   useColorMode,
   Icon,
 } from '@chakra-ui/react';
-import { ReactElement, useMemo } from 'react';
+import { ReactNode, useMemo } from 'react';
 import { FiSun, FiMoon } from 'react-icons/fi';
 import { Logo } from '../Logo';
 
@@ -20,7 +20,7 @@ type NavbarProps = {
   pageItems: {
     name: string;
     // Next.js 依存にしないために render func を受ける
-    wrapperFn?: (component: ReactElement) => JSX.Element;
+    wrapperFn?: (component: ReactNode) => JSX.Element;
   }[];
   selectedIndex?: number;
 };

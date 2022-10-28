@@ -1,5 +1,4 @@
 import i18n from './i18next';
-console.log(`🚧 | file: preview.tsx | line 2 | i18n`, i18n);
 
 export const parameters = {
   actions: { argTypesRegex: '^on.*' },

@@ -4,8 +4,9 @@ import { PageContent } from '.';
 export default {
   component: PageContent,
   title: 'PageContent',
+  args: {
+    children: <span>content</span>,
+  },
 } as ComponentMeta<typeof PageContent>;
 
-export const Default = {
-  args: { children: 'content' },
-};
+export const Default = {};

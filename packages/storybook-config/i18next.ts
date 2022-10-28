@@ -3,7 +3,6 @@ import i18n from 'i18next';
 import Backend from 'i18next-http-backend';
 import LanguageDetector from 'i18next-browser-languagedetector';
 
-const ns = ['common'];
 const supportedLngs = ['en', 'ja'];
 
 i18n
@@ -15,7 +14,7 @@ i18n
     lng: 'en',
     fallbackLng: 'en',
     defaultNS: 'common',
-    ns,
+    ns: ['common'],
     interpolation: { escapeValue: false },
     react: { useSuspense: false },
     supportedLngs,

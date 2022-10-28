@@ -5,12 +5,13 @@ import {
   Stack,
   Text,
   useBreakpointValue,
+  type HeadingProps,
+  type TextProps,
 } from '@chakra-ui/react';
-import { ReactElement, ReactNode } from 'react';
 
 type PageHeaderProps = {
-  title: ReactNode;
-  subtitle?: ReactElement;
+  title: HeadingProps['children'];
+  subtitle?: TextProps['children'];
 };
 
 export const PageHeader = (props: PageHeaderProps) => {
