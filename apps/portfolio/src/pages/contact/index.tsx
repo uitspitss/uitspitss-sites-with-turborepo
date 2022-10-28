@@ -5,6 +5,7 @@ import React, { ComponentProps, useState } from 'react';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { GetServerSideProps } from 'next';
+import { useRouter } from 'next/router';
 
 type SubmitHandler = ComponentProps<typeof ContactForm>['onSubmit'];
 
@@ -12,13 +13,15 @@ type SubmitHandler = ComponentProps<typeof ContactForm>['onSubmit'];
 export type PageProps = {};
 
 export const Page = (_props: PageProps) => {
+  const router = useRouter();
+  const { locale } = router;
   const { t } = useTranslation('common');
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   const onSubmit: SubmitHandler = async (data) => {
     try {
       const res = await fetch('/api/send', {
-        body: JSON.stringify(data),
+        body: JSON.stringify({ ...data, locale }),
         headers: {
           'Content-Type': 'application/json',
         },

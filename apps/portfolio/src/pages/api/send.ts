@@ -2,8 +2,12 @@ import { NextApiHandler } from 'next';
 import sgMail, { MailDataRequired } from '@sendgrid/mail';
 
 const SG_API_KEY = process.env.SG_API_KEY;
-const SG_CONTACT_TEMPLATE_ID = process.env.SG_CONTACT_TEMPLATE_ID;
+const SG_CONTACT_TEMPLATE_EN_ID = process.env.SG_CONTACT_TEMPLATE_EN_ID;
+const SG_CONTACT_TEMPLATE_JA_ID = process.env.SG_CONTACT_TEMPLATE_JA_ID;
 if (!SG_API_KEY) throw new Error('not defined SG_API_KEY');
+if (!SG_CONTACT_TEMPLATE_EN_ID || !SG_CONTACT_TEMPLATE_JA_ID) {
+  throw new Error('not template id');
+}
 sgMail.setApiKey(SG_API_KEY);
 
 const handler: NextApiHandler = async (req, res) => {
@@ -11,8 +15,11 @@ const handler: NextApiHandler = async (req, res) => {
     res.status(405).end();
   }
 
+  const locale = req.body.locale === 'ja' ? 'ja' : 'en';
+
   const msg = {
-    templateId: SG_CONTACT_TEMPLATE_ID,
+    templateId:
+      locale === 'en' ? SG_CONTACT_TEMPLATE_EN_ID : SG_CONTACT_TEMPLATE_JA_ID,
     from: 'mail@uitspitss.net',
     to: req.body.email,
     bcc: 'mail@uitspitss.net',
