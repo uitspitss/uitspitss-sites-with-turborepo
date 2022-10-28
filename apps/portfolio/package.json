@@ -27,7 +27,7 @@
   "devDependencies": {
     "@babel/core": "^7.0.0",
     "@types/node": "^18.0.0",
-    "@types/react": "18.0.17",
+    "@types/react": "18.0.24",
     "eslint": "7.32.0",
     "eslint-config-custom": "*",
     "i18next-browser-languagedetector": "^6.1.8",
