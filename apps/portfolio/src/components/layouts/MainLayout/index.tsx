@@ -49,10 +49,6 @@ export const MainLayout = (props: MainLayoutProps) => {
   }, [pageList]);
 
   const changeLocale = useCallback(() => {
-    console.log(
-      `🚧 | file: index.tsx | line 53 | changeLocale | locale`,
-      locale
-    );
     if (locale === 'en') {
       router.push({ pathname, query }, asPath, { locale: 'ja' });
     } else {
