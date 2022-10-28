@@ -6,6 +6,7 @@ import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { GetServerSideProps } from 'next';
 import { useRouter } from 'next/router';
+import { useToast } from '@chakra-ui/react';
 
 type SubmitHandler = ComponentProps<typeof ContactForm>['onSubmit'];
 
@@ -17,6 +18,7 @@ export const Page = (_props: PageProps) => {
   const { locale } = router;
   const { t } = useTranslation('common');
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const toast = useToast();
 
   const onSubmit: SubmitHandler = async (data) => {
     try {
@@ -31,9 +33,21 @@ export const Page = (_props: PageProps) => {
         setIsSubmitted(true);
       } else {
         console.error(res.status, res.body);
+        toast({
+          title: t('sending error'),
+          description: t('sending error'),
+          position: 'top-right',
+          status: 'error',
+        });
       }
     } catch (error) {
       console.error(error);
+      toast({
+        title: t('sending error'),
+        description: t('sending error'),
+        position: 'top-right',
+        status: 'error',
+      });
     }
   };
 
