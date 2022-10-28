@@ -11,9 +11,11 @@ import {
   Tabs,
   useColorMode,
   Icon,
+  Spacer,
 } from '@chakra-ui/react';
-import { ReactNode, useMemo } from 'react';
+import { ReactNode, useCallback, useMemo } from 'react';
 import { FiSun, FiMoon } from 'react-icons/fi';
+import { FaLanguage } from 'react-icons/fa';
 import { Logo } from '../Logo';
 
 type NavbarProps = {
@@ -23,10 +25,11 @@ type NavbarProps = {
     wrapperFn?: (component: ReactNode) => JSX.Element;
   }[];
   selectedIndex?: number;
+  changeLocale?: () => void;
 };
 
 export const Navbar = (props: NavbarProps) => {
-  const { pageItems, selectedIndex } = props;
+  const { pageItems, selectedIndex, changeLocale } = props;
 
   const { colorMode, toggleColorMode } = useColorMode();
   const tabIndex = useMemo(() => selectedIndex ?? 0, [selectedIndex]);
@@ -72,6 +75,15 @@ export const Navbar = (props: NavbarProps) => {
                   bg="accent"
                 />
               </Tabs>
+              <Spacer />
+              {changeLocale && (
+                <IconButton
+                  variant="ghost"
+                  icon={<Icon as={FaLanguage} fontSize="xl" />}
+                  aria-label="Toggle Language EN/JP"
+                  onClick={changeLocale}
+                />
+              )}
               <IconButton
                 variant="ghost"
                 icon={

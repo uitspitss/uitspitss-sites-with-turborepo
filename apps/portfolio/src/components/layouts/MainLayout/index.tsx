@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import Link from 'next/link';
-import { ReactNode, useMemo } from 'react';
+import { ReactNode, useCallback, useMemo } from 'react';
 import { Footer, Navbar } from 'ui';
 import { Container } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
@@ -16,6 +16,7 @@ const StyledMainLayout = styled.div``;
 export const MainLayout = (props: MainLayoutProps) => {
   const { children } = props;
   const router = useRouter();
+  const { pathname, query, asPath, locale } = router;
   const { t } = useTranslation('common');
 
   const pageList = useMemo(
@@ -45,12 +46,28 @@ export const MainLayout = (props: MainLayoutProps) => {
         </Link>
       ),
     }));
-  }, []);
+  }, [pageList]);
+
+  const changeLocale = useCallback(() => {
+    console.log(
+      `🚧 | file: index.tsx | line 53 | changeLocale | locale`,
+      locale
+    );
+    if (locale === 'en') {
+      router.push({ pathname, query }, asPath, { locale: 'ja' });
+    } else {
+      router.push({ pathname, query }, asPath, { locale: 'en' });
+    }
+  }, [router, pathname, query, asPath, locale]);
 
   return (
     <StyledMainLayout>
-      {/* @ts-expect-error TODO: fix type error */}
-      <Navbar pageItems={pageItems} selectedIndex={selectedIndex} />
+      <Navbar
+        // @ts-expect-error FIXME: type error
+        pageItems={pageItems}
+        selectedIndex={selectedIndex}
+        changeLocale={changeLocale}
+      />
       <Container py={{ base: '8', md: '12' }}>{children}</Container>
       <Footer />
     </StyledMainLayout>
