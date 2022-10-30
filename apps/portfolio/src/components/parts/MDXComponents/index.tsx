@@ -37,6 +37,7 @@ export const li = (props: ListItemProps) => <ListItem {...props} />;
 
 export const iframe = (props: IframeProps) => (
   <Box my={{ base: '4', md: '6' }}>
+    {/* eslint-disable-next-line jsx-a11y/iframe-has-title */}
     <iframe {...props} />
   </Box>
 );

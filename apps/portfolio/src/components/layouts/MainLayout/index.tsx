@@ -41,6 +41,7 @@ export const MainLayout = (props: MainLayoutProps) => {
       name: v.name,
       wrapperFn: (component: ReactNode) => (
         <Link href={v.path} key={v.path}>
+          {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
           <a>{component}</a>
         </Link>
       ),
