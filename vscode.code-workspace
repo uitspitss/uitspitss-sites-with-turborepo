@@ -20,7 +20,7 @@
   "settings": {
     "jest.autoRun": {
       "watch": false,
-      "onSave": "test-file"
+      "onSave": false
     },
     "jest.jestCommandLine": "yarn test",
     "jest.disabledWorkspaceFolders": ["root"],

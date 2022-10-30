@@ -1,7 +1,3 @@
 module.exports = {
-  extends: ['next', 'turbo', 'prettier', 'storybook'],
-  rules: {
-    '@next/next/no-html-link-for-pages': 'off',
-    'react/jsx-key': 'off',
-  },
+  extends: ['./lib/base.js', './lib/turbo'],
 };
