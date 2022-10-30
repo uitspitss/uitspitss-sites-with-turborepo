@@ -24,6 +24,7 @@
     },
     "jest.jestCommandLine": "yarn test",
     "jest.disabledWorkspaceFolders": ["root"],
-    "typescript.tsdk": "root/node_modules/typescript/lib"
+    "typescript.tsdk": "root/node_modules/typescript/lib",
+    "eslint.workingDirectories": [{ "mode": "auto" }]
   }
 }
