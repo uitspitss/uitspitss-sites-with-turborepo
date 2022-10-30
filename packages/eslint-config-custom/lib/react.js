@@ -2,7 +2,7 @@ module.exports = {
   env: {
     browser: true,
   },
-  plugins: ['react', 'react-hooks', 'jsx-a11y', 'next'],
+  plugins: ['react', 'react-hooks', 'jsx-a11y'],
   extends: [
     'plugin:react/recommended',
     'plugin:react/jsx-runtime',

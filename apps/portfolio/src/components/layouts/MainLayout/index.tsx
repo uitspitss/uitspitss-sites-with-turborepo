@@ -33,7 +33,7 @@ export const MainLayout = (props: MainLayoutProps) => {
 
   const selectedIndex = useMemo(
     () => pageList.map((v) => v.path).indexOf(router.asPath),
-    [router]
+    [router, pageList]
   );
 
   const pageItems = useMemo(() => {
@@ -59,7 +59,6 @@ export const MainLayout = (props: MainLayoutProps) => {
   return (
     <StyledMainLayout>
       <Navbar
-        // @ts-expect-error FIXME: type error
         pageItems={pageItems}
         selectedIndex={selectedIndex}
         changeLocale={changeLocale}
