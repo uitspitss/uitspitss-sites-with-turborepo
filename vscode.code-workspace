@@ -18,13 +18,15 @@
     }
   ],
   "settings": {
+    "typescript.tsdk": "./node_modules/typescript/lib",
+    "typescript.preferences.importModuleSpecifier": "shortest",
+    "eslint.workingDirectories": [{ "mode": "auto" }],
+    "eslint.packageManager": "yarn",
     "jest.autoRun": {
       "watch": false,
       "onSave": false
     },
     "jest.jestCommandLine": "yarn test",
-    "jest.disabledWorkspaceFolders": ["root"],
-    "typescript.tsdk": "root/node_modules/typescript/lib",
-    "eslint.workingDirectories": [{ "mode": "auto" }]
+    "jest.disabledWorkspaceFolders": ["root"]
   }
 }
