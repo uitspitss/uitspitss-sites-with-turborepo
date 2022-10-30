@@ -5,7 +5,6 @@ import {
   waitForElementToBeRemoved,
 } from '@testing-library/react';
 import { composeStories } from '@storybook/testing-react';
-import React from 'react';
 
 import * as stories from './index.stories';
 
@@ -37,7 +36,7 @@ describe('ContactForm', () => {
 
     await waitForElementToBeRemoved(screen.getByText(/Loading.../));
 
-    expect(onSubmit).toBeCalledTimes(1);
+    expect(onSubmit).toHaveBeCalledTimes(1);
     expect(onSubmit).toHaveBeenCalledWith({
       email: 'mail@example.com',
       name: 'John Smith',

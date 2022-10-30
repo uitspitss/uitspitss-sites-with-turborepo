@@ -1,5 +1,5 @@
 module.exports = {
-  extends: ['airbnb-base'],
+  extends: ['eslint:recommended'],
   plugins: ['import'],
   env: {
     browser: true,
@@ -13,6 +13,7 @@ module.exports = {
     '.yarn/',
     'yarn.lock',
     'Dockerfile*',
+    '*.config.js',
     '*.json',
     '*.ya?ml',
     'coverage/',
@@ -28,8 +29,7 @@ module.exports = {
     'import/no-extraneous-dependencies': [
       'error',
       {
-        devDependencies: ['**/*.spec.tsx?', '**/*.config.js'],
-        peerDependencies: false,
+        devDependencies: ['**/*.config.js'],
       },
     ],
     'import/prefer-default-export': 'off',

@@ -1,5 +1,6 @@
 module.exports = {
-  extends: ['airbnb', 'airbnb/hooks'],
+  plugins: ['react', 'react-hooks'],
+  extends: ['plugin:react/recommended', 'plugin:react/jsx-runtime'],
   rules: {
     'react-prop-types': ['off', {}],
   },

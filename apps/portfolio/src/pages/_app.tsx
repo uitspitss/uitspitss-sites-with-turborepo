@@ -6,7 +6,6 @@ import Head from 'next/head';
 import Script from 'next/script';
 import { ChakraProvider } from '@chakra-ui/react';
 import { appWithTranslation } from 'next-i18next';
-import React from 'react';
 
 import theme from '../theme';
 import { NextPageWithLayout } from '../types/page';
@@ -34,6 +33,7 @@ const CustomApp = ({ Component, pageProps }: AppPropsWithLayout) => {
                 window.dataLayer = window.dataLayer || [];
                 function gtag() {
                   // @ts-expect-error gtag
+                  // eslint-disable-next-line
                   window.dataLayer.push(arguments);
                 }
                 // @ts-expect-error gtag

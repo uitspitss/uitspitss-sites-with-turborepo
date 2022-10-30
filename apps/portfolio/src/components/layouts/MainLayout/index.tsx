@@ -4,7 +4,6 @@ import { ReactNode, useCallback, useMemo } from 'react';
 import { Footer, Navbar } from 'ui';
 import { Container } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
-import React from 'react';
 import { useTranslation } from 'react-i18next';
 
 type MainLayoutProps = {

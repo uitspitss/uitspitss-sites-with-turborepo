@@ -13,7 +13,7 @@ import {
   Icon,
   Spacer,
 } from '@chakra-ui/react';
-import { ReactNode, useCallback, useMemo } from 'react';
+import { ReactNode, useMemo } from 'react';
 import { FiSun, FiMoon } from 'react-icons/fi';
 import { FaLanguage } from 'react-icons/fa';
 import { Logo } from '../Logo';

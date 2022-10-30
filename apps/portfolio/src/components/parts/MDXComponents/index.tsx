@@ -8,7 +8,7 @@ import {
   Box,
 } from '@chakra-ui/react';
 import Image, { ImageProps } from 'next/image';
-import React, { ComponentPropsWithoutRef } from 'react';
+import { ComponentPropsWithoutRef } from 'react';
 
 type IframeProps = ComponentPropsWithoutRef<'iframe'>;
 

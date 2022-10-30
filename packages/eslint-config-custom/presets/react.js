@@ -4,5 +4,14 @@ module.exports = {
     '../lib/react.js',
     '../lib/typescript.js',
     '../lib/prettier.js',
+    '../lib/jest.js',
   ],
+  rules: {
+    'import/no-extraneous-dependencies': [
+      'error',
+      {
+        devDependencies: ['**/*.spec.tsx?'],
+      },
+    ],
+  },
 };
