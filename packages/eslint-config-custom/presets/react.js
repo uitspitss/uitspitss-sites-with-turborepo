@@ -5,6 +5,7 @@ module.exports = {
     '../lib/typescript.js',
     '../lib/prettier.js',
     '../lib/jest.js',
+    '../lib/storybook.js',
   ],
   rules: {
     'import/no-extraneous-dependencies': [

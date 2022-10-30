@@ -2,7 +2,6 @@ module.exports = {
   extends: ['eslint:recommended'],
   plugins: ['import'],
   env: {
-    browser: true,
     es6: true,
     commonjs: true,
   },
