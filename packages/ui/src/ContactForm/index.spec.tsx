@@ -36,7 +36,7 @@ describe('ContactForm', () => {
 
     await waitForElementToBeRemoved(screen.getByText(/Loading.../));
 
-    expect(onSubmit).toHaveBeCalledTimes(1);
+    expect(onSubmit).toHaveBeenCalledTimes(1);
     expect(onSubmit).toHaveBeenCalledWith({
       email: 'mail@example.com',
       name: 'John Smith',

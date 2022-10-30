@@ -20,6 +20,6 @@ describe('Button', () => {
 
     await Default.play({ canvasElement: container });
 
-    expect(onClick).toHaveBeCalledTimes(1);
+    expect(onClick).toHaveBeenCalledTimes(1);
   });
 });
