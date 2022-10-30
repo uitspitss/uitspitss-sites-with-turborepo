@@ -12,6 +12,7 @@ module.exports = {
           '../chakra-config',
           '../i18next-scanner-config',
           '../jest-config',
+          '../react-config',
           '../storybook-config',
           '../tsconfig',
         ],

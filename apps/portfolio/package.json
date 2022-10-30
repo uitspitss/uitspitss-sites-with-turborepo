@@ -21,14 +21,12 @@
     "chakra-config": "*",
     "next": "12.3.1",
     "next-i18next": "^12.1.0",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
+    "react-config": "*",
     "ui": "*"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0",
     "@types/node": "^18.0.0",
-    "@types/react": "18.0.17",
     "eslint": "7.32.0",
     "eslint-config-custom": "*",
     "i18next-browser-languagedetector": "^6.1.8",
