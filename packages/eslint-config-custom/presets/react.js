@@ -8,12 +8,4 @@ module.exports = {
     '../lib/jest.js',
     '../lib/storybook.js',
   ],
-  rules: {
-    'import/no-extraneous-dependencies': [
-      'error',
-      {
-        devDependencies: ['**/*.spec.tsx?'],
-      },
-    ],
-  },
 };

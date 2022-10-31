@@ -1,7 +1,0 @@
-// for vscode, not for tsc
-{
-  "compilerOptions": {
-    "jsx": "react-jsx"
-  },
-  "exclude": ["node_modules", "**/node_modules/*"]
-}

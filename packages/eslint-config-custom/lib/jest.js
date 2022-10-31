@@ -8,7 +8,7 @@ module.exports = {
     'import/no-extraneous-dependencies': [
       'error',
       {
-        devDependencies: ['**/jest.setup.ts'],
+        devDependencies: ['**/*.spec.tsx?', '**/jest.setup.ts'],
       },
     ],
   },

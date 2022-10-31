@@ -18,6 +18,7 @@
     }
   ],
   "settings": {
+    "typescript.enablePromptUseWorkspaceTsdk": true,
     "typescript.tsdk": "./node_modules/typescript/lib",
     "typescript.preferences.importModuleSpecifier": "shortest",
     "eslint.workingDirectories": [{ "mode": "auto" }],
