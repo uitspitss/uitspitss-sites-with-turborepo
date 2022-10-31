@@ -18,12 +18,16 @@
     }
   ],
   "settings": {
+    "typescript.enablePromptUseWorkspaceTsdk": true,
+    "typescript.tsdk": "./node_modules/typescript/lib",
+    "typescript.preferences.importModuleSpecifier": "shortest",
+    "eslint.workingDirectories": [{ "mode": "auto" }],
+    "eslint.packageManager": "yarn",
     "jest.autoRun": {
       "watch": false,
-      "onSave": "test-file"
+      "onSave": false
     },
     "jest.jestCommandLine": "yarn test",
-    "jest.disabledWorkspaceFolders": ["root"],
-    "typescript.tsdk": "root/node_modules/typescript/lib"
+    "jest.disabledWorkspaceFolders": ["root"]
   }
 }

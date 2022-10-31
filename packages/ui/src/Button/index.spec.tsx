@@ -1,6 +1,5 @@
 import { render } from '@testing-library/react';
 import { composeStories } from '@storybook/testing-react';
-import React from 'react';
 
 import * as stories from './index.stories';
 
@@ -21,6 +20,6 @@ describe('Button', () => {
 
     await Default.play({ canvasElement: container });
 
-    expect(onClick).toBeCalledTimes(1);
+    expect(onClick).toHaveBeenCalledTimes(1);
   });
 });

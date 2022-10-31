@@ -1,13 +1,5 @@
 {
   "extends": "tsconfig/react-library.json",
   "include": ["."],
-  "exclude": ["dist", "build", "node_modules", "**/*.spec.ts", "**/*.spec.tsx"],
-  // for storybook
-  // REF: https://zenn.dev/kazuma1989/scraps/41384241ae7f27
-  "ts-node": {
-    "transpileOnly": true,
-    "compilerOptions": {
-      "module": "CommonJS"
-    }
-  }
+  "exclude": ["dist", "build", "node_modules", "**/*.spec.ts", "**/*.spec.tsx"]
 }

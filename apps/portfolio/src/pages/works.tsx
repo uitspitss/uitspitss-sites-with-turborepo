@@ -2,14 +2,13 @@ import { MDXProvider } from '@mdx-js/react';
 import { GetServerSideProps } from 'next';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import React from 'react';
 
 import { PageHeader, PageContent } from 'ui';
 import { MainLayout } from '../components/layouts/MainLayout';
 import components from '../components/parts/MDXComponents';
 import Works from '../contents/mdx/works.mdx';
 
-type PageProps = {};
+type PageProps = unknown;
 
 const Page = (_props: PageProps) => {
   const { t } = useTranslation('common');
@@ -19,6 +18,7 @@ const Page = (_props: PageProps) => {
       <>
         <PageHeader title={t('Works')} />
         <PageContent>
+          {/* @ts-expect-error components prop */}
           <MDXProvider components={components}>
             <Works />
           </MDXProvider>

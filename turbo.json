@@ -19,5 +19,11 @@
     },
     "storybook": {},
     "i18next-scanner": {}
-  }
+  },
+  "globalEnv": [
+    "NODE_ENV",
+    "SG_API_KEY",
+    "SG_CONTACT_TEMPLATE_ID",
+    "NEXT_PUBLIC_GA_MEASUREMENT_ID"
+  ]
 }

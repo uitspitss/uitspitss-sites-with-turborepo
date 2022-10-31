@@ -1,7 +1,7 @@
 import { ContactForm, PageContent, PageHeader } from 'ui';
 import { MainLayout } from '../../components/layouts/MainLayout';
 import { ContactComplete } from '../../components/projects/ContactComplete';
-import React, { ComponentProps, useState } from 'react';
+import { ComponentProps, useState } from 'react';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { GetServerSideProps } from 'next';

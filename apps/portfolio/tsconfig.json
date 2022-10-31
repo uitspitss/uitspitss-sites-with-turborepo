@@ -1,11 +1,6 @@
 {
   "extends": "tsconfig/nextjs.json",
-  // for storybook
-  // REF: https://zenn.dev/kazuma1989/scraps/41384241ae7f27
-  "ts-node": {
-    "transpileOnly": true,
-    "compilerOptions": {
-      "module": "CommonJS"
-    }
+  "compilerOptions": {
+    "jsx": "preserve"
   }
 }

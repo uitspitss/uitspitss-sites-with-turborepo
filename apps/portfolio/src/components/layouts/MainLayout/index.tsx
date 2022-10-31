@@ -4,7 +4,6 @@ import { ReactNode, useCallback, useMemo } from 'react';
 import { Footer, Navbar } from 'ui';
 import { Container } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
-import React from 'react';
 import { useTranslation } from 'react-i18next';
 
 type MainLayoutProps = {
@@ -34,7 +33,7 @@ export const MainLayout = (props: MainLayoutProps) => {
 
   const selectedIndex = useMemo(
     () => pageList.map((v) => v.path).indexOf(router.asPath),
-    [router]
+    [router, pageList]
   );
 
   const pageItems = useMemo(() => {
@@ -42,6 +41,7 @@ export const MainLayout = (props: MainLayoutProps) => {
       name: v.name,
       wrapperFn: (component: ReactNode) => (
         <Link href={v.path} key={v.path}>
+          {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
           <a>{component}</a>
         </Link>
       ),
@@ -59,7 +59,6 @@ export const MainLayout = (props: MainLayoutProps) => {
   return (
     <StyledMainLayout>
       <Navbar
-        // @ts-expect-error FIXME: type error
         pageItems={pageItems}
         selectedIndex={selectedIndex}
         changeLocale={changeLocale}

@@ -1,5 +1,4 @@
 const withTM = require('next-transpile-modules')(['ui']);
-const { i18n } = require('./next-i18next.config');
 const withMDX = require('@next/mdx')({
   extension: /\.mdx?$/,
   options: {
@@ -9,6 +8,7 @@ const withMDX = require('@next/mdx')({
     providerImportSource: '@mdx-js/react',
   },
 });
+const { i18n } = require('./next-i18next.config');
 
 const nextConfig = {
   reactStrictMode: true,

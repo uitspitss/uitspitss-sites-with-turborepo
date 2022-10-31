@@ -1,8 +1,7 @@
 import { Box, Stack, VStack, Text } from '@chakra-ui/react';
 import { useTranslation, Trans } from 'react-i18next';
-import React from 'react';
 
-export type ContactCompleteProps = {};
+type ContactCompleteProps = unknown;
 
 export const ContactComplete = (_props: ContactCompleteProps) => {
   const { t } = useTranslation('common');
