@@ -24,7 +24,7 @@
   "devDependencies": {
     "@babel/core": "^7.19.3",
     "babel-loader": "^8.2.5",
-    "eslint": "^7.32.0",
+    "eslint": "^8.0.0",
     "eslint-config-custom": "*",
     "i18next-scanner-config": "*",
     "jest-config": "*",
