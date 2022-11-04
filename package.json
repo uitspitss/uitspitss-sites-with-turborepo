@@ -26,7 +26,7 @@
   "dependencies": {},
   "resolutions": {
     "glob-parent": "^6.0.0",
-    "trim": "^0.0.3",
+    "trim": "^1.0.0",
     "trim-newlines": "^3.0.1"
   },
   "packageManager": "yarn@1.22.19"
