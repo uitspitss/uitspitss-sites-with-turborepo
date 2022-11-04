@@ -1,5 +1,7 @@
 import { ComponentMeta } from '@storybook/react';
 import { userEvent, within } from '@storybook/testing-library';
+import React from 'react';
+
 import { ContactForm } from '.';
 
 export default {

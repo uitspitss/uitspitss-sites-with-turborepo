@@ -5,10 +5,10 @@ import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 import { PageHeader, PageContent } from 'ui';
-import { MainLayout } from '../components/layouts/MainLayout';
-import components from '../components/parts/MDXComponents';
-import Jobs from '../contents/mdx/jobs.mdx';
-import { NextPageWithLayout } from '../types/page';
+import { MainLayout } from '@/components/layouts/MainLayout';
+import components from '@/components/parts/MDXComponents';
+import Jobs from '@/contents/mdx/jobs.mdx';
+import { NextPageWithLayout } from '@/types/page';
 
 type PageProps = unknown;
 
