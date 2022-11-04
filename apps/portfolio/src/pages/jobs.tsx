@@ -16,17 +16,15 @@ const Page: NextPageWithLayout<PageProps> = (_props) => {
   const { t } = useTranslation('common');
 
   return (
-    <MainLayout>
-      <>
-        <PageHeader title={t('Jobs')} />
-        <PageContent>
-          {/* @ts-expect-error components prop */}
-          <MDXProvider components={components}>
-            <Jobs />
-          </MDXProvider>
-        </PageContent>
-      </>
-    </MainLayout>
+    <>
+      <PageHeader title={t('Jobs')} />
+      <PageContent>
+        {/* @ts-expect-error components prop */}
+        <MDXProvider components={components}>
+          <Jobs />
+        </MDXProvider>
+      </PageContent>
+    </>
   );
 };
 
