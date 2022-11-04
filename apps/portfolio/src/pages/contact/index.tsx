@@ -1,19 +1,19 @@
 import { ContactForm, PageContent, PageHeader } from 'ui';
 import { MainLayout } from '../../components/layouts/MainLayout';
 import { ContactComplete } from '../../components/projects/ContactComplete';
-import { ComponentProps, useState } from 'react';
+import { ComponentProps, useState, type ReactElement } from 'react';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { GetServerSideProps } from 'next';
 import { useRouter } from 'next/router';
 import { useToast } from '@chakra-ui/react';
+import type { NextPageWithLayout } from '../../types/page';
 
 type SubmitHandler = ComponentProps<typeof ContactForm>['onSubmit'];
 
-/* eslint-disable-next-line */
-export type PageProps = {};
+export type PageProps = unknown;
 
-export const Page = (_props: PageProps) => {
+export const Page: NextPageWithLayout<PageProps> = (_props) => {
   const router = useRouter();
   const { locale } = router;
   const { t } = useTranslation('common');
@@ -52,20 +52,20 @@ export const Page = (_props: PageProps) => {
   };
 
   return (
-    <MainLayout>
-      <>
-        <PageHeader title={t('Contact')} />
-        <PageContent>
-          {isSubmitted ? (
-            <ContactComplete />
-          ) : (
-            <ContactForm onSubmit={onSubmit} />
-          )}
-        </PageContent>
-      </>
-    </MainLayout>
+    <>
+      <PageHeader title={t('Contact')} />
+      <PageContent>
+        {isSubmitted ? (
+          <ContactComplete />
+        ) : (
+          <ContactForm onSubmit={onSubmit} />
+        )}
+      </PageContent>
+    </>
   );
 };
+
+Page.getLayout = (page: ReactElement) => <MainLayout>{page}</MainLayout>;
 
 export const getServerSideProps: GetServerSideProps = async ({ locale }) => ({
   props: {
