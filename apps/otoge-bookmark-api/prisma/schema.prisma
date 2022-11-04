@@ -12,13 +12,13 @@ datasource db {
 
 model Game {
   id String @id @default(uuid())
-  name String @unique
+  title String @unique
   songs Song[]
 }
 
 model Song {
   id String @id @default(uuid())
-  name String @unique
+  title String @unique
   game Game? @relation(fields: [gameId], references: [id])
   gameId String?
 }
