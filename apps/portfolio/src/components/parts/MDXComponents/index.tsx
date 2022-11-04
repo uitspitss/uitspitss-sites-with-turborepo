@@ -21,7 +21,7 @@ type IframeProps = ComponentPropsWithoutRef<'iframe'>;
 // components としてまとめて export するので、各 component の命名に注意
 
 export const img = (props: ImageProps) => (
-  <Image alt={props.alt} layout="responsive" {...props} />
+  <Image layout="responsive" {...props} />
 );
 
 export const h1 = (props: HeadingProps) => (
