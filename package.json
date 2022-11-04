@@ -29,5 +29,5 @@
     "trim": "^0.0.3",
     "trim-newlines": "^3.0.1"
   },
-  "packageManager": "yarn@1.22.18"
+  "packageManager": "yarn@1.22.19"
 }
