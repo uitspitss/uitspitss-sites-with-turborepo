@@ -19,7 +19,6 @@ const Page: NextPageWithLayout<PageProps> = (_props) => {
     <>
       <PageHeader title={t('Works')} />
       <PageContent>
-        {/* @ts-expect-error components prop */}
         <MDXProvider components={components}>
           <Works />
         </MDXProvider>
