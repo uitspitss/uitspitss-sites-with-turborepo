@@ -11,6 +11,12 @@ import * as stories from './index.stories';
 
 const { Default, Valid, Invalid } = composeStories(stories);
 
+jest.mock('react-i18next', () => ({
+  useTranslation: () => ({
+    t: (str: string) => str,
+  }),
+}));
+
 describe('ContactForm', () => {
   const onSubmit = jest.fn();
 
