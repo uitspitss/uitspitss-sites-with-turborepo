@@ -1,3 +1,4 @@
+import { MDXProvider } from '@mdx-js/react';
 import {
   Heading,
   HeadingProps,
@@ -9,6 +10,10 @@ import {
 } from '@chakra-ui/react';
 import Image, { ImageProps } from 'next/image';
 import { ComponentPropsWithoutRef } from 'react';
+
+type MDXComponentsType = ComponentPropsWithoutRef<
+  typeof MDXProvider
+>['components'];
 
 type IframeProps = ComponentPropsWithoutRef<'iframe'>;
 
@@ -42,7 +47,7 @@ export const iframe = (props: IframeProps) => (
   </Box>
 );
 
-export default {
+const components = {
   img,
   h1,
   h2,
@@ -50,4 +55,6 @@ export default {
   ul,
   li,
   iframe,
-};
+} as MDXComponentsType;
+
+export default components;

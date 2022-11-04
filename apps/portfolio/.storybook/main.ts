@@ -1,22 +1,20 @@
+import path from 'path';
 import rootMain from 'storybook-config/main';
 
 const config = {
   ...rootMain,
-  // webpackFinal: async (config, { configType }) => {
-  //   config = await rootMain.webpackFinal(config, { configType });
-  //   // Make whatever fine-grained changes you need that should apply to all storybook configs
-
-  //   // Return the altered config
-  //   return {
-  //     ...config,
-  //     node: {
-  //       ...config.node,
-  //       fs: 'empty',
-  //     },
-  //   };
-  // },
   staticDirs: ['../public'],
   addons: [...rootMain.addons, 'storybook-addon-next-router'],
+  webpackFinal: async (config, { configType }) => {
+    config = await rootMain.webpackFinal(config, { configType });
+
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      '@': path.resolve(__dirname, '../src'),
+    };
+
+    return config;
+  },
 };
 
 module.exports = config;

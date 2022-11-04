@@ -4,12 +4,11 @@
     "jsx": "react-jsx"
   },
   "include": [
+    "**/*.d.ts",
     "jest.config.ts",
     "jest.setup.ts",
     "**/*.spec.ts",
     "**/*.spec.tsx",
-    "**/*.spec.js",
-    "**/*.spec.jsx",
-    "**/*.d.ts"
+    "**/*.stories.tsx"
   ]
 }

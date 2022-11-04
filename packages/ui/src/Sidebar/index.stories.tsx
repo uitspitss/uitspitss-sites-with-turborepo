@@ -1,4 +1,5 @@
 import { ComponentMeta } from '@storybook/react';
+
 import { Sidebar } from '.';
 
 export default {
