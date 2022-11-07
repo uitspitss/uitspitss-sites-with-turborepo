@@ -2,7 +2,6 @@ import '@fontsource/raleway/400.css';
 import '@fontsource/open-sans/700.css';
 
 import { AppProps } from 'next/app';
-import Head from 'next/head';
 import { ChakraProvider } from '@chakra-ui/react';
 import { GoogleAnalytics } from 'nextjs-google-analytics';
 import { appWithTranslation } from 'next-i18next';
