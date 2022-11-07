@@ -19,10 +19,7 @@ const CustomApp = ({ Component, pageProps }: AppPropsWithLayout) => {
 
   return (
     <>
-      <Head>
-        <title>uitspitss&apos; portfolio</title>
-        <GoogleAnalytics trackPageViews />
-      </Head>
+      <GoogleAnalytics trackPageViews />
       <ChakraProvider theme={theme}>
         {getLayout(<Component {...pageProps} />)}
       </ChakraProvider>

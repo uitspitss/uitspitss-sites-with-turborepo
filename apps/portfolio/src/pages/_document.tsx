@@ -10,7 +10,10 @@ export default class Document extends NextDocument {
 
     return (
       <Html lang={currentLocale}>
-        <Head />
+        <Head>
+          <title>uitspitss&apos; portfolio</title>
+          <link rel="icon" href="/favicon.ico" />
+        </Head>
         <body>
           <ColorModeScript initialColorMode={theme.config.initialColorMode} />
           <Main />
