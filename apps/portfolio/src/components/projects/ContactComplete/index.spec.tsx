@@ -1,6 +1,6 @@
 import { render } from '@testing-library/react';
 import { composeStories } from '@storybook/testing-react';
-import React, { type ReactNode } from 'react';
+import type { ReactNode } from 'react';
 
 import * as stories from './index.stories';
 
