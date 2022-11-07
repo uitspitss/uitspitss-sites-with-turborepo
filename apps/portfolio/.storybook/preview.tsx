@@ -4,8 +4,6 @@ import {
 } from 'storybook-config/preview';
 import { RouterContext } from 'next/dist/shared/lib/router-context';
 
-import React from 'react';
-
 import { ChakraProvider } from '@chakra-ui/react';
 import theme from '../src/theme';
 
