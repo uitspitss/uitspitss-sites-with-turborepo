@@ -7,4 +7,10 @@ export class GameEntity implements Game {
 
   @ApiProperty()
   title: string;
+
+  @ApiProperty()
+  createdAt: Date;
+
+  @ApiProperty()
+  updatedAt: Date;
 }

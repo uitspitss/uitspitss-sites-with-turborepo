@@ -14,6 +14,8 @@ model Game {
   id String @id @default(uuid())
   title String @unique
   songs Song[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model Song {
@@ -21,4 +23,6 @@ model Song {
   title String @unique
   game Game? @relation(fields: [gameId], references: [id])
   gameId String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }

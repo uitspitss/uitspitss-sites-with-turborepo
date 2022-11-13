@@ -10,4 +10,10 @@ export class SongEntity implements Song {
 
   @ApiProperty()
   gameId: string;
+
+  @ApiProperty()
+  createdAt: Date;
+
+  @ApiProperty()
+  updatedAt: Date;
 }
