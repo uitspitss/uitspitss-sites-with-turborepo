@@ -28,12 +28,12 @@ export const MainLayout = (props: MainLayoutProps) => {
             { name: t('contact'), path: '/contact' },
           ]
         : [],
-    [t]
+    [t],
   );
 
   const selectedIndex = useMemo(
     () => pageList.map((v) => v.path).indexOf(router.asPath),
-    [router, pageList]
+    [router, pageList],
   );
 
   const pageItems = useMemo(() => {

@@ -20,7 +20,7 @@ describe('MainLayout', () => {
     const { baseElement } = render(
       <Default>
         <span>children</span>
-      </Default>
+      </Default>,
     );
     expect(baseElement).toBeTruthy();
   });

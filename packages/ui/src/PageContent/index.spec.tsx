@@ -11,7 +11,7 @@ describe('PageContent', () => {
     const { baseElement } = render(
       <Default>
         <span>content</span>
-      </Default>
+      </Default>,
     );
     expect(baseElement).toBeTruthy();
   });
