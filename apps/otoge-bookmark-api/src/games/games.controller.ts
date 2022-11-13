@@ -10,33 +10,46 @@ import {
 import { GamesService } from './games.service';
 import { CreateGameDto } from './dto/create-game.dto';
 import { UpdateGameDto } from './dto/update-game.dto';
+import {
+  ApiCreatedResponse,
+  ApiNoContentResponse,
+  ApiOkResponse,
+  ApiTags,
+} from '@nestjs/swagger';
+import { GameEntity } from './entities/game.entity';
 
 @Controller('games')
+@ApiTags('games')
 export class GamesController {
   constructor(private readonly gamesService: GamesService) {}
 
   @Post()
-  create(@Body() createGameDto: CreateGameDto) {
-    return this.gamesService.create(createGameDto);
+  @ApiCreatedResponse({ type: GameEntity })
+  create(@Body() data: CreateGameDto) {
+    return this.gamesService.create(data);
   }
 
   @Get()
+  @ApiOkResponse({ type: GameEntity, isArray: true })
   findAll() {
-    return this.gamesService.findAll();
+    return this.gamesService.findAll({});
   }
 
   @Get(':id')
+  @ApiOkResponse({ type: GameEntity })
   findOne(@Param('id') id: string) {
-    return this.gamesService.findOne(+id);
+    return this.gamesService.findOne({ id });
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateGameDto: UpdateGameDto) {
-    return this.gamesService.update(+id, updateGameDto);
+  @ApiOkResponse({ type: GameEntity })
+  update(@Param('id') id: string, @Body() data: UpdateGameDto) {
+    return this.gamesService.update({ where: { id }, data });
   }
 
   @Delete(':id')
+  @ApiNoContentResponse()
   remove(@Param('id') id: string) {
-    return this.gamesService.remove(+id);
+    return this.gamesService.remove({ id });
   }
 }

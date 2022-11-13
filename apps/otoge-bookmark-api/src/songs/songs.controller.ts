@@ -10,33 +10,46 @@ import {
 import { SongsService } from './songs.service';
 import { CreateSongDto } from './dto/create-song.dto';
 import { UpdateSongDto } from './dto/update-song.dto';
+import {
+  ApiCreatedResponse,
+  ApiNoContentResponse,
+  ApiOkResponse,
+  ApiTags,
+} from '@nestjs/swagger';
+import { SongEntity } from './entities/song.entity';
 
 @Controller('songs')
+@ApiTags('songs')
 export class SongsController {
   constructor(private readonly songsService: SongsService) {}
 
   @Post()
-  create(@Body() createSongDto: CreateSongDto) {
-    return this.songsService.create(createSongDto);
+  @ApiCreatedResponse({ type: SongEntity })
+  create(@Body() data: CreateSongDto) {
+    return this.songsService.create(data);
   }
 
   @Get()
+  @ApiOkResponse({ type: SongEntity, isArray: true })
   findAll() {
-    return this.songsService.findAll();
+    return this.songsService.findAll({});
   }
 
   @Get(':id')
+  @ApiOkResponse({ type: SongEntity })
   findOne(@Param('id') id: string) {
-    return this.songsService.findOne(+id);
+    return this.songsService.findOne({ id });
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateSongDto: UpdateSongDto) {
-    return this.songsService.update(+id, updateSongDto);
+  @ApiOkResponse({ type: SongEntity })
+  update(@Param('id') id: string, @Body() data: UpdateSongDto) {
+    return this.songsService.update({ where: { id }, data });
   }
 
   @Delete(':id')
+  @ApiNoContentResponse()
   remove(@Param('id') id: string) {
-    return this.songsService.remove(+id);
+    return this.songsService.remove({ id });
   }
 }
