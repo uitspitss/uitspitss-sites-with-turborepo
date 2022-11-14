@@ -20,7 +20,7 @@ model Game {
 
 model Song {
   id String @id @default(uuid())
-  title String @unique
+  title String
   game Game? @relation(fields: [gameId], references: [id])
   gameId String?
   createdAt DateTime @default(now())
