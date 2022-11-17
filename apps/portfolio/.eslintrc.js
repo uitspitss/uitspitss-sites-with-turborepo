@@ -1,6 +1,6 @@
 module.exports = {
   root: true,
-  extends: ['custom/presets/react'],
+  extends: ['custom/presets/next'],
   rules: {
     'import/no-extraneous-dependencies': [
       'error',
