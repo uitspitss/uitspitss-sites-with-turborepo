@@ -1,10 +1,16 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { User } from '@prisma/client';
 
-export class UserEntity implements Pick<User, 'id' | 'email'> {
+export class UserEntity implements Omit<User, 'password'> {
   @ApiProperty()
   id: string;
 
   @ApiProperty()
   email: string;
+
+  @ApiProperty()
+  createdAt: Date;
+
+  @ApiProperty()
+  updatedAt: Date;
 }
