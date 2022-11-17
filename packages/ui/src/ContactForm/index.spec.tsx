@@ -64,7 +64,7 @@ describe('ContactForm', () => {
     expect(onSubmit).not.toHaveBeenCalled();
     expect(screen.getByText('Invalid email')).toBeInTheDocument();
     expect(
-      screen.getByText('String must contain at least 10 character(s)')
+      screen.getByText('String must contain at least 10 character(s)'),
     ).toBeInTheDocument();
   });
 });

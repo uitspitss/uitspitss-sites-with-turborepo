@@ -55,7 +55,7 @@ export const Navbar = (props: NavbarProps) => {
                       item.wrapperFn(
                         <Tab fontSize="md" _selected={{ color: 'accent' }}>
                           {item.name}
-                        </Tab>
+                        </Tab>,
                       )
                     ) : (
                       <Tab
@@ -65,7 +65,7 @@ export const Navbar = (props: NavbarProps) => {
                       >
                         {item.name}
                       </Tab>
-                    )
+                    ),
                   )}
                 </TabList>
                 <TabIndicator

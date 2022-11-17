@@ -42,7 +42,7 @@ export const ContactForm = (props: ContactFormProps) => {
     async (data: FormData) => {
       await onSubmit(data);
     },
-    [onSubmit]
+    [onSubmit],
   );
 
   return (
