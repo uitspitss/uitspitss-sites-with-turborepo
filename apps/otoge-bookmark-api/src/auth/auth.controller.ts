@@ -12,12 +12,14 @@ import { CreateUserDto } from 'src/users/dto/create-user.dto';
 import { LocalAuthGuard } from './local-auth.guard';
 import { AccessTokenEntity } from './entities/access-token.entity';
 import { UserEntity } from 'src/users/entities/user.entity';
+import { JwtAuthGuard } from './jwt-auth.guard';
 
 @Controller('auth')
 @ApiTags('auth')
 export class AuthController {
   constructor(private authService: AuthService) {}
 
+  @UseGuards(JwtAuthGuard)
   @Post('register')
   @ApiCreatedResponse({ type: UserEntity })
   async register(@Body() data: CreateUserDto) {
@@ -28,8 +30,8 @@ export class AuthController {
 
   @HttpCode(200)
   @UseGuards(LocalAuthGuard)
-  @ApiOkResponse({ type: AccessTokenEntity })
   @Post('login')
+  @ApiOkResponse({ type: AccessTokenEntity })
   async login(@Req() req: any) {
     return this.authService.login(req.user);
   }
