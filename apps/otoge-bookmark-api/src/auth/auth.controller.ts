@@ -9,10 +9,10 @@ import {
 import { ApiCreatedResponse, ApiOkResponse, ApiTags } from '@nestjs/swagger';
 import { AuthService } from './auth.service';
 import { CreateUserDto } from '@/users/dto/create-user.dto';
-import { LocalAuthGuard } from './local-auth.guard';
-import { AccessTokenEntity } from './entities/access-token.entity';
+import { LocalAuthGuard } from '@/common/guards/local-auth.guard';
 import { UserEntity } from '@/users/entities/user.entity';
-import { JwtAuthGuard } from './jwt-auth.guard';
+import { JwtAuthGuard } from '@/common/guards/jwt-auth.guard';
+import { AccessTokenEntity } from './entities/access-token.entity';
 
 @Controller('auth')
 @ApiTags('auth')
