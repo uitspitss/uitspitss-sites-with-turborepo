@@ -8,10 +8,10 @@ import {
 } from '@nestjs/common';
 import { ApiCreatedResponse, ApiOkResponse, ApiTags } from '@nestjs/swagger';
 import { AuthService } from './auth.service';
-import { CreateUserDto } from 'src/users/dto/create-user.dto';
+import { CreateUserDto } from '@/users/dto/create-user.dto';
 import { LocalAuthGuard } from './local-auth.guard';
 import { AccessTokenEntity } from './entities/access-token.entity';
-import { UserEntity } from 'src/users/entities/user.entity';
+import { UserEntity } from '@/users/entities/user.entity';
 import { JwtAuthGuard } from './jwt-auth.guard';
 
 @Controller('auth')
