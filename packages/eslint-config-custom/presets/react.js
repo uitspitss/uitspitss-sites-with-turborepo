@@ -6,7 +6,6 @@ module.exports = {
     '../lib/storybook.js',
     '../lib/jest.js',
     '../lib/react.js',
-    '../lib/react-typescript.js',
     // '../lib/next.js',
   ],
 };
