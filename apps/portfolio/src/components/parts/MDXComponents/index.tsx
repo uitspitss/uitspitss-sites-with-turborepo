@@ -21,6 +21,7 @@ type IframeProps = ComponentPropsWithoutRef<'iframe'>;
 // components としてまとめて export するので、各 component の命名に注意
 
 export const img = (props: ImageProps) => (
+  // eslint-disable-next-line jsx-a11y/alt-text
   <Image layout="responsive" {...props} />
 );
 
