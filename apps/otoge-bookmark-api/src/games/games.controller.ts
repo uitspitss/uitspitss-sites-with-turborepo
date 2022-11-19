@@ -7,6 +7,7 @@ import {
   Param,
   Delete,
   UseGuards,
+  NotFoundException,
 } from '@nestjs/common';
 import { GamesService } from './games.service';
 import { CreateGameDto } from './dto/create-game.dto';
@@ -28,31 +29,47 @@ export class GamesController {
 
   @Post()
   @ApiCreatedResponse({ type: GameEntity })
-  create(@Body() data: CreateGameDto) {
-    return this.gamesService.create(data);
+  async create(@Body() data: CreateGameDto) {
+    return new GameEntity(await this.gamesService.create(data));
   }
 
   @Get()
   @ApiOkResponse({ type: GameEntity, isArray: true })
-  findAll() {
-    return this.gamesService.findAll({});
+  async findAll() {
+    const games = await this.gamesService.findAll({});
+    if (!games.length) {
+      throw new NotFoundException();
+    }
+
+    return games.map((game) => new GameEntity(game));
   }
 
   @Get(':id')
   @ApiOkResponse({ type: GameEntity })
-  findOne(@Param('id') id: string) {
-    return this.gamesService.findOne({ id });
+  async findOne(@Param('id') id: string) {
+    const game = await this.gamesService.findOne({ id });
+    if (!game) {
+      throw new NotFoundException();
+    }
+    return new GameEntity(game);
   }
 
   @Patch(':id')
   @ApiOkResponse({ type: GameEntity })
-  update(@Param('id') id: string, @Body() data: UpdateGameDto) {
-    return this.gamesService.update({ where: { id }, data });
+  async update(@Param('id') id: string, @Body() data: UpdateGameDto) {
+    return new GameEntity(
+      await this.gamesService.update({ where: { id }, data }),
+    );
   }
 
   @Delete(':id')
   @ApiNoContentResponse()
-  remove(@Param('id') id: string) {
-    return this.gamesService.remove({ id });
+  async remove(@Param('id') id: string): Promise<void> {
+    const game = await this.gamesService.findOne({ id });
+    if (!game) {
+      throw new NotFoundException();
+    }
+
+    this.gamesService.remove({ id });
   }
 }

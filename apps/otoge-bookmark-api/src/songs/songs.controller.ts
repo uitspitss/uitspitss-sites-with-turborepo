@@ -7,6 +7,8 @@ import {
   Param,
   Delete,
   UseGuards,
+  NotFoundException,
+  HttpCode,
 } from '@nestjs/common';
 import { SongsService } from './songs.service';
 import { CreateSongDto } from './dto/create-song.dto';
@@ -28,31 +30,48 @@ export class SongsController {
 
   @Post()
   @ApiCreatedResponse({ type: SongEntity })
-  create(@Body() data: CreateSongDto) {
-    return this.songsService.create(data);
+  async create(@Body() data: CreateSongDto) {
+    return new SongEntity(await this.songsService.create(data));
   }
 
   @Get()
   @ApiOkResponse({ type: SongEntity, isArray: true })
-  findAll() {
-    return this.songsService.findAll({});
+  async findAll() {
+    const songs = await this.songsService.findAll({});
+    if (!songs.length) {
+      throw new NotFoundException();
+    }
+
+    return songs.map((song) => new SongEntity(song));
   }
 
   @Get(':id')
   @ApiOkResponse({ type: SongEntity })
-  findOne(@Param('id') id: string) {
-    return this.songsService.findOne({ id });
+  async findOne(@Param('id') id: string) {
+    const song = await this.songsService.findOne({ id });
+    if (!song) {
+      throw new NotFoundException();
+    }
+    return new SongEntity(song);
   }
 
   @Patch(':id')
   @ApiOkResponse({ type: SongEntity })
-  update(@Param('id') id: string, @Body() data: UpdateSongDto) {
-    return this.songsService.update({ where: { id }, data });
+  async update(@Param('id') id: string, @Body() data: UpdateSongDto) {
+    return new SongEntity(
+      await this.songsService.update({ where: { id }, data }),
+    );
   }
 
   @Delete(':id')
+  @HttpCode(204)
   @ApiNoContentResponse()
-  remove(@Param('id') id: string) {
-    return this.songsService.remove({ id });
+  async remove(@Param('id') id: string): Promise<void> {
+    const song = await this.songsService.findOne({ id });
+    if (!song) {
+      throw new NotFoundException();
+    }
+
+    this.songsService.remove({ id });
   }
 }
