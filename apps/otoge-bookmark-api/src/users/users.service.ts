@@ -17,14 +17,28 @@ export class UsersService {
     });
   }
 
+  findAll(params: {
+    skip?: number;
+    take?: number;
+    cursor?: Prisma.GameWhereUniqueInput;
+    where?: Prisma.GameWhereInput;
+    orderBy?: Prisma.GameOrderByWithRelationInput;
+  }) {
+    return this.prisma.user.findMany(params);
+  }
+
   async findOne(where: Prisma.UserWhereUniqueInput): Promise<User | undefined> {
     return this.prisma.user.findUnique({ where });
   }
 
   async update(params: {
     where: Prisma.UserWhereUniqueInput;
-    data: UpdateUserDto;
+    data: UpdateUserDto & { refreshToken?: string };
   }) {
     return this.prisma.user.update(params);
+  }
+
+  async remove(where: Prisma.UserWhereUniqueInput) {
+    return this.prisma.user.delete({ where });
   }
 }
