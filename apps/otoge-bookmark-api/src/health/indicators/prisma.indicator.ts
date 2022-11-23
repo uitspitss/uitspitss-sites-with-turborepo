@@ -13,7 +13,7 @@ export class PrismaHealthIndicator extends HealthIndicator {
       await this.prismaService.$queryRaw`SELECT 1`;
       return this.getStatus(key, true);
     } catch (e) {
-      throw new InternalServerErrorException('prisma check failed');
+      throw new InternalServerErrorException('db check failed');
     }
   }
 }
