@@ -45,7 +45,7 @@ export class AuthService {
     const user = await this.validateUser(data);
 
     const tokens = await this.getTokens(user.id, user.email);
-    await this.updateRefreshToken(user.id, tokens.refreshToken);
+    await this.updateRefreshToken(user.id, tokens.refresh_token);
 
     return tokens;
   }
@@ -75,7 +75,7 @@ export class AuthService {
       throw new ForbiddenException();
     }
     const tokens = await this.getTokens(user.id, user.email);
-    await this.updateRefreshToken(user.id, tokens.refreshToken);
+    await this.updateRefreshToken(user.id, tokens.refresh_token);
 
     return tokens;
   }
@@ -109,8 +109,8 @@ export class AuthService {
     ]);
 
     return {
-      accessToken,
-      refreshToken,
+      access_token: accessToken,
+      refresh_token: refreshToken,
     };
   }
 
