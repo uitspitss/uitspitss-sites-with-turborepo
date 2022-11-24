@@ -10,6 +10,9 @@ async function bootstrap() {
   // config
   const configService = app.get(ConfigService);
 
+  // cors
+  app.enableCors();
+
   // pipes
   app.useGlobalPipes(new ValidationPipe({ whitelist: true }));
 
