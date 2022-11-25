@@ -1,19 +1,25 @@
 import { GetServerSideProps } from 'next';
 import { type ReactElement } from 'react';
-import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
 import { PageContent } from 'ui';
 import { MainLayout } from '@/components/layouts/MainLayout';
 import { NextPageWithLayout } from '@/types/page';
+import Head from 'next/head';
+import { useGames } from '@/hooks/useGames';
+import { useSongs } from '@/hooks/useSongs';
 
 type PageProps = unknown;
 
 const Page: NextPageWithLayout<PageProps> = (_props) => {
-  const { t } = useTranslation('common');
+  const { games } = useGames();
+  const { songs } = useSongs();
 
   return (
     <>
+      <Head>
+        <title>Search | Otoge Bookmark</title>
+      </Head>
       <PageContent>test</PageContent>
     </>
   );
