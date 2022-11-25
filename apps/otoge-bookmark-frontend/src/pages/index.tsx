@@ -13,7 +13,9 @@ type PageProps = unknown;
 
 const Page: NextPageWithLayout<PageProps> = (_props) => {
   const { games } = useGames();
+  console.log(`🚧 | file: index.tsx | line 16 | games`, games);
   const { songs } = useSongs();
+  console.log(`🚧 | file: index.tsx | line 18 | songs`, songs);
 
   return (
     <>
