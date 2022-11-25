@@ -9,7 +9,7 @@
     "lint": "eslint . --fix",
     "test": "jest",
     "test:watch": "jest --watch",
-    "storybook": "start-storybook -p 6007",
+    "storybook": "start-storybook -p 6008",
     "build-storybook": "build-storybook",
     "i18next-scanner": "i18next-scanner",
     "codegen": "openapi2aspida"
