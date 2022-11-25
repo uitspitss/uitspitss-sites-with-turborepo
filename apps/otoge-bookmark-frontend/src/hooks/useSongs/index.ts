@@ -5,7 +5,7 @@ export const useSongs = () => {
   const api = useApi();
 
   const { data: songs } = useQuery({
-    queryKey: ['songs'],
+    queryKey: [api?.songs.$path()],
     queryFn: () => api?.songs.$get(),
   });
 

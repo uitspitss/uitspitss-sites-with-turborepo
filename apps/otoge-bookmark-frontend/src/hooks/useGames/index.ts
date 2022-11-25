@@ -5,7 +5,7 @@ export const useGames = () => {
   const api = useApi();
 
   const { data: games } = useQuery({
-    queryKey: ['games'],
+    queryKey: [api?.games.$path()],
     queryFn: () => api?.games.$get(),
   });
 
