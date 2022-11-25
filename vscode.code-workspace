@@ -13,6 +13,10 @@
       "path": "apps/otoge-bookmark-api"
     },
     {
+      "name": "otoge-frontend",
+      "path": "apps/otoge-bookmark-frontend"
+    },
+    {
       "name": "ui",
       "path": "packages/ui"
     },
