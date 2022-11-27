@@ -5,6 +5,9 @@ import { Footer, Navbar } from 'ui';
 import { Container } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'react-i18next';
+import { FiInfo, FiMail } from 'react-icons/fi';
+import { MdWorkOutline } from 'react-icons/md';
+import { HiOutlineTemplate } from 'react-icons/hi';
 
 type MainLayoutProps = {
   children: ReactNode;
@@ -22,10 +25,10 @@ export const MainLayout = (props: MainLayoutProps) => {
     () =>
       t
         ? [
-            { name: t('about me'), path: '/' },
-            { name: t('jobs'), path: '/jobs' },
-            { name: t('works'), path: '/works' },
-            { name: t('contact'), path: '/contact' },
+            { name: t('about me'), path: '/', icon: FiInfo },
+            { name: t('jobs'), path: '/jobs', icon: MdWorkOutline },
+            { name: t('works'), path: '/works', icon: HiOutlineTemplate },
+            { name: t('contact'), path: '/contact', icon: FiMail },
           ]
         : [],
     [t],
@@ -40,11 +43,13 @@ export const MainLayout = (props: MainLayoutProps) => {
     return pageList.map((v) => ({
       name: v.name,
       wrapperFn: (component: ReactNode) => (
-        <Link href={v.path} key={v.path}>
+        <Link href={v.path} key={v.path} passHref>
           {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
           {component}
         </Link>
       ),
+      icon: v.icon,
+      test: 'test',
     }));
   }, [pageList]);
 

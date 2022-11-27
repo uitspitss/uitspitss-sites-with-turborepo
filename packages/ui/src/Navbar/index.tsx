@@ -25,7 +25,7 @@ import { NavPageItem } from '../types/NavPageItem';
 type NavbarProps = {
   pageItems: NavPageItem[];
   selectedIndex?: number;
-  changeLocale?: () => void;
+  changeLocale: () => void;
 };
 
 export const Navbar = (props: NavbarProps) => {

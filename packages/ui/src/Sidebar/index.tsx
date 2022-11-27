@@ -64,7 +64,13 @@ export const Sidebar = (props: SidebarProps) => {
                   <Stack spacing="1">
                     {pageItems.map((item) =>
                       item.wrapperFn ? (
-                        item.wrapperFn(<NavButton label={item.name} />)
+                        item.wrapperFn(
+                          <NavButton
+                            key={item.name}
+                            label={item.name}
+                            icon={item.icon}
+                          />,
+                        )
                       ) : (
                         <NavButton
                           key={item.name}
