@@ -1,54 +1,54 @@
 /* eslint-disable */
 export type CreateGameDto = {
-  title: string
-}
+  title: string;
+};
 
 export type GameEntity = {
-  id: string
-  title: string
-}
+  id: string;
+  title: string;
+};
 
 export type UpdateGameDto = {
-  title?: string | undefined
-}
+  title?: string | undefined;
+};
 
 export type CreateSongDto = {
-  title: string
-  gameId: string
-}
+  title: string;
+  gameId: string;
+};
 
 export type SongEntity = {
-  id: string
-  title: string
-  gameId: string
-}
+  id: string;
+  title: string;
+  gameId: string;
+};
 
 export type UpdateSongDto = {
-  title?: string | undefined
-  gameId?: string | undefined
-}
+  title?: string | undefined;
+  gameId?: string | undefined;
+};
 
 export type CreateUserDto = {
-  email: string
-  password: string
-}
+  email: string;
+  password: string;
+};
 
 export type UserEntity = {
-  id: string
-  email: string
-}
+  id: string;
+  email: string;
+};
 
 export type LoginDto = {
-  email: string
-  password: string
-}
+  email: string;
+  password: string;
+};
 
 export type LoggedInTokenEntity = {
-  accessToken: string
-  refreshToken: string
-}
+  accessToken: string;
+  refreshToken: string;
+};
 
 export type UpdateUserDto = {
-  email?: string | undefined
-  password?: string | undefined
-}
+  email?: string | undefined;
+  password?: string | undefined;
+};
