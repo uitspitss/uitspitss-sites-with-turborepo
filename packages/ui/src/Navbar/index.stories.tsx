@@ -1,4 +1,5 @@
 import { ComponentMeta } from '@storybook/react';
+import { FiHome } from 'react-icons/fi';
 
 import { Navbar } from '.';
 
@@ -7,7 +8,7 @@ export default {
   title: 'Navbars',
   args: {
     pageItems: [
-      { name: 'home', path: '/home' },
+      { name: 'home', path: '/home', icon: FiHome },
       { name: 'about', path: '/about' },
     ],
   },
