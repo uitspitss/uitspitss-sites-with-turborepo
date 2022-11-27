@@ -12838,10 +12838,10 @@ openapi-types@^12.0.2:
   resolved "https://registry.yarnpkg.com/openapi-types/-/openapi-types-12.0.2.tgz#b752ab0a463c594fd7e3142e0e5983a9645503f6"
   integrity sha512-GuTo7FyZjOIWVhIhQSWJVaws6A82sWIGyQogxxYBYKZ0NBdyP2CYSIgOwFfSB+UVoPExk/YzFpyYitHS8KVZtA==
 
-openapi2aspida@^0.20.0:
-  version "0.20.0"
-  resolved "https://registry.yarnpkg.com/openapi2aspida/-/openapi2aspida-0.20.0.tgz#75cbe912ac27832062645be00dabcf8fad300783"
-  integrity sha512-3ltpCWreSqWzvXHTXqQ+rMfWJZrbVc/hYbsSiVox9Lv8bU66LTo/Jxwg2DXhv4u6Ww780Hn3TdkN+lfmXml7MQ==
+openapi2aspida@^0.21.0:
+  version "0.21.0"
+  resolved "https://registry.yarnpkg.com/openapi2aspida/-/openapi2aspida-0.21.0.tgz#69a07cdc7ee34d5ac7062d6d8aa9cca78d160a58"
+  integrity sha512-zTY+LHtF6xTu4s0ImyItzUzLcw4gcMLVOYsuXKDY4N56eBpbLJoxl2RvPFP581brwLR/UV6Z8+f0znnxn0StGg==
   dependencies:
     "@apidevtools/swagger-parser" "^10.1.0"
     aspida "^1.11.0"

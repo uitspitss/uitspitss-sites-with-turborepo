@@ -42,7 +42,7 @@
     "jest-config": "*",
     "next-router-mock": "^0.8.0",
     "next-transpile-modules": "10.0.0",
-    "openapi2aspida": "^0.20.0",
+    "openapi2aspida": "^0.21.0",
     "storybook-addon-next-router": "^4.0.1",
     "storybook-config": "*",
     "tsconfig": "*",
