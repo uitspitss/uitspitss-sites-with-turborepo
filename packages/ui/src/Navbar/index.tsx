@@ -15,18 +15,15 @@ import {
   Spacer,
   Hide,
 } from '@chakra-ui/react';
-import { ReactNode, useMemo } from 'react';
+import { useMemo } from 'react';
 import { FiSun, FiMoon } from 'react-icons/fi';
 import { FaLanguage } from 'react-icons/fa';
 import { Logo } from '../Logo';
 import { Sidebar } from '../Sidebar';
+import { NavPageItem } from '../types/NavPageItem';
 
 type NavbarProps = {
-  pageItems: {
-    name: string;
-    // Next.js 依存にしないために render func を受ける
-    wrapperFn?: (component: ReactNode) => JSX.Element;
-  }[];
+  pageItems: NavPageItem[];
   selectedIndex?: number;
   changeLocale?: () => void;
 };

@@ -2,44 +2,43 @@ import {
   CloseButton,
   Flex,
   Stack,
+  Icon,
   IconButton,
   Drawer,
   DrawerContent,
+  useColorMode,
   useColorModeValue,
   useDisclosure,
 } from '@chakra-ui/react';
-import { ReactNode, useRef } from 'react';
-import { FiMenu } from 'react-icons/fi';
+import { useRef } from 'react';
+import { FaLanguage } from 'react-icons/fa';
+import { FiMenu, FiSun, FiMoon } from 'react-icons/fi';
 import { Logo } from '../Logo';
+import { NavPageItem } from '../types/NavPageItem';
 import { NavButton } from './NavButton';
 
 type SidebarProps = {
-  pageItems: {
-    name: string;
-    // Next.js 依存にしないために render func を受ける
-    wrapperFn?: (component: ReactNode) => JSX.Element;
-  }[];
+  pageItems: NavPageItem[];
   selectedIndex?: number;
-  changeLocale?: () => void;
+  changeLocale: () => void;
 };
 
 export const Sidebar = (props: SidebarProps) => {
-  const { pageItems } = props;
+  const { pageItems, changeLocale } = props;
 
+  const { colorMode, toggleColorMode } = useColorMode();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = useRef<HTMLButtonElement | null>(null);
 
   return (
     <>
-      {!isOpen && (
-        <IconButton
-          onClick={onOpen}
-          variant="ghost"
-          icon={<FiMenu />}
-          aria-label="Open sidebar"
-          ref={btnRef}
-        />
-      )}
+      <IconButton
+        onClick={onOpen}
+        variant="ghost"
+        icon={<Icon as={FiMenu} fontSize="xl" />}
+        aria-label="Open sidebar"
+        ref={btnRef}
+      />
       <Drawer
         onClose={onClose}
         isOpen={isOpen}
@@ -58,22 +57,46 @@ export const Sidebar = (props: SidebarProps) => {
             >
               <Stack justify="space-between" spacing="1" width="full">
                 <Stack spacing="8" shouldWrapChildren>
-                  <Logo marginLeft={4} />
-                  <CloseButton
-                    pos="absolute"
-                    top="8"
-                    right="8"
-                    onClick={onClose}
-                  />
+                  <Flex justify="space-between">
+                    <Logo marginLeft={4} />
+                    <CloseButton onClick={onClose} />
+                  </Flex>
                   <Stack spacing="1">
                     {pageItems.map((item) =>
                       item.wrapperFn ? (
                         item.wrapperFn(<NavButton label={item.name} />)
                       ) : (
-                        <NavButton key={item.name} label={item.name} />
+                        <NavButton
+                          key={item.name}
+                          label={item.name}
+                          icon={item.icon}
+                        />
                       ),
                     )}
                   </Stack>
+                </Stack>
+                <Stack>
+                  <Flex justify="space-around">
+                    {changeLocale && (
+                      <IconButton
+                        variant="ghost"
+                        icon={<Icon as={FaLanguage} fontSize="xl" />}
+                        aria-label="Toggle Language EN/JP"
+                        onClick={changeLocale}
+                      />
+                    )}
+                    <IconButton
+                      variant="ghost"
+                      icon={
+                        <Icon
+                          as={colorMode === 'light' ? FiSun : FiMoon}
+                          fontSize="xl"
+                        />
+                      }
+                      aria-label="Toggle color mode"
+                      onClick={toggleColorMode}
+                    />
+                  </Flex>
                 </Stack>
               </Stack>
             </Flex>
