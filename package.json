@@ -13,7 +13,8 @@
     "test": "turbo run test",
     "test:watch": "turbo run test:watch",
     "storybook": "turbo run storybook",
-    "format": "prettier --check --write \"**/*.{ts,tsx,md,mdx}\"",
+    "format": "prettier --write \"**/*.{ts,tsx,md,mdx}\"",
+    "format:check": "prettier --check \"**/*.{ts,tsx,md,mdx}\"",
     "prepare": "husky install"
   },
   "devDependencies": {
