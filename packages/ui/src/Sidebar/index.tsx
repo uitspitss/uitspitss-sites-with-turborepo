@@ -6,14 +6,13 @@ import {
   IconButton,
   Drawer,
   DrawerContent,
-  useColorMode,
   useColorModeValue,
   useDisclosure,
 } from '@chakra-ui/react';
 import { useRef } from 'react';
-import { FaLanguage } from 'react-icons/fa';
-import { FiMenu, FiSun, FiMoon } from 'react-icons/fi';
+import { FiMenu } from 'react-icons/fi';
 import { Logo } from '../Logo';
+import { SiteSettings } from '../SiteSettings';
 import { NavPageItem } from '../types/NavPageItem';
 import { NavButton } from './NavButton';
 
@@ -26,7 +25,6 @@ type SidebarProps = {
 export const Sidebar = (props: SidebarProps) => {
   const { pageItems, changeLocale } = props;
 
-  const { colorMode, toggleColorMode } = useColorMode();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const btnRef = useRef<HTMLButtonElement | null>(null);
 
@@ -83,25 +81,7 @@ export const Sidebar = (props: SidebarProps) => {
                 </Stack>
                 <Stack>
                   <Flex justify="space-around">
-                    {changeLocale && (
-                      <IconButton
-                        variant="ghost"
-                        icon={<Icon as={FaLanguage} fontSize="xl" />}
-                        aria-label="Toggle Language EN/JP"
-                        onClick={changeLocale}
-                      />
-                    )}
-                    <IconButton
-                      variant="ghost"
-                      icon={
-                        <Icon
-                          as={colorMode === 'light' ? FiSun : FiMoon}
-                          fontSize="xl"
-                        />
-                      }
-                      aria-label="Toggle color mode"
-                      onClick={toggleColorMode}
-                    />
+                    <SiteSettings changeLocale={changeLocale} />
                   </Flex>
                 </Stack>
               </Stack>

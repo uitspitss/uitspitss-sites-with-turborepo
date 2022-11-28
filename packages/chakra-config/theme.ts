@@ -9,7 +9,7 @@ const theme = extendTheme(
       body: `'Raleway', sans-serif`,
     },
   },
-  proTheme
+  proTheme,
 );
 
 export default theme;
