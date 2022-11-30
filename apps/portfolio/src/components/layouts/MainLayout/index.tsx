@@ -8,6 +8,7 @@ import { useTranslation } from 'react-i18next';
 import { FiInfo, FiMail } from 'react-icons/fi';
 import { MdWorkOutline } from 'react-icons/md';
 import { HiOutlineTemplate } from 'react-icons/hi';
+import { pagesPath } from '@/lib/$path';
 
 type MainLayoutProps = {
   children: ReactNode;
@@ -25,18 +26,37 @@ export const MainLayout = (props: MainLayoutProps) => {
     () =>
       t
         ? [
-            { name: t('about me'), path: '/', icon: FiInfo },
-            { name: t('jobs'), path: '/jobs', icon: MdWorkOutline },
-            { name: t('works'), path: '/works', icon: HiOutlineTemplate },
-            { name: t('contact'), path: '/contact', icon: FiMail },
+            {
+              name: t('about me'),
+              path: pagesPath.$url().pathname,
+              icon: FiInfo,
+            },
+            {
+              name: t('jobs'),
+              path: pagesPath.jobs.$url().pathname,
+              icon: MdWorkOutline,
+            },
+            {
+              name: t('works'),
+              path: pagesPath.works.$url().pathname,
+              icon: HiOutlineTemplate,
+            },
+            {
+              name: t('contact'),
+              path: pagesPath.contact.$url().pathname,
+              icon: FiMail,
+            },
           ]
         : [],
     [t],
   );
 
   const selectedIndex = useMemo(
-    () => pageList.map((v) => v.path).indexOf(router.asPath),
-    [router, pageList],
+    () =>
+      pageList
+        .map((v) => v.path)
+        .indexOf(asPath as '/' | '/jobs' | '/works' | '/contact'),
+    [asPath, pageList],
   );
 
   const pageItems = useMemo(() => {
