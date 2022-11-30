@@ -5,7 +5,6 @@ import { Navbar } from '.';
 
 export default {
   component: Navbar,
-  title: 'Navbars',
   args: {
     pageItems: [
       { name: 'home', path: '/home', icon: FiHome },

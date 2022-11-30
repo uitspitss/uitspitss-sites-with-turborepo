@@ -4,7 +4,6 @@ import { SiteSettings } from '.';
 
 export default {
   component: SiteSettings,
-  title: 'SiteSettings',
   argTypes: {
     changeLocale: { action: 'clicked changeLocale' },
   },

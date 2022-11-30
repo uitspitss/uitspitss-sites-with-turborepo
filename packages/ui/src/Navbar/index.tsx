@@ -20,6 +20,7 @@ import { SiteSettings } from '../SiteSettings';
 
 type NavbarProps = {
   pageItems: NavPageItem[];
+  locale: string;
   selectedIndex?: number;
   changeLocale: () => void;
 };

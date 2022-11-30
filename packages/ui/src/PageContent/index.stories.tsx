@@ -4,7 +4,6 @@ import { PageContent } from '.';
 
 export default {
   component: PageContent,
-  title: 'PageContent',
   args: {
     children: <span>content</span>,
   },

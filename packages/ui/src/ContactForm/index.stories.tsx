@@ -4,7 +4,6 @@ import { userEvent, within } from '@storybook/testing-library';
 import { ContactForm } from '.';
 
 export default {
-  title: 'ContactForm',
   component: ContactForm,
   decorators: [
     (Story) => (
