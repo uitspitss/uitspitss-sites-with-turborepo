@@ -4,23 +4,19 @@ import {
   Divider,
   Flex,
   HStack,
-  IconButton,
   Tab,
   TabIndicator,
   TabList,
   Tabs,
-  useColorMode,
-  Icon,
   Show,
   Spacer,
   Hide,
 } from '@chakra-ui/react';
 import { useMemo } from 'react';
-import { FiSun, FiMoon } from 'react-icons/fi';
-import { FaLanguage } from 'react-icons/fa';
 import { Logo } from '../Logo';
 import { Sidebar } from '../Sidebar';
 import { NavPageItem } from '../types/NavPageItem';
+import { SiteSettings } from '../SiteSettings';
 
 type NavbarProps = {
   pageItems: NavPageItem[];
@@ -31,7 +27,6 @@ type NavbarProps = {
 export const Navbar = (props: NavbarProps) => {
   const { pageItems, selectedIndex, changeLocale } = props;
 
-  const { colorMode, toggleColorMode } = useColorMode();
   const tabIndex = useMemo(() => selectedIndex ?? 0, [selectedIndex]);
 
   return (
@@ -78,25 +73,7 @@ export const Navbar = (props: NavbarProps) => {
                     />
                   </Tabs>
                   <Spacer />
-                  {changeLocale && (
-                    <IconButton
-                      variant="ghost"
-                      icon={<Icon as={FaLanguage} fontSize="xl" />}
-                      aria-label="Toggle Language EN/JP"
-                      onClick={changeLocale}
-                    />
-                  )}
-                  <IconButton
-                    variant="ghost"
-                    icon={
-                      <Icon
-                        as={colorMode === 'light' ? FiSun : FiMoon}
-                        fontSize="xl"
-                      />
-                    }
-                    aria-label="Toggle color mode"
-                    onClick={toggleColorMode}
-                  />
+                  <SiteSettings changeLocale={changeLocale} />
                 </Flex>
               </HStack>
             </Container>
