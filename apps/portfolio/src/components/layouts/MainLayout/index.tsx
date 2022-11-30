@@ -65,6 +65,7 @@ export const MainLayout = (props: MainLayoutProps) => {
     <StyledMainLayout>
       <Navbar
         pageItems={pageItems}
+        locale={router.locale ?? 'en'}
         selectedIndex={selectedIndex}
         changeLocale={changeLocale}
       />

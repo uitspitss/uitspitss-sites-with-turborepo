@@ -5,7 +5,6 @@ import { Button } from '.';
 
 export default {
   component: Button,
-  title: 'Button',
   args: { children: 'button' },
   argTypes: {
     onClick: { action: 'clicked' },

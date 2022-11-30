@@ -4,7 +4,7 @@ import { PageHeader } from '.';
 
 export default {
   component: PageHeader,
-  title: 'PageHeader',
+  title: PageHeader.name,
 } as ComponentMeta<typeof PageHeader>;
 
 export const Default = {
