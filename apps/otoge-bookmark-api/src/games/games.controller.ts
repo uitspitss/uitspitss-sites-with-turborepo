@@ -22,11 +22,11 @@ import { GameEntity } from './entities/game.entity';
 import { JwtAuthGuard } from '@/common/guards/jwt-auth.guard';
 
 @Controller('games')
-@UseGuards(JwtAuthGuard)
 @ApiTags('games')
 export class GamesController {
   constructor(private readonly gamesService: GamesService) {}
 
+  @UseGuards(JwtAuthGuard)
   @Post()
   @ApiCreatedResponse({ type: GameEntity })
   async create(@Body() data: CreateGameDto) {
@@ -54,6 +54,7 @@ export class GamesController {
     return new GameEntity(game);
   }
 
+  @UseGuards(JwtAuthGuard)
   @Patch(':id')
   @ApiOkResponse({ type: GameEntity })
   async update(@Param('id') id: string, @Body() data: UpdateGameDto) {
@@ -62,6 +63,7 @@ export class GamesController {
     );
   }
 
+  @UseGuards(JwtAuthGuard)
   @Delete(':id')
   @ApiNoContentResponse()
   async remove(@Param('id') id: string): Promise<void> {
