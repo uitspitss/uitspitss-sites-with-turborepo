@@ -23,6 +23,7 @@ module.exports = {
     'out/',
     'storybook-static/',
     '*.snap',
+    '**/lib/$path.ts',
   ],
   rules: {
     'import/no-extraneous-dependencies': [
