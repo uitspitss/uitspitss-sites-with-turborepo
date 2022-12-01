@@ -9,6 +9,8 @@
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run dev --parallel",
+    "dev:portfolio": "turbo run dev --parallel --filter=portfolio",
+    "dev:otoge": "turbo run dev --parallel --filter=otoge-bookmark-*",
     "lint": "turbo run lint",
     "test": "turbo run test",
     "test:watch": "turbo run test:watch",
