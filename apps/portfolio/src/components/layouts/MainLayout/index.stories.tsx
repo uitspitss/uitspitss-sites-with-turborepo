@@ -4,7 +4,6 @@ import { MainLayout } from '.';
 
 export default {
   component: MainLayout,
-  title: 'MainLayout',
   args: {
     children: <span>children</span>,
   },

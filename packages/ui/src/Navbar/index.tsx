@@ -25,6 +25,11 @@ type NavbarProps = {
   changeLocale: () => void;
 };
 
+/**
+ * including Sidebar
+ * @param props
+ * @returns ReactElement
+ */
 export const Navbar = (props: NavbarProps) => {
   const { pageItems, selectedIndex, changeLocale } = props;
 
