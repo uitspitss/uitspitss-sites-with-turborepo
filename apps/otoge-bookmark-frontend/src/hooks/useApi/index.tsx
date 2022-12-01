@@ -1,7 +1,7 @@
 import axios from 'axios';
 import aspida from '@aspida/axios';
 import qs from 'qs';
-import api from '../../../api/$api';
+import api from '@/lib/api/$api';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 const loginUrl = `${API_URL}/auth/login`;
