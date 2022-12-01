@@ -2,7 +2,12 @@
 name: 'Chromatic apps/otoge-bookmark-frontend'
 
 # Event for the workflow
-on: push
+on:
+  pull_request:
+    types: [opened, synchronize]
+    branches-ignore:
+      - 'renovate/**'
+      - 'dependabot/**'
 
 # List of jobs
 jobs:
