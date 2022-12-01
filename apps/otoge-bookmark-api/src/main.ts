@@ -2,6 +2,8 @@ import { ValidationPipe } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import fs from 'fs';
+import { dump } from 'js-yaml';
 import { AppModule } from './app.module';
 
 async function bootstrap() {
@@ -24,6 +26,9 @@ async function bootstrap() {
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);
+
+  // swagger file
+  fs.writeFileSync('./swagger.yaml', dump(document, {}));
 
   await app.listen(configService.get<number>('PORT'));
 }
