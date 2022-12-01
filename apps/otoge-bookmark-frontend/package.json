@@ -14,7 +14,7 @@
     "storybook": "start-storybook -p 6008",
     "build-storybook": "build-storybook",
     "i18next-scanner": "i18next-scanner",
-    "codegen": "openapi2aspida"
+    "codegen": "rimraf src/api && openapi2aspida"
   },
   "dependencies": {
     "@aspida/axios": "^1.11.0",
@@ -46,6 +46,7 @@
     "next-transpile-modules": "10.0.0",
     "openapi2aspida": "^0.21.0",
     "pathpida-config": "*",
+    "rimraf": "^3.0.2",
     "storybook-addon-next-router": "^4.0.1",
     "storybook-config": "*",
     "tsconfig": "*",

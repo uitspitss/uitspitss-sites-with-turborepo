@@ -1,3 +1,6 @@
 module.exports = {
-  openapi: { inputFile: 'http://localhost:4000/api-json' },
+  input: 'src/lib/api',
+  openapi: {
+    inputFile: 'http://localhost:4000/api-json',
+  },
 };
