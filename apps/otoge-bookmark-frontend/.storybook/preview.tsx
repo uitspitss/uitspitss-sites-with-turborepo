@@ -4,9 +4,13 @@ import {
 } from 'storybook-config/preview';
 import { RouterContext } from 'next/dist/shared/lib/router-context';
 import { ChakraProvider } from '@chakra-ui/react';
+import { initialize, mswDecorator } from 'msw-storybook-addon';
 import React from 'react';
 
 import theme from '../src/theme';
+
+// msw initialize
+initialize();
 
 export const parameters = {
   ...rootParameters,
@@ -20,6 +24,7 @@ export const parameters = {
 
 export const decorators = [
   ...rootDecorators,
+  mswDecorator,
   (Story: Function) => (
     <ChakraProvider theme={theme}>
       <Story />
