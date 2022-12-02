@@ -23,13 +23,12 @@ module.exports = {
     'out/',
     'storybook-static/',
     '*.snap',
-    '**/lib/',
   ],
   rules: {
     'import/no-extraneous-dependencies': [
       'error',
       {
-        devDependencies: ['**/*.config.js'],
+        devDependencies: ['**/*.config.js', '**/*.config.ts'],
       },
     ],
     'import/prefer-default-export': 'off',
