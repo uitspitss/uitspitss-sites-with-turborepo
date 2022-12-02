@@ -38,7 +38,7 @@ export const Navbar = (props: NavbarProps) => {
   return (
     <>
       <Show above="md">
-        <Box as="section" pb={{ base: '12', md: '24' }}>
+        <Box as="section">
           <Box as="nav" bg="bg-surface">
             <Container py={{ base: '4', lg: '5' }}>
               <HStack spacing="10" justify="space-between">
