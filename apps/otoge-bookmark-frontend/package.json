@@ -14,7 +14,7 @@
     "storybook": "start-storybook -p 6008",
     "build-storybook": "build-storybook",
     "i18next-scanner": "i18next-scanner",
-    "codegen": "rimraf src/api && openapi2aspida"
+    "codegen": "rimraf src/lib/api && openapi2aspida && orval"
   },
   "dependencies": {
     "@aspida/axios": "^1.11.0",
@@ -35,6 +35,7 @@
   "devDependencies": {
     "@babel/core": "^7.0.0",
     "@faker-js/faker": "^7.6.0",
+    "@mswjs/data": "^0.11.0",
     "@tanstack/react-query-devtools": "^4.16.1",
     "@types/node": "^18.0.0",
     "eslint": "8.28.0",
@@ -50,7 +51,7 @@
     "orval": "6.8.1",
     "pathpida-config": "*",
     "rimraf": "^3.0.2",
-    "storybook-addon-next-router": "^4.0.1",
+    "storybook-addon-next": "^1.7.1",
     "storybook-config": "*",
     "tsconfig": "*",
     "typescript": "^4.5.3"

@@ -360,7 +360,7 @@ export const getHealthControllerCheckMock = () => ({
   status: faker.random.arrayElement([faker.random.word(), undefined]),
   info: faker.random.arrayElement([
     {
-      clb5wuv740000i2hkcymlhdzq: {
+      clb6hd9ou0000xdhkhclybkxm: {
         status: faker.random.arrayElement([faker.random.word(), undefined]),
       },
     },
@@ -368,7 +368,7 @@ export const getHealthControllerCheckMock = () => ({
   ]),
   error: faker.random.arrayElement([
     {
-      clb5wuv740001i2hkbsapcrr9: {
+      clb6hd9ou0001xdhkhh1lehzt: {
         status: faker.random.arrayElement([faker.random.word(), undefined]),
       },
     },
@@ -376,7 +376,7 @@ export const getHealthControllerCheckMock = () => ({
   ]),
   details: faker.random.arrayElement([
     {
-      clb5wuv740002i2hk2ftk0lic: {
+      clb6hd9ou0002xdhkb00y49ia: {
         status: faker.random.arrayElement([faker.random.word(), undefined]),
       },
     },

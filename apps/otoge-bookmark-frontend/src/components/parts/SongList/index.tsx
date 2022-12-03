@@ -1,18 +1,16 @@
+import { useSongs } from '@/hooks/useSongs';
 import { Box, Center, Stack, StackDivider, Text } from '@chakra-ui/react';
-import type { SongEntity } from '@/lib/api/@types';
 
-type SongListProps = {
-  songs: SongEntity[];
-};
+type SongListProps = unknown;
 
-export const SongList = (props: SongListProps) => {
-  const { songs } = props;
+export const SongList = (_props: SongListProps) => {
+  const { songs } = useSongs();
 
   return (
     <Center maxW="sm" mx="auto" py={{ base: '4', md: '8' }}>
       <Box bg="bg-surface" py="4">
         <Stack divider={<StackDivider />} spacing="4">
-          {songs.map((song) => (
+          {songs?.map((song) => (
             <Stack key={song.id} fontSize="sm" px="4" spacing="4">
               <Stack direction="row" justify="space-between" spacing="4">
                 <Box>
@@ -25,8 +23,8 @@ export const SongList = (props: SongListProps) => {
               <Text
                 color="muted"
                 sx={{
-                  '-webkit-box-orient': 'vertical',
-                  '-webkit-line-clamp': '2',
+                  WebkitBoxOrient: 'vertical',
+                  WebkitLineClamp: '2',
                   overflow: 'hidden',
                   display: '-webkit-box',
                 }}

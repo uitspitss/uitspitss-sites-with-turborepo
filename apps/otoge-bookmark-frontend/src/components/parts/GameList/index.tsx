@@ -1,18 +1,16 @@
 import { Box, Center, Stack, StackDivider, Text } from '@chakra-ui/react';
-import type { GameEntity } from '@/lib/api/@types';
+import { useGames } from '@/hooks/useGames';
 
-type GameListProps = {
-  games: GameEntity[];
-};
+type GameListProps = unknown;
 
-export const GameList = (props: GameListProps) => {
-  const { games } = props;
+export const GameList = (_props: GameListProps) => {
+  const { games } = useGames();
 
   return (
     <Center maxW="sm" mx="auto" py={{ base: '4', md: '8' }}>
       <Box bg="bg-surface" py="4">
         <Stack divider={<StackDivider />} spacing="4">
-          {games.map((game) => (
+          {games?.map((game) => (
             <Stack key={game.id} fontSize="sm" px="4" spacing="4">
               <Stack direction="row" justify="space-between" spacing="4">
                 <Box>
@@ -24,8 +22,8 @@ export const GameList = (props: GameListProps) => {
               <Text
                 color="muted"
                 sx={{
-                  '-webkit-box-orient': 'vertical',
-                  '-webkit-line-clamp': '2',
+                  WebkitBoxOrient: 'vertical',
+                  WebkitLineClamp: '2',
                   overflow: 'hidden',
                   display: '-webkit-box',
                 }}

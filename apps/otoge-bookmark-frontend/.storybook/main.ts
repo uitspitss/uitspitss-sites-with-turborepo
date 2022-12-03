@@ -4,7 +4,12 @@ import rootMain from 'storybook-config/main';
 const config = {
   ...rootMain,
   staticDirs: ['../public'],
-  addons: [...rootMain.addons, 'storybook-addon-next-router'],
+  addons: [...rootMain.addons, 'storybook-addon-next'],
+  env: (config) => ({
+    ...config,
+    NEXT_PUBLIC_API_URL: '',
+  }),
+
   webpackFinal: async (config, { configType }) => {
     config = await rootMain.webpackFinal(config, { configType });
 

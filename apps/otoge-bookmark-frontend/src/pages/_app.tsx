@@ -10,6 +10,7 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import theme from '../theme';
 import { NextPageWithLayout } from '../types/page';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { QueryErrorBoundary } from '@/components/error-boundaries/QueryErrorBoundary';
 
 type AppPropsWithLayout = AppProps & {
   Component: NextPageWithLayout;
@@ -26,7 +27,9 @@ const CustomApp = ({ Component, pageProps }: AppPropsWithLayout) => {
         <ReactQueryDevtools initialIsOpen={false} />
         <GoogleAnalytics trackPageViews />
         <ChakraProvider theme={theme}>
-          {getLayout(<Component {...pageProps} />)}
+          <QueryErrorBoundary>
+            {getLayout(<Component {...pageProps} />)}
+          </QueryErrorBoundary>
         </ChakraProvider>
       </QueryClientProvider>
     </>
