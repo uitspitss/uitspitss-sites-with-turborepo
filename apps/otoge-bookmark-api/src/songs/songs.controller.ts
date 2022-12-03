@@ -23,11 +23,11 @@ import { SongEntity } from './entities/song.entity';
 import { JwtAuthGuard } from '@/common/guards/jwt-auth.guard';
 
 @Controller('songs')
-@UseGuards(JwtAuthGuard)
 @ApiTags('songs')
 export class SongsController {
   constructor(private readonly songsService: SongsService) {}
 
+  @UseGuards(JwtAuthGuard)
   @Post()
   @ApiCreatedResponse({ type: SongEntity })
   async create(@Body() data: CreateSongDto) {
@@ -55,6 +55,7 @@ export class SongsController {
     return new SongEntity(song);
   }
 
+  @UseGuards(JwtAuthGuard)
   @Patch(':id')
   @ApiOkResponse({ type: SongEntity })
   async update(@Param('id') id: string, @Body() data: UpdateSongDto) {
@@ -63,6 +64,7 @@ export class SongsController {
     );
   }
 
+  @UseGuards(JwtAuthGuard)
   @Delete(':id')
   @HttpCode(204)
   @ApiNoContentResponse()

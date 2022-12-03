@@ -17,3 +17,11 @@ export default {
 } as ComponentMeta<typeof Navbar>;
 
 export const Default = {};
+
+export const Mobile = {
+  parameters: {
+    viewport: {
+      defaultViewport: 'mobile1',
+    },
+  },
+};

@@ -2,6 +2,6 @@
 
 dist
 coverage
-**/lib/$path.ts
+**/lib/
 .next
 renovate.json

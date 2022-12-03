@@ -1,28 +1,57 @@
 import { GetServerSideProps } from 'next';
-import { type ReactElement } from 'react';
+import { ReactElement, Suspense } from 'react';
+import Head from 'next/head';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { Box, Center, SkeletonText } from '@chakra-ui/react';
 
 import { PageContent } from 'ui';
 import { MainLayout } from '@/components/layouts/MainLayout';
 import { NextPageWithLayout } from '@/types/page';
-import Head from 'next/head';
-import { useGames } from '@/hooks/useGames';
-import { useSongs } from '@/hooks/useSongs';
+import { GameList } from '@/components/parts/GameList';
+import { SongList } from '@/components/parts/SongList';
 
 type PageProps = unknown;
 
 const Page: NextPageWithLayout<PageProps> = (_props) => {
-  const { games } = useGames();
-  console.log(`🚧 | file: index.tsx | line 16 | games`, games);
-  const { songs } = useSongs();
-  console.log(`🚧 | file: index.tsx | line 18 | songs`, songs);
-
   return (
     <>
       <Head>
         <title>Search | Otoge Bookmark</title>
       </Head>
-      <PageContent>test</PageContent>
+      <PageContent>
+        <Suspense
+          fallback={
+            <Center maxW="sm" mx="auto" py={{ base: '4', md: '8' }}>
+              <Box padding="6" boxShadow="lg" bg="white">
+                <SkeletonText
+                  mt="4"
+                  noOfLines={4}
+                  spacing="4"
+                  skeletonHeight="2"
+                />
+              </Box>
+            </Center>
+          }
+        >
+          <GameList />
+        </Suspense>
+        <Suspense
+          fallback={
+            <Center maxW="sm" mx="auto" py={{ base: '4', md: '8' }}>
+              <Box padding="6" boxShadow="lg" bg="white">
+                <SkeletonText
+                  mt="4"
+                  noOfLines={4}
+                  spacing="4"
+                  skeletonHeight="2"
+                />
+              </Box>
+            </Center>
+          }
+        >
+          <SongList />
+        </Suspense>
+      </PageContent>
     </>
   );
 };

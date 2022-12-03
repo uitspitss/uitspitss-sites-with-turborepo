@@ -1,11 +1,21 @@
-import axios from 'axios';
+import axios, { AxiosRequestConfig } from 'axios';
 import aspida from '@aspida/axios';
 import qs from 'qs';
-import api from '../../../api/$api';
+import api from '@/lib/api/$api';
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL;
+const API_URL = '';
 const loginUrl = `${API_URL}/auth/login`;
 const refreshUrl = `${API_URL}/auth/refresh`;
+
+const baseConfig = {
+  baseURL: API_URL,
+};
+
+const aspidaConfig: AxiosRequestConfig = {
+  paramsSerializer: {
+    serialize: (params) => qs.stringify(params, { indices: false }),
+  },
+};
 
 const redirectLogin = () => {
   location.href = loginUrl;
@@ -29,10 +39,14 @@ const refreshTokens = async () => {
 };
 
 export const useApi = () => {
-  if (typeof window === 'undefined') return null;
+  if (typeof window === 'undefined') {
+    const instance = axios.create(baseConfig);
+
+    return api(aspida(instance, aspidaConfig));
+  }
 
   const config = {
-    baseURL: API_URL,
+    ...baseConfig,
     headers: {
       Authorization: `Bearer ${localStorage.getItem('access_token')}`,
     },
@@ -67,11 +81,5 @@ export const useApi = () => {
     },
   );
 
-  return api(
-    aspida(instance, {
-      paramsSerializer: {
-        serialize: (params) => qs.stringify(params, { indices: false }),
-      },
-    }),
-  );
+  return api(aspida(instance, aspidaConfig));
 };

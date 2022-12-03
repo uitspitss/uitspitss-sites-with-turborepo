@@ -1,17 +1,13 @@
-import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
-import { renderHook } from '@testing-library/react';
-import { ReactElement } from 'react';
+import { renderHook, waitFor } from '@testing-library/react';
+import { createWrapper } from '@/test-utils/react-query';
 import { useSongs } from '.';
 
-test('should not be null', () => {
-  const queryClient = new QueryClient();
-  const wrapper = ({ children }: { children: ReactElement }) => (
-    <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
-  );
-
+test('should not be null', async () => {
   const { result } = renderHook(() => useSongs(), {
-    wrapper,
+    wrapper: createWrapper(),
   });
 
-  expect(result.current).not.toBe(null);
+  await waitFor(() => {
+    expect(result.current).not.toBeNull();
+  });
 });

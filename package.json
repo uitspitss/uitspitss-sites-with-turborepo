@@ -9,10 +9,14 @@
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run dev --parallel",
+    "dev:portfolio": "turbo run dev --parallel --filter=portfolio",
+    "dev:otoge": "turbo run dev --parallel --filter=otoge-bookmark-*",
     "lint": "turbo run lint",
     "test": "turbo run test",
-    "test:watch": "turbo run test:watch",
+    "test:watch": "turbo run test:watch --parallel",
     "storybook": "turbo run storybook",
+    "storybook:portfolio": "turbo run storybook --parallel --filter=ui --filter=portfolio",
+    "storybook:otoge": "turbo run storybook --parallel --filter=ui --filter=otoge-bookmark-frontend",
     "format": "prettier --write \"**/*.{ts,tsx,md,mdx}\"",
     "format:check": "prettier --check \"**/*.{ts,tsx,md,mdx}\"",
     "prepare": "husky install"
