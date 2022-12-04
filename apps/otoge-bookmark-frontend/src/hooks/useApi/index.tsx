@@ -3,7 +3,7 @@ import aspida from '@aspida/axios';
 import qs from 'qs';
 import api from '@/lib/api/$api';
 
-const API_URL = '';
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
 const loginUrl = `${API_URL}/auth/login`;
 const refreshUrl = `${API_URL}/auth/refresh`;
 
