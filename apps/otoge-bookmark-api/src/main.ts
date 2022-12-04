@@ -1,4 +1,8 @@
-import { ValidationPipe } from '@nestjs/common';
+import {
+  ValidationPipe,
+  VersioningType,
+  VERSION_NEUTRAL,
+} from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
@@ -18,6 +22,12 @@ async function bootstrap() {
   // pipes
   app.useGlobalPipes(new ValidationPipe({ whitelist: true }));
 
+  // versioning
+  app.enableVersioning({
+    type: VersioningType.URI,
+    defaultVersion: VERSION_NEUTRAL,
+  });
+
   // swagger
   const config = new DocumentBuilder()
     .setTitle('Otoge Bookmark API')
@@ -25,7 +35,7 @@ async function bootstrap() {
     .setVersion('0.1')
     .build();
   const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('api', app, document);
+  SwaggerModule.setup('swagger', app, document);
 
   // swagger file
   fs.writeFileSync('./swagger.yaml', dump(document, {}));

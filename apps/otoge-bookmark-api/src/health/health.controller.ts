@@ -1,4 +1,5 @@
 import { Controller, Get } from '@nestjs/common';
+import { ApiExcludeEndpoint } from '@nestjs/swagger';
 import {
   DiskHealthIndicator,
   HealthCheck,
@@ -18,6 +19,7 @@ export class HealthController {
 
   @Get()
   @HealthCheck()
+  @ApiExcludeEndpoint()
   check() {
     return this.health.check([
       () => this.prisma.checkConnection('db'),
