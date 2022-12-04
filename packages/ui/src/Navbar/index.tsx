@@ -43,7 +43,6 @@ export const Navbar = (props: NavbarProps) => {
             <Container py={{ base: '4', lg: '5' }}>
               <HStack spacing="10" justify="space-between">
                 <Logo />
-                {/* TODO: changes displays by breakpoints */}
                 <Flex justify="space-between" flex="1">
                   <Tabs
                     colorScheme="blue"
