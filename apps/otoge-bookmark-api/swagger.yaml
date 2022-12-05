@@ -55,7 +55,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/GameEntity'
+                  $ref: '#/components/schemas/GameWithSongsEntity'
       tags: *ref_0
   /games/{id}:
     get:
@@ -72,7 +72,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GameEntity'
+                $ref: '#/components/schemas/GameWithSongsEntity'
       tags: *ref_0
     patch:
       operationId: GamesController_update
@@ -168,7 +168,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/SongEntity'
+                  $ref: '#/components/schemas/SongWithGameEntity'
       tags: *ref_1
   /songs/{id}:
     get:
@@ -185,7 +185,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/SongEntity'
+                $ref: '#/components/schemas/SongWithGameEntity'
       tags: *ref_1
     patch:
       operationId: SongsController_update
@@ -373,6 +373,16 @@ components:
           type: string
       required:
         - name
+    GameEntity:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+      required:
+        - id
+        - name
     SongEntity:
       type: object
       properties:
@@ -380,13 +390,10 @@ components:
           type: string
         name:
           type: string
-        game:
-          type: object
       required:
         - id
         - name
-        - game
-    GameEntity:
+    GameWithSongsEntity:
       type: object
       properties:
         id:
@@ -416,6 +423,19 @@ components:
       required:
         - name
         - gameId
+    SongWithGameEntity:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        game:
+          $ref: '#/components/schemas/GameEntity'
+      required:
+        - id
+        - name
+        - game
     UpdateSongDto:
       type: object
       properties:

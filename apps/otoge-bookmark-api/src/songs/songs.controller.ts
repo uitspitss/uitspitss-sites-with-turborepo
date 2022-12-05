@@ -22,14 +22,12 @@ import {
   ApiOkResponse,
   ApiTags,
 } from '@nestjs/swagger';
-import { SongEntity } from './entities/song.entity';
+import { SongEntity, SongWithGameEntity } from './entities/song.entity';
 import { JwtAuthGuard } from '@/common/guards/jwt-auth.guard';
 import {
   DEFAULT_ORDER_BY,
   DEFAULT_TAKE,
 } from '@/common/constants/list.constant';
-import { GameEntity } from '@/games/entities/game.entity';
-import { plainToInstance } from 'class-transformer';
 
 @Controller('songs')
 @ApiTags('songs')
@@ -44,7 +42,7 @@ export class SongsController {
   }
 
   @Get()
-  @ApiOkResponse({ type: SongEntity, isArray: true })
+  @ApiOkResponse({ type: SongWithGameEntity, isArray: true })
   async findAll(@Query() query: ListSongDto) {
     const { gameId, skip, take, cursor, orderBy } = query;
 
@@ -84,22 +82,18 @@ export class SongsController {
     }
 
     return songs.map((song) => {
-      const { game: _game, ...rest } = song;
-      const game = plainToInstance(GameEntity, _game);
-      return plainToInstance(SongEntity, { ...rest, game });
+      return new SongWithGameEntity(song);
     });
   }
 
   @Get(':id')
-  @ApiOkResponse({ type: SongEntity })
+  @ApiOkResponse({ type: SongWithGameEntity })
   async findOne(@Param('id') id: string) {
     const song = await this.songsService.findOne({ id });
     if (!song) {
       throw new NotFoundException();
     }
-    const { game: _game, ...rest } = song;
-    const game = plainToInstance(GameEntity, _game);
-    return plainToInstance(SongEntity, { ...rest, game });
+    return new SongWithGameEntity(song);
   }
 
   @UseGuards(JwtAuthGuard)

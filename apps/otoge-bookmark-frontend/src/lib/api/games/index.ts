@@ -17,6 +17,6 @@ export type Methods = {
     } | undefined
 
     status: 200
-    resBody: Types.GameEntity[]
+    resBody: Types.GameWithSongsEntity[]
   }
 }

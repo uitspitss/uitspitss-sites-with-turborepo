@@ -13,9 +13,6 @@ export class SongEntity implements Song {
   @Exclude()
   gameId: string;
 
-  @ApiProperty()
-  game: Omit<GameEntity, 'songs'>;
-
   @Exclude()
   createdAt: Date;
 
@@ -24,5 +21,15 @@ export class SongEntity implements Song {
 
   constructor(partial: Partial<SongEntity>) {
     Object.assign(this, partial);
+  }
+}
+
+export class SongWithGameEntity extends SongEntity {
+  @ApiProperty({ type: () => GameEntity })
+  game: GameEntity;
+
+  constructor(partial: Partial<SongWithGameEntity>) {
+    super(partial);
+    this.game = new GameEntity(partial.game);
   }
 }

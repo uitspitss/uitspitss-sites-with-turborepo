@@ -15,10 +15,10 @@ export const SongList = (_props: SongListProps) => {
               <Stack direction="row" justify="space-between" spacing="4">
                 <Box>
                   <Text fontWeight="medium" fontSize="2xl" color="emphasized">
-                    {song.title}
+                    {song.name}
                   </Text>
                 </Box>
-                <Text color="muted">{song.game.title}</Text>
+                <Text color="muted">{song.game.name}</Text>
               </Stack>
               <Text
                 color="muted"

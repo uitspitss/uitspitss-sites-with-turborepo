@@ -15,7 +15,7 @@ export const GameList = (_props: GameListProps) => {
               <Stack direction="row" justify="space-between" spacing="4">
                 <Box>
                   <Text fontWeight="medium" fontSize="2xl" color="emphasized">
-                    {game.title}
+                    {game.name}
                   </Text>
                 </Box>
               </Stack>
@@ -28,7 +28,7 @@ export const GameList = (_props: GameListProps) => {
                   display: '-webkit-box',
                 }}
               >
-                {game.songs.map((s) => s.title).join(' / ')}
+                {game.songs.map((s) => s.name).join(' / ')}
               </Text>
             </Stack>
           ))}

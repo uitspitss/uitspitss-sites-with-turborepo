@@ -10,9 +10,6 @@ export class GameEntity implements Game {
   @ApiProperty()
   name: string;
 
-  @ApiProperty({ type: SongEntity, isArray: true })
-  songs: SongEntity[];
-
   @Exclude()
   createdAt: Date;
 
@@ -21,5 +18,15 @@ export class GameEntity implements Game {
 
   constructor(partial: Partial<GameEntity>) {
     Object.assign(this, partial);
+  }
+}
+
+export class GameWithSongsEntity extends GameEntity {
+  @ApiProperty({ type: SongEntity, isArray: true })
+  songs: SongEntity[];
+
+  constructor(partial: Partial<GameWithSongsEntity>) {
+    super(partial);
+    this.songs = partial.songs.map((song) => new SongEntity(song));
   }
 }
