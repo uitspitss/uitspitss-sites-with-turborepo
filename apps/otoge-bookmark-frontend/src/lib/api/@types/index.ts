@@ -20,7 +20,7 @@ export type CreateSongDto = {
 export type SongEntity = {
   id: string
   title: string
-  gameId: string
+  game: GameEntity
 }
 
 export type UpdateSongDto = {

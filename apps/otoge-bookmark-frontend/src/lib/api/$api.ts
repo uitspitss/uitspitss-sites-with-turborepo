@@ -1,4 +1,5 @@
 import type { AspidaClient, BasicHeaders } from 'aspida'
+import { dataToURLString } from 'aspida'
 import type { Methods as Methods0 } from './auth/login'
 import type { Methods as Methods1 } from './auth/logout'
 import type { Methods as Methods2 } from './auth/refresh'
@@ -79,11 +80,12 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
         fetch<Methods4['post']['resBody'], BasicHeaders, Methods4['post']['status']>(prefix, PATH4, POST, option).json(),
       $post: (option: { body: Methods4['post']['reqBody'], config?: T | undefined }) =>
         fetch<Methods4['post']['resBody'], BasicHeaders, Methods4['post']['status']>(prefix, PATH4, POST, option).json().then(r => r.body),
-      get: (option?: { config?: T | undefined } | undefined) =>
+      get: (option?: { query?: Methods4['get']['query'] | undefined, config?: T | undefined } | undefined) =>
         fetch<Methods4['get']['resBody'], BasicHeaders, Methods4['get']['status']>(prefix, PATH4, GET, option).json(),
-      $get: (option?: { config?: T | undefined } | undefined) =>
+      $get: (option?: { query?: Methods4['get']['query'] | undefined, config?: T | undefined } | undefined) =>
         fetch<Methods4['get']['resBody'], BasicHeaders, Methods4['get']['status']>(prefix, PATH4, GET, option).json().then(r => r.body),
-      $path: () => `${prefix}${PATH4}`
+      $path: (option?: { method?: 'get' | undefined; query: Methods4['get']['query'] } | undefined) =>
+        `${prefix}${PATH4}${option && option.query ? `?${dataToURLString(option.query)}` : ''}`
     },
     songs: {
       _id: (val1: string) => {
@@ -109,11 +111,12 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
         fetch<Methods6['post']['resBody'], BasicHeaders, Methods6['post']['status']>(prefix, PATH5, POST, option).json(),
       $post: (option: { body: Methods6['post']['reqBody'], config?: T | undefined }) =>
         fetch<Methods6['post']['resBody'], BasicHeaders, Methods6['post']['status']>(prefix, PATH5, POST, option).json().then(r => r.body),
-      get: (option?: { config?: T | undefined } | undefined) =>
+      get: (option?: { query?: Methods6['get']['query'] | undefined, config?: T | undefined } | undefined) =>
         fetch<Methods6['get']['resBody'], BasicHeaders, Methods6['get']['status']>(prefix, PATH5, GET, option).json(),
-      $get: (option?: { config?: T | undefined } | undefined) =>
+      $get: (option?: { query?: Methods6['get']['query'] | undefined, config?: T | undefined } | undefined) =>
         fetch<Methods6['get']['resBody'], BasicHeaders, Methods6['get']['status']>(prefix, PATH5, GET, option).json().then(r => r.body),
-      $path: () => `${prefix}${PATH5}`
+      $path: (option?: { method?: 'get' | undefined; query: Methods6['get']['query'] } | undefined) =>
+        `${prefix}${PATH5}${option && option.query ? `?${dataToURLString(option.query)}` : ''}`
     },
     users: {
       _id: (val1: string) => {
