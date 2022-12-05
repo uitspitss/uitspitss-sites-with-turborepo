@@ -18,7 +18,7 @@ export const SongList = (_props: SongListProps) => {
                     {song.title}
                   </Text>
                 </Box>
-                <Text color="muted">{song.gameId}</Text>
+                <Text color="muted">{song.game.title}</Text>
               </Stack>
               <Text
                 color="muted"
