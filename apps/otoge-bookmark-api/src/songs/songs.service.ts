@@ -19,12 +19,20 @@ export class SongsService {
     where?: Prisma.SongWhereInput;
     orderBy?: Prisma.SongOrderByWithRelationInput;
   }) {
-    return this.prisma.song.findMany(params);
+    return this.prisma.song.findMany({
+      ...params,
+      include: {
+        game: true,
+      },
+    });
   }
 
   findOne(where: Prisma.SongWhereUniqueInput) {
     return this.prisma.song.findUnique({
       where: where,
+      include: {
+        game: true,
+      },
     });
   }
 

@@ -22,7 +22,10 @@ import {
 } from '@nestjs/swagger';
 import { GameEntity } from './entities/game.entity';
 import { JwtAuthGuard } from '@/common/guards/jwt-auth.guard';
-import { DEFAULT_TAKE } from '@/common/constants/list.constant';
+import {
+  DEFAULT_TAKE,
+  DEFAULT_ORDER_BY,
+} from '@/common/constants/list.constant';
 import { ListGameDto } from './dto/list-game.dto';
 
 @Controller('games')
@@ -66,7 +69,7 @@ export class GamesController {
           }
         : undefined,
       orderBy: {
-        createdAt: orderBy,
+        createdAt: orderBy ?? DEFAULT_ORDER_BY,
       },
     });
 

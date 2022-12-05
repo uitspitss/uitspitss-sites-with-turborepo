@@ -24,7 +24,11 @@ import {
 } from '@nestjs/swagger';
 import { SongEntity } from './entities/song.entity';
 import { JwtAuthGuard } from '@/common/guards/jwt-auth.guard';
-import { DEFAULT_TAKE } from '@/common/constants/list.constant';
+import {
+  DEFAULT_ORDER_BY,
+  DEFAULT_TAKE,
+} from '@/common/constants/list.constant';
+import { GameEntity } from '@/games/entities/game.entity';
 
 @Controller('songs')
 @ApiTags('songs')
@@ -67,7 +71,7 @@ export class SongsController {
           }
         : undefined,
       orderBy: {
-        createdAt: orderBy,
+        createdAt: orderBy ?? DEFAULT_ORDER_BY,
       },
       where: {
         gameId,
@@ -78,7 +82,11 @@ export class SongsController {
       throw new NotFoundException();
     }
 
-    return songs.map((song) => new SongEntity(song));
+    return songs.map((song) => {
+      const { game: _game, ...rest } = song;
+      const game = new GameEntity(_game);
+      return new SongEntity({ ...rest, game });
+    });
   }
 
   @Get(':id')
@@ -88,7 +96,9 @@ export class SongsController {
     if (!song) {
       throw new NotFoundException();
     }
-    return new SongEntity(song);
+    const { game: _game, ...rest } = song;
+    const game = new GameEntity(_game);
+    return new SongEntity({ ...rest, game });
   }
 
   @UseGuards(JwtAuthGuard)

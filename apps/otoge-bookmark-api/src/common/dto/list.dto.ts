@@ -11,7 +11,7 @@ export class ListDto {
   @IsString()
   @IsOptional()
   @ApiProperty()
-  @ApiPropertyOptional()
+  @ApiPropertyOptional({ default: '30' })
   take?: string;
 
   @IsString()
@@ -26,6 +26,8 @@ export class ListDto {
   @ApiProperty({
     enum: ['asc', 'desc'],
   })
-  @ApiPropertyOptional()
+  @ApiPropertyOptional({
+    default: 'asc',
+  })
   orderBy?: 'asc' | 'desc';
 }

@@ -31,6 +31,7 @@ paths:
           required: false
           in: query
           schema:
+            default: '30'
             type: string
         - name: cursor
           required: false
@@ -41,6 +42,7 @@ paths:
           required: false
           in: query
           schema:
+            default: asc
             enum:
               - asc
               - desc
@@ -137,6 +139,7 @@ paths:
           required: false
           in: query
           schema:
+            default: '30'
             type: string
         - name: cursor
           required: false
@@ -147,6 +150,7 @@ paths:
           required: false
           in: query
           schema:
+            default: asc
             enum:
               - asc
               - desc
@@ -401,12 +405,12 @@ components:
           type: string
         title:
           type: string
-        gameId:
-          type: string
+        game:
+          $ref: '#/components/schemas/GameEntity'
       required:
         - id
         - title
-        - gameId
+        - game
     UpdateSongDto:
       type: object
       properties:
