@@ -32,6 +32,26 @@ model Song {
   title String
   game Game? @relation(fields: [gameId], references: [id])
   gameId String?
+  categories CategoriesOnSongs[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+}
+
+model Category {
+  id String @id @default(uuid())
+  name String
+  songs CategoriesOnSongs[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model CategoriesOnSongs {
+  song Song @relation(fields: [songId], references: [id])
+  songId String
+  category Category @relation(fields: [categoryId], references: [id])
+  categoryId String
+  assignedAt DateTime @default(now())
+  assignedBy String
+
+  @@id([songId, categoryId])
 }
