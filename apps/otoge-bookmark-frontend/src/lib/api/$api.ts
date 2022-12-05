@@ -5,11 +5,10 @@ import type { Methods as Methods2 } from './auth/refresh'
 import type { Methods as Methods3 } from './auth/register'
 import type { Methods as Methods4 } from './games'
 import type { Methods as Methods5 } from './games/_id@string'
-import type { Methods as Methods6 } from './health'
-import type { Methods as Methods7 } from './songs'
-import type { Methods as Methods8 } from './songs/_id@string'
-import type { Methods as Methods9 } from './users'
-import type { Methods as Methods10 } from './users/_id@string'
+import type { Methods as Methods6 } from './songs'
+import type { Methods as Methods7 } from './songs/_id@string'
+import type { Methods as Methods8 } from './users'
+import type { Methods as Methods9 } from './users/_id@string'
 
 const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
   const prefix = (baseURL === undefined ? '' : baseURL).replace(/\/$/, '')
@@ -18,9 +17,8 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
   const PATH2 = '/auth/refresh'
   const PATH3 = '/auth/register'
   const PATH4 = '/games'
-  const PATH5 = '/health'
-  const PATH6 = '/songs'
-  const PATH7 = '/users'
+  const PATH5 = '/songs'
+  const PATH6 = '/users'
   const GET = 'GET'
   const POST = 'POST'
   const DELETE = 'DELETE'
@@ -87,78 +85,65 @@ const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
         fetch<Methods4['get']['resBody'], BasicHeaders, Methods4['get']['status']>(prefix, PATH4, GET, option).json().then(r => r.body),
       $path: () => `${prefix}${PATH4}`
     },
-    health: {
-      /**
-       * @returns The Health Check is successful
-       */
+    songs: {
+      _id: (val1: string) => {
+        const prefix1 = `${PATH5}/${val1}`
+
+        return {
+          get: (option?: { config?: T | undefined } | undefined) =>
+            fetch<Methods7['get']['resBody'], BasicHeaders, Methods7['get']['status']>(prefix, prefix1, GET, option).json(),
+          $get: (option?: { config?: T | undefined } | undefined) =>
+            fetch<Methods7['get']['resBody'], BasicHeaders, Methods7['get']['status']>(prefix, prefix1, GET, option).json().then(r => r.body),
+          patch: (option: { body: Methods7['patch']['reqBody'], config?: T | undefined }) =>
+            fetch<Methods7['patch']['resBody'], BasicHeaders, Methods7['patch']['status']>(prefix, prefix1, PATCH, option).json(),
+          $patch: (option: { body: Methods7['patch']['reqBody'], config?: T | undefined }) =>
+            fetch<Methods7['patch']['resBody'], BasicHeaders, Methods7['patch']['status']>(prefix, prefix1, PATCH, option).json().then(r => r.body),
+          delete: (option?: { config?: T | undefined } | undefined) =>
+            fetch<void, BasicHeaders, Methods7['delete']['status']>(prefix, prefix1, DELETE, option).send(),
+          $delete: (option?: { config?: T | undefined } | undefined) =>
+            fetch<void, BasicHeaders, Methods7['delete']['status']>(prefix, prefix1, DELETE, option).send().then(r => r.body),
+          $path: () => `${prefix}${prefix1}`
+        }
+      },
+      post: (option: { body: Methods6['post']['reqBody'], config?: T | undefined }) =>
+        fetch<Methods6['post']['resBody'], BasicHeaders, Methods6['post']['status']>(prefix, PATH5, POST, option).json(),
+      $post: (option: { body: Methods6['post']['reqBody'], config?: T | undefined }) =>
+        fetch<Methods6['post']['resBody'], BasicHeaders, Methods6['post']['status']>(prefix, PATH5, POST, option).json().then(r => r.body),
       get: (option?: { config?: T | undefined } | undefined) =>
         fetch<Methods6['get']['resBody'], BasicHeaders, Methods6['get']['status']>(prefix, PATH5, GET, option).json(),
-      /**
-       * @returns The Health Check is successful
-       */
       $get: (option?: { config?: T | undefined } | undefined) =>
         fetch<Methods6['get']['resBody'], BasicHeaders, Methods6['get']['status']>(prefix, PATH5, GET, option).json().then(r => r.body),
       $path: () => `${prefix}${PATH5}`
     },
-    songs: {
+    users: {
       _id: (val1: string) => {
         const prefix1 = `${PATH6}/${val1}`
 
         return {
           get: (option?: { config?: T | undefined } | undefined) =>
-            fetch<Methods8['get']['resBody'], BasicHeaders, Methods8['get']['status']>(prefix, prefix1, GET, option).json(),
+            fetch<Methods9['get']['resBody'], BasicHeaders, Methods9['get']['status']>(prefix, prefix1, GET, option).json(),
           $get: (option?: { config?: T | undefined } | undefined) =>
-            fetch<Methods8['get']['resBody'], BasicHeaders, Methods8['get']['status']>(prefix, prefix1, GET, option).json().then(r => r.body),
-          patch: (option: { body: Methods8['patch']['reqBody'], config?: T | undefined }) =>
-            fetch<Methods8['patch']['resBody'], BasicHeaders, Methods8['patch']['status']>(prefix, prefix1, PATCH, option).json(),
-          $patch: (option: { body: Methods8['patch']['reqBody'], config?: T | undefined }) =>
-            fetch<Methods8['patch']['resBody'], BasicHeaders, Methods8['patch']['status']>(prefix, prefix1, PATCH, option).json().then(r => r.body),
+            fetch<Methods9['get']['resBody'], BasicHeaders, Methods9['get']['status']>(prefix, prefix1, GET, option).json().then(r => r.body),
+          patch: (option: { body: Methods9['patch']['reqBody'], config?: T | undefined }) =>
+            fetch<Methods9['patch']['resBody'], BasicHeaders, Methods9['patch']['status']>(prefix, prefix1, PATCH, option).json(),
+          $patch: (option: { body: Methods9['patch']['reqBody'], config?: T | undefined }) =>
+            fetch<Methods9['patch']['resBody'], BasicHeaders, Methods9['patch']['status']>(prefix, prefix1, PATCH, option).json().then(r => r.body),
           delete: (option?: { config?: T | undefined } | undefined) =>
-            fetch<void, BasicHeaders, Methods8['delete']['status']>(prefix, prefix1, DELETE, option).send(),
+            fetch<void, BasicHeaders, Methods9['delete']['status']>(prefix, prefix1, DELETE, option).send(),
           $delete: (option?: { config?: T | undefined } | undefined) =>
-            fetch<void, BasicHeaders, Methods8['delete']['status']>(prefix, prefix1, DELETE, option).send().then(r => r.body),
+            fetch<void, BasicHeaders, Methods9['delete']['status']>(prefix, prefix1, DELETE, option).send().then(r => r.body),
           $path: () => `${prefix}${prefix1}`
         }
       },
-      post: (option: { body: Methods7['post']['reqBody'], config?: T | undefined }) =>
-        fetch<Methods7['post']['resBody'], BasicHeaders, Methods7['post']['status']>(prefix, PATH6, POST, option).json(),
-      $post: (option: { body: Methods7['post']['reqBody'], config?: T | undefined }) =>
-        fetch<Methods7['post']['resBody'], BasicHeaders, Methods7['post']['status']>(prefix, PATH6, POST, option).json().then(r => r.body),
+      post: (option: { body: Methods8['post']['reqBody'], config?: T | undefined }) =>
+        fetch<Methods8['post']['resBody'], BasicHeaders, Methods8['post']['status']>(prefix, PATH6, POST, option).json(),
+      $post: (option: { body: Methods8['post']['reqBody'], config?: T | undefined }) =>
+        fetch<Methods8['post']['resBody'], BasicHeaders, Methods8['post']['status']>(prefix, PATH6, POST, option).json().then(r => r.body),
       get: (option?: { config?: T | undefined } | undefined) =>
-        fetch<Methods7['get']['resBody'], BasicHeaders, Methods7['get']['status']>(prefix, PATH6, GET, option).json(),
+        fetch<Methods8['get']['resBody'], BasicHeaders, Methods8['get']['status']>(prefix, PATH6, GET, option).json(),
       $get: (option?: { config?: T | undefined } | undefined) =>
-        fetch<Methods7['get']['resBody'], BasicHeaders, Methods7['get']['status']>(prefix, PATH6, GET, option).json().then(r => r.body),
+        fetch<Methods8['get']['resBody'], BasicHeaders, Methods8['get']['status']>(prefix, PATH6, GET, option).json().then(r => r.body),
       $path: () => `${prefix}${PATH6}`
-    },
-    users: {
-      _id: (val1: string) => {
-        const prefix1 = `${PATH7}/${val1}`
-
-        return {
-          get: (option?: { config?: T | undefined } | undefined) =>
-            fetch<Methods10['get']['resBody'], BasicHeaders, Methods10['get']['status']>(prefix, prefix1, GET, option).json(),
-          $get: (option?: { config?: T | undefined } | undefined) =>
-            fetch<Methods10['get']['resBody'], BasicHeaders, Methods10['get']['status']>(prefix, prefix1, GET, option).json().then(r => r.body),
-          patch: (option: { body: Methods10['patch']['reqBody'], config?: T | undefined }) =>
-            fetch<Methods10['patch']['resBody'], BasicHeaders, Methods10['patch']['status']>(prefix, prefix1, PATCH, option).json(),
-          $patch: (option: { body: Methods10['patch']['reqBody'], config?: T | undefined }) =>
-            fetch<Methods10['patch']['resBody'], BasicHeaders, Methods10['patch']['status']>(prefix, prefix1, PATCH, option).json().then(r => r.body),
-          delete: (option?: { config?: T | undefined } | undefined) =>
-            fetch<void, BasicHeaders, Methods10['delete']['status']>(prefix, prefix1, DELETE, option).send(),
-          $delete: (option?: { config?: T | undefined } | undefined) =>
-            fetch<void, BasicHeaders, Methods10['delete']['status']>(prefix, prefix1, DELETE, option).send().then(r => r.body),
-          $path: () => `${prefix}${prefix1}`
-        }
-      },
-      post: (option: { body: Methods9['post']['reqBody'], config?: T | undefined }) =>
-        fetch<Methods9['post']['resBody'], BasicHeaders, Methods9['post']['status']>(prefix, PATH7, POST, option).json(),
-      $post: (option: { body: Methods9['post']['reqBody'], config?: T | undefined }) =>
-        fetch<Methods9['post']['resBody'], BasicHeaders, Methods9['post']['status']>(prefix, PATH7, POST, option).json().then(r => r.body),
-      get: (option?: { config?: T | undefined } | undefined) =>
-        fetch<Methods9['get']['resBody'], BasicHeaders, Methods9['get']['status']>(prefix, PATH7, GET, option).json(),
-      $get: (option?: { config?: T | undefined } | undefined) =>
-        fetch<Methods9['get']['resBody'], BasicHeaders, Methods9['get']['status']>(prefix, PATH7, GET, option).json().then(r => r.body),
-      $path: () => `${prefix}${PATH7}`
     }
   }
 }
