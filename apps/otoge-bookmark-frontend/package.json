@@ -8,7 +8,7 @@
     "dev:path": "pathpida --ignorePath .gitignore --watch",
     "build": "pathpida --ignorePath .gitignore && next build",
     "start": "next start",
-    "lint": "eslint . --fix",
+    "lint": "tsc --noEmit && eslint . --fix",
     "test": "jest",
     "test:watch": "jest --watch",
     "storybook": "start-storybook -p 6008",
