@@ -43,11 +43,20 @@ async function main() {
       create: {
         name: `game ${v}`,
         songs: {
-          createMany: {
-            data: '123'.split('').map((i) => ({
-              name: `song ${v} ${i}`,
-            })),
-          },
+          create: '1234567890'.split('').map((i) => ({
+            name: `song ${v} ${i}`,
+            categories: {
+              create: [
+                {
+                  category: {
+                    create: {
+                      name: `category:${i}`,
+                    },
+                  },
+                },
+              ],
+            },
+          })),
         },
       },
     }),

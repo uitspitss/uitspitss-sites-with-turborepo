@@ -8,7 +8,7 @@ export const GameList = (_props: GameListProps) => {
 
   return (
     <Center maxW="sm" mx="auto" py={{ base: '4', md: '8' }}>
-      <Box bg="bg-surface" py="4">
+      <Box bg="bg-surface" py="4" minW="sm">
         <Stack divider={<StackDivider />} spacing="4">
           {games?.map((game) => (
             <Stack key={game.id} fontSize="sm" px="4" spacing="4">

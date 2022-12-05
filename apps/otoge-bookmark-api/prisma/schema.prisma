@@ -51,7 +51,6 @@ model CategoriesOnSongs {
   category Category @relation(fields: [categoryId], references: [id])
   categoryId String
   assignedAt DateTime @default(now())
-  assignedBy String
 
   @@id([songId, categoryId])
 }
