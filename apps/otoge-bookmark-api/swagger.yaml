@@ -21,7 +21,30 @@ paths:
         - games
     get:
       operationId: GamesController_findAll
-      parameters: []
+      parameters:
+        - name: skip
+          required: false
+          in: query
+          schema:
+            type: string
+        - name: take
+          required: false
+          in: query
+          schema:
+            type: string
+        - name: cursor
+          required: false
+          in: query
+          schema:
+            type: string
+        - name: orderBy
+          required: false
+          in: query
+          schema:
+            enum:
+              - asc
+              - desc
+            type: string
       responses:
         '200':
           description: ''
@@ -104,7 +127,35 @@ paths:
         - songs
     get:
       operationId: SongsController_findAll
-      parameters: []
+      parameters:
+        - name: skip
+          required: false
+          in: query
+          schema:
+            type: string
+        - name: take
+          required: false
+          in: query
+          schema:
+            type: string
+        - name: cursor
+          required: false
+          in: query
+          schema:
+            type: string
+        - name: orderBy
+          required: false
+          in: query
+          schema:
+            enum:
+              - asc
+              - desc
+            type: string
+        - name: gameId
+          required: false
+          in: query
+          schema:
+            type: string
       responses:
         '200':
           description: ''

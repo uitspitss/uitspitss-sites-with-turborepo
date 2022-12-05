@@ -8,6 +8,8 @@ import {
   Delete,
   UseGuards,
   NotFoundException,
+  Query,
+  BadRequestException,
 } from '@nestjs/common';
 import { GamesService } from './games.service';
 import { CreateGameDto } from './dto/create-game.dto';
@@ -20,6 +22,8 @@ import {
 } from '@nestjs/swagger';
 import { GameEntity } from './entities/game.entity';
 import { JwtAuthGuard } from '@/common/guards/jwt-auth.guard';
+import { DEFAULT_TAKE } from '@/common/constants/list.constant';
+import { ListGameDto } from './dto/list-game.dto';
 
 @Controller('games')
 @ApiTags('games')
@@ -35,8 +39,37 @@ export class GamesController {
 
   @Get()
   @ApiOkResponse({ type: GameEntity, isArray: true })
-  async findAll() {
-    const games = await this.gamesService.findAll({});
+  async findAll(@Query() query: ListGameDto) {
+    const { skip, take, cursor, orderBy } = query;
+
+    if (skip && isNaN(Number(skip))) {
+      throw new BadRequestException('skip must be number');
+    }
+
+    if (take && isNaN(Number(take))) {
+      throw new BadRequestException('take must be number');
+    }
+
+    if (cursor) {
+      const game = await this.gamesService.findOne({ id: cursor });
+      if (!game) {
+        throw new NotFoundException('cursor is invalid');
+      }
+    }
+
+    const games = await this.gamesService.findAll({
+      skip: skip ? Number(skip) : 0,
+      take: take ? Number(take) : DEFAULT_TAKE,
+      cursor: cursor
+        ? {
+            id: cursor,
+          }
+        : undefined,
+      orderBy: {
+        createdAt: orderBy,
+      },
+    });
+
     if (!games.length) {
       throw new NotFoundException();
     }
