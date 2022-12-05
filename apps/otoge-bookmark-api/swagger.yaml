@@ -369,29 +369,29 @@ components:
     CreateGameDto:
       type: object
       properties:
-        title:
+        name:
           type: string
       required:
-        - title
+        - name
     SongEntity:
       type: object
       properties:
         id:
           type: string
-        title:
+        name:
           type: string
         game:
           type: object
       required:
         - id
-        - title
+        - name
         - game
     GameEntity:
       type: object
       properties:
         id:
           type: string
-        title:
+        name:
           type: string
         songs:
           type: array
@@ -399,27 +399,27 @@ components:
             $ref: '#/components/schemas/SongEntity'
       required:
         - id
-        - title
+        - name
         - songs
     UpdateGameDto:
       type: object
       properties:
-        title:
+        name:
           type: string
     CreateSongDto:
       type: object
       properties:
-        title:
+        name:
           type: string
         gameId:
           type: string
       required:
-        - title
+        - name
         - gameId
     UpdateSongDto:
       type: object
       properties:
-        title:
+        name:
           type: string
         gameId:
           type: string

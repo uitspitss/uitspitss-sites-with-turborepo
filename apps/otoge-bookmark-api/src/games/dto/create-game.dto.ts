@@ -5,5 +5,5 @@ export class CreateGameDto {
   @IsString()
   @IsNotEmpty()
   @ApiProperty()
-  title: string;
+  name: string;
 }

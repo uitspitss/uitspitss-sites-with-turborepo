@@ -8,7 +8,7 @@ export class SongEntity implements Song {
   id: string;
 
   @ApiProperty()
-  title: string;
+  name: string;
 
   @Exclude()
   gameId: string;

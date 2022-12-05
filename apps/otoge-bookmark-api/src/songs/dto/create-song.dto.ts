@@ -5,7 +5,7 @@ export class CreateSongDto {
   @IsString()
   @IsNotEmpty()
   @ApiProperty()
-  title: string;
+  name: string;
 
   @IsString()
   @IsNotEmpty()

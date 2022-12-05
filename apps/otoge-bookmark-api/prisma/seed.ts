@@ -38,14 +38,14 @@ async function main() {
   // games, songs
   const queries = 'abcde'.split('').map((v) =>
     prisma.game.upsert({
-      where: { title: `game ${v}` },
+      where: { name: `game ${v}` },
       update: {},
       create: {
-        title: `game ${v}`,
+        name: `game ${v}`,
         songs: {
           createMany: {
             data: '123'.split('').map((i) => ({
-              title: `song ${v} ${i}`,
+              name: `song ${v} ${i}`,
             })),
           },
         },

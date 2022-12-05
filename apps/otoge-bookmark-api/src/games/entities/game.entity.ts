@@ -8,7 +8,7 @@ export class GameEntity implements Game {
   id: string;
 
   @ApiProperty()
-  title: string;
+  name: string;
 
   @ApiProperty({ type: SongEntity, isArray: true })
   songs: SongEntity[];
