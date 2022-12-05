@@ -380,9 +380,14 @@ components:
           type: string
         title:
           type: string
+        songs:
+          type: array
+          items:
+            type: string
       required:
         - id
         - title
+        - songs
     UpdateGameDto:
       type: object
       properties:

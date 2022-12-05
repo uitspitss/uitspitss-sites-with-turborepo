@@ -27,6 +27,7 @@ import {
   DEFAULT_ORDER_BY,
 } from '@/common/constants/list.constant';
 import { ListGameDto } from './dto/list-game.dto';
+import { SongEntity } from '@/songs/entities/song.entity';
 
 @Controller('games')
 @ApiTags('games')
@@ -77,7 +78,11 @@ export class GamesController {
       throw new NotFoundException();
     }
 
-    return games.map((game) => new GameEntity(game));
+    return games.map((game) => {
+      const { songs: _songs, ...rest } = game;
+      const songs = _songs.map((_s) => new SongEntity(_s));
+      return new GameEntity({ ...rest, songs });
+    });
   }
 
   @Get(':id')
@@ -87,7 +92,9 @@ export class GamesController {
     if (!game) {
       throw new NotFoundException();
     }
-    return new GameEntity(game);
+    const { songs: _songs, ...rest } = game;
+    const songs = _songs.map((_s) => new SongEntity(_s));
+    return new GameEntity({ ...rest, songs });
   }
 
   @UseGuards(JwtAuthGuard)

@@ -19,12 +19,20 @@ export class GamesService {
     where?: Prisma.GameWhereInput;
     orderBy?: Prisma.GameOrderByWithRelationInput;
   }) {
-    return this.prisma.game.findMany(params);
+    return this.prisma.game.findMany({
+      ...params,
+      include: {
+        songs: true,
+      },
+    });
   }
 
   findOne(where: Prisma.GameWhereUniqueInput) {
     return this.prisma.game.findUnique({
       where,
+      include: {
+        songs: true,
+      },
     });
   }
 

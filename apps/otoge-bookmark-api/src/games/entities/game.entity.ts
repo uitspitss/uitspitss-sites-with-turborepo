@@ -1,3 +1,4 @@
+import { SongEntity } from '@/songs/entities/song.entity';
 import { ApiProperty } from '@nestjs/swagger';
 import { Game } from '@prisma/client';
 import { Exclude } from 'class-transformer';
@@ -8,6 +9,9 @@ export class GameEntity implements Game {
 
   @ApiProperty()
   title: string;
+
+  @ApiProperty()
+  songs: SongEntity[];
 
   @Exclude()
   createdAt: Date;

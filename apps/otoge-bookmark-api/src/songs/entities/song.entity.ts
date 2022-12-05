@@ -13,14 +13,14 @@ export class SongEntity implements Song {
   @Exclude()
   gameId: string;
 
+  @ApiProperty()
+  game: GameEntity;
+
   @Exclude()
   createdAt: Date;
 
   @Exclude()
   updatedAt: Date;
-
-  @ApiProperty()
-  game: GameEntity;
 
   constructor(partial: Partial<SongEntity>) {
     Object.assign(this, partial);
