@@ -1,30 +1,30 @@
 /* eslint-disable */
 export type CreateGameDto = {
-  title: string
+  name: string
 }
 
 export type SongEntity = {
   id: string
-  title: string
+  name: string
 }
 
 export type GameEntity = {
   id: string
-  title: string
+  name: string
   songs: SongEntity[]
 }
 
 export type UpdateGameDto = {
-  title?: string | undefined
+  name?: string | undefined
 }
 
 export type CreateSongDto = {
-  title: string
+  name: string
   gameId: string
 }
 
 export type UpdateSongDto = {
-  title?: string | undefined
+  name?: string | undefined
   gameId?: string | undefined
 }
 
