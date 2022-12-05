@@ -28,6 +28,7 @@ import {
 } from '@/common/constants/list.constant';
 import { ListGameDto } from './dto/list-game.dto';
 import { SongEntity } from '@/songs/entities/song.entity';
+import { plainToInstance } from 'class-transformer';
 
 @Controller('games')
 @ApiTags('games')
@@ -80,8 +81,8 @@ export class GamesController {
 
     return games.map((game) => {
       const { songs: _songs, ...rest } = game;
-      const songs = _songs.map((_s) => new SongEntity(_s));
-      return new GameEntity({ ...rest, songs });
+      const songs = _songs.map((_s) => plainToInstance(SongEntity, _s));
+      return plainToInstance(GameEntity, { ...rest, songs });
     });
   }
 
@@ -93,8 +94,8 @@ export class GamesController {
       throw new NotFoundException();
     }
     const { songs: _songs, ...rest } = game;
-    const songs = _songs.map((_s) => new SongEntity(_s));
-    return new GameEntity({ ...rest, songs });
+    const songs = _songs.map((_s) => plainToInstance(SongEntity, _s));
+    return plainToInstance(GameEntity, { ...rest, songs });
   }
 
   @UseGuards(JwtAuthGuard)

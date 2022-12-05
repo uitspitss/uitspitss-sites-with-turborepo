@@ -3,9 +3,15 @@ export type CreateGameDto = {
   title: string
 }
 
+export type SongEntity = {
+  id: string
+  title: string
+}
+
 export type GameEntity = {
   id: string
   title: string
+  songs: SongEntity[]
 }
 
 export type UpdateGameDto = {
@@ -15,12 +21,6 @@ export type UpdateGameDto = {
 export type CreateSongDto = {
   title: string
   gameId: string
-}
-
-export type SongEntity = {
-  id: string
-  title: string
-  game: GameEntity
 }
 
 export type UpdateSongDto = {

@@ -36,21 +36,24 @@ async function main() {
   }
 
   // games, songs
-  for (const v of 'ab'.split('')) {
-    const game = await prisma.game.upsert({
+  const queries = 'abcde'.split('').map((v) =>
+    prisma.game.upsert({
       where: { title: `game ${v}` },
       update: {},
       create: {
         title: `game ${v}`,
         songs: {
-          create: {
-            title: `song ${v}`,
+          createMany: {
+            data: '123'.split('').map((i) => ({
+              title: `song ${v} ${i}`,
+            })),
           },
         },
       },
-    });
-    console.log({ game });
-  }
+    }),
+  );
+  const result = await prisma.$transaction(queries);
+  console.log(result);
 }
 main()
   .then(async () => {

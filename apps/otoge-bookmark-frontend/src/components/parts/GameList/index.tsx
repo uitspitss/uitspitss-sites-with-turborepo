@@ -28,9 +28,7 @@ export const GameList = (_props: GameListProps) => {
                   display: '-webkit-box',
                 }}
               >
-                TODO: song list
-                <br /> Candy donut tart pudding macaroon. Soufflé carrot cake
-                choc late
+                {game.songs.map((s) => s.title).join(' / ')}
               </Text>
             </Stack>
           ))}

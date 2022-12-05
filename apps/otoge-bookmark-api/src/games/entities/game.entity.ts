@@ -10,7 +10,7 @@ export class GameEntity implements Game {
   @ApiProperty()
   title: string;
 
-  @ApiProperty()
+  @ApiProperty({ type: SongEntity, isArray: true })
   songs: SongEntity[];
 
   @Exclude()

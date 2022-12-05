@@ -14,7 +14,7 @@ export class SongEntity implements Song {
   gameId: string;
 
   @ApiProperty()
-  game: GameEntity;
+  game: Omit<GameEntity, 'songs'>;
 
   @Exclude()
   createdAt: Date;

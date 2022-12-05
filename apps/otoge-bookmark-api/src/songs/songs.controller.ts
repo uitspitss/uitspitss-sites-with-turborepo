@@ -29,6 +29,7 @@ import {
   DEFAULT_TAKE,
 } from '@/common/constants/list.constant';
 import { GameEntity } from '@/games/entities/game.entity';
+import { plainToInstance } from 'class-transformer';
 
 @Controller('songs')
 @ApiTags('songs')
@@ -84,8 +85,8 @@ export class SongsController {
 
     return songs.map((song) => {
       const { game: _game, ...rest } = song;
-      const game = new GameEntity(_game);
-      return new SongEntity({ ...rest, game });
+      const game = plainToInstance(GameEntity, _game);
+      return plainToInstance(SongEntity, { ...rest, game });
     });
   }
 
@@ -97,8 +98,8 @@ export class SongsController {
       throw new NotFoundException();
     }
     const { game: _game, ...rest } = song;
-    const game = new GameEntity(_game);
-    return new SongEntity({ ...rest, game });
+    const game = plainToInstance(GameEntity, _game);
+    return plainToInstance(SongEntity, { ...rest, game });
   }
 
   @UseGuards(JwtAuthGuard)
