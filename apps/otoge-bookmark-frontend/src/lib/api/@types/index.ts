@@ -28,10 +28,16 @@ export type CreateSongDto = {
   gameId: string
 }
 
-export type SongWithGameEntity = {
+export type CategoryEntity = {
+  id: string
+  name: string
+}
+
+export type SongWithGameAndCategoriesEntity = {
   id: string
   name: string
   game: GameEntity
+  categories: CategoryEntity[]
 }
 
 export type UpdateSongDto = {
@@ -62,4 +68,12 @@ export type LoggedInTokenEntity = {
 export type UpdateUserDto = {
   email?: string | undefined
   password?: string | undefined
+}
+
+export type CreateCategoryDto = {
+  name: string
+}
+
+export type UpdateCategoryDto = {
+  name?: string | undefined
 }

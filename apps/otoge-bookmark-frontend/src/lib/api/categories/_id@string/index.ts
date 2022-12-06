@@ -4,16 +4,14 @@ import type * as Types from '../../@types'
 export type Methods = {
   get: {
     status: 200
-    resBody: Types.SongWithGameAndCategoriesEntity
   }
 
   patch: {
     status: 200
-    resBody: Types.SongEntity
-    reqBody: Types.UpdateSongDto
+    reqBody: Types.UpdateCategoryDto
   }
 
   delete: {
-    status: 204
+    status: 200
   }
 }
