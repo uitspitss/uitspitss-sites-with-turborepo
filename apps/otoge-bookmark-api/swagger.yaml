@@ -21,7 +21,32 @@ paths:
         - games
     get:
       operationId: GamesController_findAll
-      parameters: []
+      parameters:
+        - name: skip
+          required: false
+          in: query
+          schema:
+            type: string
+        - name: take
+          required: false
+          in: query
+          schema:
+            default: '30'
+            type: string
+        - name: cursor
+          required: false
+          in: query
+          schema:
+            type: string
+        - name: orderBy
+          required: false
+          in: query
+          schema:
+            default: asc
+            enum:
+              - asc
+              - desc
+            type: string
       responses:
         '200':
           description: ''
@@ -30,7 +55,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/GameEntity'
+                  $ref: '#/components/schemas/GameWithSongsEntity'
       tags: *ref_0
   /games/{id}:
     get:
@@ -47,7 +72,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GameEntity'
+                $ref: '#/components/schemas/GameWithSongsEntity'
       tags: *ref_0
     patch:
       operationId: GamesController_update
@@ -104,7 +129,37 @@ paths:
         - songs
     get:
       operationId: SongsController_findAll
-      parameters: []
+      parameters:
+        - name: skip
+          required: false
+          in: query
+          schema:
+            type: string
+        - name: take
+          required: false
+          in: query
+          schema:
+            default: '30'
+            type: string
+        - name: cursor
+          required: false
+          in: query
+          schema:
+            type: string
+        - name: orderBy
+          required: false
+          in: query
+          schema:
+            default: asc
+            enum:
+              - asc
+              - desc
+            type: string
+        - name: gameId
+          required: false
+          in: query
+          schema:
+            type: string
       responses:
         '200':
           description: ''
@@ -113,7 +168,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/SongEntity'
+                  $ref: '#/components/schemas/SongWithGameAndCategoriesEntity'
       tags: *ref_1
   /songs/{id}:
     get:
@@ -130,7 +185,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/SongEntity'
+                $ref: '#/components/schemas/SongWithGameAndCategoriesEntity'
       tags: *ref_1
     patch:
       operationId: SongsController_update
@@ -302,102 +357,65 @@ paths:
         '204':
           description: ''
       tags: *ref_3
-  /health:
+  /categories:
+    post:
+      operationId: CategoriesController_create
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateCategoryDto'
+      responses:
+        '201':
+          description: ''
     get:
-      operationId: HealthController_check
+      operationId: CategoriesController_findAll
       parameters: []
       responses:
         '200':
-          description: The Health Check is successful
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  status:
-                    type: string
-                    example: ok
-                  info:
-                    type: object
-                    example: &ref_4
-                      database: &ref_5
-                        status: up
-                    additionalProperties:
-                      type: object
-                      properties:
-                        status:
-                          type: string
-                      additionalProperties:
-                        type: string
-                    nullable: true
-                  error:
-                    type: object
-                    example: {}
-                    additionalProperties:
-                      type: object
-                      properties:
-                        status:
-                          type: string
-                      additionalProperties:
-                        type: string
-                    nullable: true
-                  details:
-                    type: object
-                    example: *ref_4
-                    additionalProperties:
-                      type: object
-                      properties:
-                        status:
-                          type: string
-                      additionalProperties:
-                        type: string
-        '503':
-          description: The Health Check is not successful
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  status:
-                    type: string
-                    example: error
-                  info:
-                    type: object
-                    example: *ref_4
-                    additionalProperties:
-                      type: object
-                      properties:
-                        status:
-                          type: string
-                      additionalProperties:
-                        type: string
-                    nullable: true
-                  error:
-                    type: object
-                    example:
-                      redis: &ref_6
-                        status: down
-                        message: Could not connect
-                    additionalProperties:
-                      type: object
-                      properties:
-                        status:
-                          type: string
-                      additionalProperties:
-                        type: string
-                    nullable: true
-                  details:
-                    type: object
-                    example:
-                      database: *ref_5
-                      redis: *ref_6
-                    additionalProperties:
-                      type: object
-                      properties:
-                        status:
-                          type: string
-                      additionalProperties:
-                        type: string
+          description: ''
+  /categories/{id}:
+    get:
+      operationId: CategoriesController_findOne
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+    patch:
+      operationId: CategoriesController_update
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateCategoryDto'
+      responses:
+        '200':
+          description: ''
+    delete:
+      operationId: CategoriesController_remove
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
 info:
   title: Otoge Bookmark API
   description: Otoge Bookmark API
@@ -410,52 +428,92 @@ components:
     CreateGameDto:
       type: object
       properties:
-        title:
+        name:
           type: string
       required:
-        - title
+        - name
     GameEntity:
       type: object
       properties:
         id:
           type: string
-        title:
+        name:
           type: string
       required:
         - id
-        - title
-    UpdateGameDto:
-      type: object
-      properties:
-        title:
-          type: string
-    CreateSongDto:
-      type: object
-      properties:
-        title:
-          type: string
-        gameId:
-          type: string
-      required:
-        - title
-        - gameId
+        - name
     SongEntity:
       type: object
       properties:
         id:
           type: string
-        title:
+        name:
+          type: string
+      required:
+        - id
+        - name
+    GameWithSongsEntity:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        songs:
+          type: array
+          items:
+            $ref: '#/components/schemas/SongEntity'
+      required:
+        - id
+        - name
+        - songs
+    UpdateGameDto:
+      type: object
+      properties:
+        name:
+          type: string
+    CreateSongDto:
+      type: object
+      properties:
+        name:
           type: string
         gameId:
           type: string
       required:
-        - id
-        - title
+        - name
         - gameId
+    CategoryEntity:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+      required:
+        - id
+        - name
+    SongWithGameAndCategoriesEntity:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        game:
+          $ref: '#/components/schemas/GameEntity'
+        categories:
+          type: array
+          items:
+            $ref: '#/components/schemas/CategoryEntity'
+      required:
+        - id
+        - name
+        - game
+        - categories
     UpdateSongDto:
       type: object
       properties:
-        title:
+        name:
           type: string
         gameId:
           type: string
@@ -505,4 +563,16 @@ components:
         email:
           type: string
         password:
+          type: string
+    CreateCategoryDto:
+      type: object
+      properties:
+        name:
+          type: string
+      required:
+        - name
+    UpdateCategoryDto:
+      type: object
+      properties:
+        name:
           type: string

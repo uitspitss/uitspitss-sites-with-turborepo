@@ -4,7 +4,7 @@ import type * as Types from '../../@types'
 export type Methods = {
   get: {
     status: 200
-    resBody: Types.SongEntity
+    resBody: Types.SongWithGameAndCategoriesEntity
   }
 
   patch: {

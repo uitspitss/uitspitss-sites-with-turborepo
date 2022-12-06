@@ -10,6 +10,7 @@ import { UsersModule } from './users/users.module';
 import { validate } from './env.validation';
 import { APP_INTERCEPTOR } from '@nestjs/core';
 import { HealthModule } from './health/health.module';
+import { CategoriesModule } from './categories/categories.module';
 
 @Module({
   imports: [
@@ -25,6 +26,7 @@ import { HealthModule } from './health/health.module';
     AuthModule,
     UsersModule,
     HealthModule,
+    CategoriesModule,
   ],
   controllers: [AppController],
   providers: [

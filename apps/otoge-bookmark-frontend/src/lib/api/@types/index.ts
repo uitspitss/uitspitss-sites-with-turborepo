@@ -1,30 +1,47 @@
 /* eslint-disable */
 export type CreateGameDto = {
-  title: string
+  name: string
 }
 
 export type GameEntity = {
   id: string
-  title: string
-}
-
-export type UpdateGameDto = {
-  title?: string | undefined
-}
-
-export type CreateSongDto = {
-  title: string
-  gameId: string
+  name: string
 }
 
 export type SongEntity = {
   id: string
-  title: string
+  name: string
+}
+
+export type GameWithSongsEntity = {
+  id: string
+  name: string
+  songs: SongEntity[]
+}
+
+export type UpdateGameDto = {
+  name?: string | undefined
+}
+
+export type CreateSongDto = {
+  name: string
   gameId: string
 }
 
+export type CategoryEntity = {
+  id: string
+  name: string
+}
+
+export type SongWithGameAndCategoriesEntity = {
+  id: string
+  name: string
+  game: GameEntity
+  categories: CategoryEntity[]
+}
+
 export type UpdateSongDto = {
-  title?: string | undefined
+  name?: string | undefined
   gameId?: string | undefined
 }
 
@@ -51,4 +68,12 @@ export type LoggedInTokenEntity = {
 export type UpdateUserDto = {
   email?: string | undefined
   password?: string | undefined
+}
+
+export type CreateCategoryDto = {
+  name: string
+}
+
+export type UpdateCategoryDto = {
+  name?: string | undefined
 }

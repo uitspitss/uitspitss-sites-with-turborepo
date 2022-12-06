@@ -8,14 +8,14 @@ export const GameList = (_props: GameListProps) => {
 
   return (
     <Center maxW="sm" mx="auto" py={{ base: '4', md: '8' }}>
-      <Box bg="bg-surface" py="4">
+      <Box bg="bg-surface" py="4" minW="sm">
         <Stack divider={<StackDivider />} spacing="4">
           {games?.map((game) => (
             <Stack key={game.id} fontSize="sm" px="4" spacing="4">
               <Stack direction="row" justify="space-between" spacing="4">
                 <Box>
                   <Text fontWeight="medium" fontSize="2xl" color="emphasized">
-                    {game.title}
+                    {game.name}
                   </Text>
                 </Box>
               </Stack>
@@ -28,9 +28,7 @@ export const GameList = (_props: GameListProps) => {
                   display: '-webkit-box',
                 }}
               >
-                TODO: song list
-                <br /> Candy donut tart pudding macaroon. Soufflé carrot cake
-                choc late
+                {game.songs.map((s) => s.name).join(' / ')}
               </Text>
             </Stack>
           ))}

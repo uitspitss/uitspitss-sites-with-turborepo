@@ -9,18 +9,28 @@ import {
   UseGuards,
   NotFoundException,
   HttpCode,
+  Query,
+  BadRequestException,
 } from '@nestjs/common';
 import { SongsService } from './songs.service';
 import { CreateSongDto } from './dto/create-song.dto';
 import { UpdateSongDto } from './dto/update-song.dto';
+import { ListSongDto } from './dto/list-song.dto';
 import {
   ApiCreatedResponse,
   ApiNoContentResponse,
   ApiOkResponse,
   ApiTags,
 } from '@nestjs/swagger';
-import { SongEntity } from './entities/song.entity';
+import {
+  SongEntity,
+  SongWithGameAndCategoriesEntity,
+} from './entities/song.entity';
 import { JwtAuthGuard } from '@/common/guards/jwt-auth.guard';
+import {
+  DEFAULT_ORDER_BY,
+  DEFAULT_TAKE,
+} from '@/common/constants/list.constant';
 
 @Controller('songs')
 @ApiTags('songs')
@@ -35,24 +45,58 @@ export class SongsController {
   }
 
   @Get()
-  @ApiOkResponse({ type: SongEntity, isArray: true })
-  async findAll() {
-    const songs = await this.songsService.findAll({});
+  @ApiOkResponse({ type: SongWithGameAndCategoriesEntity, isArray: true })
+  async findAll(@Query() query: ListSongDto) {
+    const { gameId, skip, take, cursor, orderBy } = query;
+
+    if (skip && isNaN(Number(skip))) {
+      throw new BadRequestException('skip must be number');
+    }
+
+    if (take && isNaN(Number(take))) {
+      throw new BadRequestException('take must be number');
+    }
+
+    if (cursor) {
+      const song = await this.songsService.findOne({ id: cursor });
+      if (!song) {
+        throw new NotFoundException('cursor is invalid');
+      }
+    }
+
+    const songs = await this.songsService.findAll({
+      skip: skip ? Number(skip) : 0,
+      take: take ? Number(take) : DEFAULT_TAKE,
+      cursor: cursor
+        ? {
+            id: cursor,
+          }
+        : undefined,
+      orderBy: {
+        createdAt: orderBy ?? DEFAULT_ORDER_BY,
+      },
+      where: {
+        gameId,
+      },
+    });
+
     if (!songs.length) {
       throw new NotFoundException();
     }
 
-    return songs.map((song) => new SongEntity(song));
+    return songs.map((song) => {
+      return new SongWithGameAndCategoriesEntity(song);
+    });
   }
 
   @Get(':id')
-  @ApiOkResponse({ type: SongEntity })
+  @ApiOkResponse({ type: SongWithGameAndCategoriesEntity })
   async findOne(@Param('id') id: string) {
     const song = await this.songsService.findOne({ id });
     if (!song) {
       throw new NotFoundException();
     }
-    return new SongEntity(song);
+    return new SongWithGameAndCategoriesEntity(song);
   }
 
   @UseGuards(JwtAuthGuard)

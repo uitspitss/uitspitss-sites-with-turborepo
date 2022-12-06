@@ -9,7 +9,14 @@ export type Methods = {
   }
 
   get: {
+    query?: {
+      skip?: string | undefined
+      take?: string | undefined
+      cursor?: string | undefined
+      orderBy?: 'asc' | 'desc' | undefined
+    } | undefined
+
     status: 200
-    resBody: Types.GameEntity[]
+    resBody: Types.GameWithSongsEntity[]
   }
 }

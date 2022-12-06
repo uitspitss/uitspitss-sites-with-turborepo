@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 import Link from 'next/link';
 import { ReactNode, useCallback, useMemo } from 'react';
+import { Container } from '@chakra-ui/react';
 import { Footer, Navbar } from 'ui';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'react-i18next';
@@ -61,7 +62,7 @@ export const MainLayout = (props: MainLayoutProps) => {
         selectedIndex={selectedIndex}
         changeLocale={changeLocale}
       />
-      {children}
+      <Container py={{ base: 0, md: 8 }}>{children}</Container>
       <Footer />
     </StyledMainLayout>
   );

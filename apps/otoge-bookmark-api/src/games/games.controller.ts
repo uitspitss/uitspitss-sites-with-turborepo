@@ -8,6 +8,8 @@ import {
   Delete,
   UseGuards,
   NotFoundException,
+  Query,
+  BadRequestException,
 } from '@nestjs/common';
 import { GamesService } from './games.service';
 import { CreateGameDto } from './dto/create-game.dto';
@@ -18,8 +20,13 @@ import {
   ApiOkResponse,
   ApiTags,
 } from '@nestjs/swagger';
-import { GameEntity } from './entities/game.entity';
+import { GameEntity, GameWithSongsEntity } from './entities/game.entity';
 import { JwtAuthGuard } from '@/common/guards/jwt-auth.guard';
+import {
+  DEFAULT_TAKE,
+  DEFAULT_ORDER_BY,
+} from '@/common/constants/list.constant';
+import { ListGameDto } from './dto/list-game.dto';
 
 @Controller('games')
 @ApiTags('games')
@@ -34,24 +41,55 @@ export class GamesController {
   }
 
   @Get()
-  @ApiOkResponse({ type: GameEntity, isArray: true })
-  async findAll() {
-    const games = await this.gamesService.findAll({});
+  @ApiOkResponse({ type: GameWithSongsEntity, isArray: true })
+  async findAll(@Query() query: ListGameDto) {
+    const { skip, take, cursor, orderBy } = query;
+
+    if (skip && isNaN(Number(skip))) {
+      throw new BadRequestException('skip must be number');
+    }
+
+    if (take && isNaN(Number(take))) {
+      throw new BadRequestException('take must be number');
+    }
+
+    if (cursor) {
+      const game = await this.gamesService.findOne({ id: cursor });
+      if (!game) {
+        throw new NotFoundException('cursor is invalid');
+      }
+    }
+
+    const games = await this.gamesService.findAll({
+      skip: skip ? Number(skip) : 0,
+      take: take ? Number(take) : DEFAULT_TAKE,
+      cursor: cursor
+        ? {
+            id: cursor,
+          }
+        : undefined,
+      orderBy: {
+        createdAt: orderBy ?? DEFAULT_ORDER_BY,
+      },
+    });
+
     if (!games.length) {
       throw new NotFoundException();
     }
 
-    return games.map((game) => new GameEntity(game));
+    return games.map((game) => {
+      return new GameWithSongsEntity(game);
+    });
   }
 
   @Get(':id')
-  @ApiOkResponse({ type: GameEntity })
+  @ApiOkResponse({ type: GameWithSongsEntity })
   async findOne(@Param('id') id: string) {
     const game = await this.gamesService.findOne({ id });
     if (!game) {
       throw new NotFoundException();
     }
-    return new GameEntity(game);
+    return new GameWithSongsEntity(game);
   }
 
   @UseGuards(JwtAuthGuard)
