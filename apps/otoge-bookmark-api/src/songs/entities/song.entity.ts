@@ -1,3 +1,7 @@
+import {
+  CategoriesOnSongsEntity,
+  CategoryEntity,
+} from '@/categories/entities/category.entity';
 import { GameEntity } from '@/games/entities/game.entity';
 import { ApiProperty } from '@nestjs/swagger';
 import { Song } from '@prisma/client';
@@ -24,12 +28,22 @@ export class SongEntity implements Song {
   }
 }
 
-export class SongWithGameEntity extends SongEntity {
+export class SongWithGameAndCategoriesEntity extends SongEntity {
   @ApiProperty({ type: () => GameEntity })
   game: GameEntity;
 
-  constructor(partial: Partial<SongWithGameEntity>) {
+  @ApiProperty({
+    type: () => CategoryEntity,
+    isArray: true,
+  })
+  categories: (CategoriesOnSongsEntity & { category: CategoryEntity })[];
+
+  constructor(partial: Partial<SongWithGameAndCategoriesEntity>) {
     super(partial);
     this.game = new GameEntity(partial.game);
+    // NOTE: Remove M2M info from categories (ex. songId, categoryId)
+    this.categories = partial.categories.map((category) =>
+      Object.assign(new CategoryEntity(category.category)),
+    );
   }
 }

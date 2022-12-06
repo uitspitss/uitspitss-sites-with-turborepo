@@ -23,15 +23,25 @@ export class SongsService {
       ...params,
       include: {
         game: true,
+        categories: {
+          include: {
+            category: true,
+          },
+        },
       },
     });
   }
 
   findOne(where: Prisma.SongWhereUniqueInput) {
     return this.prisma.song.findUnique({
-      where: where,
+      where,
       include: {
         game: true,
+        categories: {
+          include: {
+            category: true,
+          },
+        },
       },
     });
   }

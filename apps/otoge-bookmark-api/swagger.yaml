@@ -168,7 +168,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/SongWithGameEntity'
+                  $ref: '#/components/schemas/SongWithGameAndCategoriesEntity'
       tags: *ref_1
   /songs/{id}:
     get:
@@ -185,7 +185,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/SongWithGameEntity'
+                $ref: '#/components/schemas/SongWithGameAndCategoriesEntity'
       tags: *ref_1
     patch:
       operationId: SongsController_update
@@ -357,6 +357,65 @@ paths:
         '204':
           description: ''
       tags: *ref_3
+  /categories:
+    post:
+      operationId: CategoriesController_create
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateCategoryDto'
+      responses:
+        '201':
+          description: ''
+    get:
+      operationId: CategoriesController_findAll
+      parameters: []
+      responses:
+        '200':
+          description: ''
+  /categories/{id}:
+    get:
+      operationId: CategoriesController_findOne
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+    patch:
+      operationId: CategoriesController_update
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateCategoryDto'
+      responses:
+        '200':
+          description: ''
+    delete:
+      operationId: CategoriesController_remove
+      parameters:
+        - name: id
+          required: true
+          in: path
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
 info:
   title: Otoge Bookmark API
   description: Otoge Bookmark API
@@ -423,7 +482,17 @@ components:
       required:
         - name
         - gameId
-    SongWithGameEntity:
+    CategoryEntity:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+      required:
+        - id
+        - name
+    SongWithGameAndCategoriesEntity:
       type: object
       properties:
         id:
@@ -432,10 +501,15 @@ components:
           type: string
         game:
           $ref: '#/components/schemas/GameEntity'
+        categories:
+          type: array
+          items:
+            $ref: '#/components/schemas/CategoryEntity'
       required:
         - id
         - name
         - game
+        - categories
     UpdateSongDto:
       type: object
       properties:
@@ -489,4 +563,16 @@ components:
         email:
           type: string
         password:
+          type: string
+    CreateCategoryDto:
+      type: object
+      properties:
+        name:
+          type: string
+      required:
+        - name
+    UpdateCategoryDto:
+      type: object
+      properties:
+        name:
           type: string

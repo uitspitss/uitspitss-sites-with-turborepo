@@ -22,7 +22,10 @@ import {
   ApiOkResponse,
   ApiTags,
 } from '@nestjs/swagger';
-import { SongEntity, SongWithGameEntity } from './entities/song.entity';
+import {
+  SongEntity,
+  SongWithGameAndCategoriesEntity,
+} from './entities/song.entity';
 import { JwtAuthGuard } from '@/common/guards/jwt-auth.guard';
 import {
   DEFAULT_ORDER_BY,
@@ -42,7 +45,7 @@ export class SongsController {
   }
 
   @Get()
-  @ApiOkResponse({ type: SongWithGameEntity, isArray: true })
+  @ApiOkResponse({ type: SongWithGameAndCategoriesEntity, isArray: true })
   async findAll(@Query() query: ListSongDto) {
     const { gameId, skip, take, cursor, orderBy } = query;
 
@@ -82,18 +85,18 @@ export class SongsController {
     }
 
     return songs.map((song) => {
-      return new SongWithGameEntity(song);
+      return new SongWithGameAndCategoriesEntity(song);
     });
   }
 
   @Get(':id')
-  @ApiOkResponse({ type: SongWithGameEntity })
+  @ApiOkResponse({ type: SongWithGameAndCategoriesEntity })
   async findOne(@Param('id') id: string) {
     const song = await this.songsService.findOne({ id });
     if (!song) {
       throw new NotFoundException();
     }
-    return new SongWithGameEntity(song);
+    return new SongWithGameAndCategoriesEntity(song);
   }
 
   @UseGuards(JwtAuthGuard)
