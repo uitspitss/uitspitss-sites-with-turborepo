@@ -8,12 +8,12 @@ faker.seed(0);
 export const db = factory({
   game: {
     id: primaryKey(faker.datatype.uuid),
-    title: faker.random.word,
+    name: faker.random.word,
     songs: manyOf('song'),
   },
   song: {
     id: primaryKey(faker.datatype.uuid),
-    title: faker.music.songName,
+    name: faker.music.songName,
     game: oneOf('game'),
     gameId: String,
   },
@@ -25,13 +25,25 @@ export const db = factory({
 
 // games
 for (let i = 1; i <= EACH_DATA_COUNT; i++) {
-  db.game.create({ title: `Game ${i}` });
+  db.game.create({ name: `Game ${i}` });
 }
 
 // songs
 for (let i = 1; i <= EACH_DATA_COUNT; i++) {
-  const game = db.game.findFirst({ where: { title: { equals: 'Game 1' } } });
+  const game = db.game.findFirst({ where: { name: { equals: 'Game 1' } } });
   if (game) {
-    db.song.create({ title: `Song ${i}`, game, gameId: game.id });
+    db.song.create({ name: `Song ${i}`, game, gameId: game.id });
+    // db.game.update({
+    //   where: {
+    //     id: {
+    //       equals: game.id,
+    //     },
+    //   },
+    //   data: {
+    //     id: game.id,
+    //     name: game.name,
+    //     songs: [...game.songs, song],
+    //   },
+    // });
   }
 }
