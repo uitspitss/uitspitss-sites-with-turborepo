@@ -6,9 +6,11 @@ import {
 import { ConfigService } from '@nestjs/config';
 import { NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import helmet from 'helmet';
 import fs from 'fs';
 import { dump } from 'js-yaml';
 import { AppModule } from './app.module';
+import { WINSTON_MODULE_NEST_PROVIDER } from 'nest-winston';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -16,8 +18,20 @@ async function bootstrap() {
   // config
   const configService = app.get(ConfigService);
 
+  // logger with winston
+  app.useLogger(app.get(WINSTON_MODULE_NEST_PROVIDER));
+
   // cors
-  app.enableCors();
+  if (['development', 'test'].includes(configService.get('NODE_ENV'))) {
+    app.enableCors();
+  } else {
+    app.enableCors({
+      origin: configService.get('ALLOW_ORIGIN'),
+    });
+  }
+
+  // helmet
+  app.use(helmet());
 
   // pipes
   app.useGlobalPipes(new ValidationPipe({ whitelist: true }));
