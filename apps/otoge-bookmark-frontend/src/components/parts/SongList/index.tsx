@@ -1,5 +1,13 @@
+import {
+  Box,
+  Center,
+  Stack,
+  StackDivider,
+  Text,
+  Wrap,
+  Tag,
+} from '@chakra-ui/react';
 import { useSongs } from '@/hooks/useSongs';
-import { Box, Center, Stack, StackDivider, Text } from '@chakra-ui/react';
 
 type SongListProps = unknown;
 
@@ -8,7 +16,7 @@ export const SongList = (_props: SongListProps) => {
 
   return (
     <Center maxW="sm" mx="auto" py={{ base: '4', md: '8' }}>
-      <Box bg="bg-surface" py="4">
+      <Box bg="bg-surface" py="4" minW="sm">
         <Stack divider={<StackDivider />} spacing="4">
           {songs?.map((song) => (
             <Stack key={song.id} fontSize="sm" px="4" spacing="4">
@@ -29,9 +37,13 @@ export const SongList = (_props: SongListProps) => {
                   display: '-webkit-box',
                 }}
               >
-                TODO: song detail
-                <br />
-                Candy donut tart pudding macaroon. Soufflé carrot cake choc late
+                <Wrap spacing={2}>
+                  {song.categories.map((category) => (
+                    <Tag size="sm" key={category.id} variant="solid">
+                      {category.name}
+                    </Tag>
+                  ))}
+                </Wrap>
               </Text>
             </Stack>
           ))}
