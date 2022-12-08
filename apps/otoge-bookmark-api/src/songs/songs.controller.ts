@@ -12,8 +12,8 @@ import {
   Query,
   BadRequestException,
   Inject,
+  LoggerService,
 } from '@nestjs/common';
-import { Logger } from 'winston';
 import { SongsService } from './songs.service';
 import { CreateSongDto } from './dto/create-song.dto';
 import { UpdateSongDto } from './dto/update-song.dto';
@@ -33,14 +33,15 @@ import {
   DEFAULT_ORDER_BY,
   DEFAULT_TAKE,
 } from '@/common/constants/list.constant';
-import { WINSTON_MODULE_PROVIDER } from 'nest-winston';
+import { WINSTON_MODULE_NEST_PROVIDER } from 'nest-winston';
 
 @Controller('songs')
 @ApiTags('songs')
 export class SongsController {
   constructor(
     private readonly songsService: SongsService,
-    @Inject(WINSTON_MODULE_PROVIDER) private readonly logger: Logger,
+    @Inject(WINSTON_MODULE_NEST_PROVIDER)
+    private readonly logger: LoggerService,
   ) {}
 
   @UseGuards(JwtAuthGuard)
@@ -90,7 +91,7 @@ export class SongsController {
       throw new NotFoundException();
     }
 
-    this.logger.debug(`song length: ${songs.length}`, SongsController.name);
+    this.logger.log(`song length: ${songs.length}`, SongsController.name);
 
     return songs.map((song) => {
       return new SongWithGameAndCategoriesEntity(song);

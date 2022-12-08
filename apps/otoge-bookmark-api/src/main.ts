@@ -10,12 +10,16 @@ import helmet from 'helmet';
 import fs from 'fs';
 import { dump } from 'js-yaml';
 import { AppModule } from './app.module';
+import { WINSTON_MODULE_NEST_PROVIDER } from 'nest-winston';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
   // config
   const configService = app.get(ConfigService);
+
+  // logger with winston
+  app.useLogger(app.get(WINSTON_MODULE_NEST_PROVIDER));
 
   // cors
   if (['development', 'test'].includes(configService.get('NODE_ENV'))) {
