@@ -1,5 +1,6 @@
 import { ClassSerializerInterceptor, Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
+import { WinstonModule } from 'nest-winston';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { GamesModule } from './games/games.module';
@@ -20,6 +21,7 @@ import { CategoriesModule } from './categories/categories.module';
       envFilePath: ['.env', '.env.development'],
       validate,
     }),
+    WinstonModule.forRoot({}),
     GamesModule,
     SongsModule,
     PrismaModule,
