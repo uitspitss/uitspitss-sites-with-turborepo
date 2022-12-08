@@ -13,10 +13,17 @@
     "i18next-scanner": "i18next-scanner"
   },
   "dependencies": {
+    "@chakra-ui/react": "^2.4.3",
+    "@emotion/react": "^11.10.5",
+    "@emotion/styled": "^11.10.5",
+    "@fontsource/open-sans": "^4.5.13",
+    "@fontsource/raleway": "^4.5.11",
     "@hookform/resolvers": "^2.9.8",
     "chakra-config": "*",
+    "framer-motion": "^7.6.19",
     "react-config": "*",
     "react-hook-form": "^7.36.1",
+    "react-icons": "^4.7.1",
     "react-textarea-autosize": "^8.3.4",
     "zod": "^3.19.1"
   },

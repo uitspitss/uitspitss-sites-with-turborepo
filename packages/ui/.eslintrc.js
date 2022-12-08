@@ -9,7 +9,6 @@ module.exports = {
         peerDependencies: false,
         packageDir: [
           '.',
-          '../chakra-config',
           '../i18next-scanner-config',
           '../jest-config',
           '../react-config',
