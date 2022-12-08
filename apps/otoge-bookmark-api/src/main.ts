@@ -6,6 +6,7 @@ import {
 import { ConfigService } from '@nestjs/config';
 import { NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import helmet from 'helmet';
 import fs from 'fs';
 import { dump } from 'js-yaml';
 import { AppModule } from './app.module';
@@ -17,7 +18,16 @@ async function bootstrap() {
   const configService = app.get(ConfigService);
 
   // cors
-  app.enableCors();
+  if (['development', 'test'].includes(configService.get('NODE_ENV'))) {
+    app.enableCors();
+  } else {
+    app.enableCors({
+      origin: configService.get('ALLOW_ORIGIN'),
+    });
+  }
+
+  // helmet
+  app.use(helmet());
 
   // pipes
   app.useGlobalPipes(new ValidationPipe({ whitelist: true }));

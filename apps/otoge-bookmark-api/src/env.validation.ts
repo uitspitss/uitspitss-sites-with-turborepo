@@ -16,6 +16,9 @@ class EnvironmentVariables {
   PORT: number;
 
   @IsString()
+  ALLOW_ORIGIN: string;
+
+  @IsString()
   JWT_SECRET: string;
 
   @IsNumber()
