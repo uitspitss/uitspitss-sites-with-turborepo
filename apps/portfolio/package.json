@@ -48,7 +48,7 @@
     "jest-config": "*",
     "next-router-mock": "^0.8.0",
     "next-transpile-modules": "10.0.0",
-    "pathpida-config": "*",
+    "pathpida": "^0.20.1",
     "react-error-boundary": "^3.1.4",
     "storybook-addon-next": "^1.7.1",
     "storybook-config": "*",
