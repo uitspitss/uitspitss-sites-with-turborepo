@@ -11,7 +11,6 @@ module.exports = {
           '.',
           '../../packages/i18next-scanner-config',
           '../../packages/jest-config',
-          '../../packages/react-config',
           '../../packages/storybook-config',
           '../../packages/tsconfig',
           '../../packages/ui',
