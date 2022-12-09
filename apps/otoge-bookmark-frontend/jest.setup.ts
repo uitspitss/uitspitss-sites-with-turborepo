@@ -1,4 +1,4 @@
-import 'jest-config/jest.setup';
+import 'jest-config/next/jest.setup';
 // eslint-disable-next-line
 import { loadEnvConfig } from '@next/env';
 import { setGlobalConfig } from '@storybook/testing-react';
