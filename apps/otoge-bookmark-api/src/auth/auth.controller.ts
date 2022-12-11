@@ -8,15 +8,15 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { ApiCreatedResponse, ApiOkResponse, ApiTags } from '@nestjs/swagger';
+import { Request } from 'express';
 import { AuthService } from './auth.service';
+import { LoginDto } from './dto/login.dto';
+import { LoggedInTokenEntity } from './entities/logged-in-token.entity';
+import { JwtAuthGuard } from '@/common/guards/jwt-auth.guard';
+import { JwtRefreshTokenGuard } from '@/common/guards/jwt-refresh-token.guard';
 import { CreateUserDto } from '@/users/dto/create-user.dto';
 import { UserEntity } from '@/users/entities/user.entity';
-import { JwtAuthGuard } from '@/common/guards/jwt-auth.guard';
-import { LoggedInTokenEntity } from './entities/logged-in-token.entity';
-import { LoginDto } from './dto/login.dto';
 // eslint-disable-next-line import/no-extraneous-dependencies
-import { Request } from 'express';
-import { JwtRefreshTokenGuard } from '@/common/guards/jwt-refresh-token.guard';
 
 @Controller('auth')
 @ApiTags('auth')

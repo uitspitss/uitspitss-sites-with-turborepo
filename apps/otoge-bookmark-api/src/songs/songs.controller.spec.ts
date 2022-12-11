@@ -1,8 +1,8 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { PrismaModule } from '@/prisma/prisma.module';
+import { WINSTON_MODULE_NEST_PROVIDER } from 'nest-winston';
 import { SongsController } from './songs.controller';
 import { SongsService } from './songs.service';
-import { WINSTON_MODULE_NEST_PROVIDER } from 'nest-winston';
+import { PrismaModule } from '@/prisma/prisma.module';
 
 describe('SongsController', () => {
   let controller: SongsController;

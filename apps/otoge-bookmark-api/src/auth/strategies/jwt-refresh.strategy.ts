@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { PassportStrategy } from '@nestjs/passport';
+import { Request } from 'express';
 import { ExtractJwt, Strategy } from 'passport-jwt';
 // eslint-disable-next-line import/no-extraneous-dependencies
-import { Request } from 'express';
 
 @Injectable()
 export class JwtRefreshTokenStrategy extends PassportStrategy(
