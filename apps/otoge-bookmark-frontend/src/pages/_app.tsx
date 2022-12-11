@@ -1,16 +1,16 @@
 import '@fontsource/raleway/400.css';
 import '@fontsource/open-sans/700.css';
 
-import { AppProps } from 'next/app';
 import { ChakraProvider } from '@chakra-ui/react';
-import { GoogleAnalytics } from 'nextjs-google-analytics';
-import { appWithTranslation } from 'next-i18next';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import { appWithTranslation } from 'next-i18next';
+import { AppProps } from 'next/app';
+import { GoogleAnalytics } from 'nextjs-google-analytics';
 
+import { QueryErrorBoundary } from '@/components/error-boundaries/QueryErrorBoundary';
 import theme from '../theme';
 import { NextPageWithLayout } from '../types/page';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { QueryErrorBoundary } from '@/components/error-boundaries/QueryErrorBoundary';
 
 type AppPropsWithLayout = AppProps & {
   Component: NextPageWithLayout;

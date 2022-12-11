@@ -11,22 +11,22 @@ import {
   Query,
   BadRequestException,
 } from '@nestjs/common';
-import { GamesService } from './games.service';
-import { CreateGameDto } from './dto/create-game.dto';
-import { UpdateGameDto } from './dto/update-game.dto';
 import {
   ApiCreatedResponse,
   ApiNoContentResponse,
   ApiOkResponse,
   ApiTags,
 } from '@nestjs/swagger';
+import { CreateGameDto } from './dto/create-game.dto';
+import { ListGameDto } from './dto/list-game.dto';
+import { UpdateGameDto } from './dto/update-game.dto';
 import { GameEntity, GameWithSongsEntity } from './entities/game.entity';
-import { JwtAuthGuard } from '@/common/guards/jwt-auth.guard';
+import { GamesService } from './games.service';
 import {
   DEFAULT_TAKE,
   DEFAULT_ORDER_BY,
 } from '@/common/constants/list.constant';
-import { ListGameDto } from './dto/list-game.dto';
+import { JwtAuthGuard } from '@/common/guards/jwt-auth.guard';
 
 @Controller('games')
 @ApiTags('games')

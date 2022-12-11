@@ -1,14 +1,14 @@
-import { GetServerSideProps } from 'next';
-import { ReactElement, Suspense } from 'react';
-import Head from 'next/head';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { Box, Center, SkeletonText } from '@chakra-ui/react';
+import { GetServerSideProps } from 'next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import Head from 'next/head';
+import { ReactElement, Suspense } from 'react';
 
 import { PageContent } from 'ui';
 import { MainLayout } from '@/components/layouts/MainLayout';
-import { NextPageWithLayout } from '@/types/page';
 import { GameList } from '@/components/parts/GameList';
 import { SongList } from '@/components/parts/SongList';
+import { NextPageWithLayout } from '@/types/page';
 
 type PageProps = unknown;
 

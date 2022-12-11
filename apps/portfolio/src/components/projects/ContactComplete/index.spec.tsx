@@ -1,8 +1,7 @@
-import { render } from '@testing-library/react';
 import { composeStories } from '@storybook/testing-react';
-import type { ReactNode } from 'react';
-
+import { render } from '@testing-library/react';
 import * as stories from './index.stories';
+import type { ReactNode } from 'react';
 
 const { Default } = composeStories(stories);
 

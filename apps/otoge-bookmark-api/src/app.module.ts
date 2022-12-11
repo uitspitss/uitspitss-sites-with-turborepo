@@ -1,5 +1,6 @@
 import { ClassSerializerInterceptor, Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
+import { APP_INTERCEPTOR } from '@nestjs/core';
 import {
   WinstonModule,
   utilities as nestWinstonModuleUtilities,
@@ -7,15 +8,14 @@ import {
 import * as winston from 'winston';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { GamesModule } from './games/games.module';
-import { SongsModule } from './songs/songs.module';
-import { PrismaModule } from './prisma/prisma.module';
 import { AuthModule } from './auth/auth.module';
-import { UsersModule } from './users/users.module';
-import { validate } from './env.validation';
-import { APP_INTERCEPTOR } from '@nestjs/core';
-import { HealthModule } from './health/health.module';
 import { CategoriesModule } from './categories/categories.module';
+import { validate } from './env.validation';
+import { GamesModule } from './games/games.module';
+import { HealthModule } from './health/health.module';
+import { PrismaModule } from './prisma/prisma.module';
+import { SongsModule } from './songs/songs.module';
+import { UsersModule } from './users/users.module';
 
 @Module({
   imports: [

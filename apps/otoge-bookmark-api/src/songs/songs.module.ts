@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
-import { SongsService } from './songs.service';
 import { SongsController } from './songs.controller';
+import { SongsService } from './songs.service';
 import { PrismaModule } from '@/prisma/prisma.module';
 
 @Module({

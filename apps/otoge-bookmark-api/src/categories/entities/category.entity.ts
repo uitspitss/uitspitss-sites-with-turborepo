@@ -1,7 +1,7 @@
-import { SongEntity } from '@/songs/entities/song.entity';
 import { ApiProperty } from '@nestjs/swagger';
 import { CategoriesOnSongs, Category } from '@prisma/client';
 import { Exclude } from 'class-transformer';
+import { SongEntity } from '@/songs/entities/song.entity';
 
 export class CategoryEntity implements Category {
   @ApiProperty()

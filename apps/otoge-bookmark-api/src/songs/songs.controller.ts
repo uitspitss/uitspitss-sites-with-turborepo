@@ -14,26 +14,26 @@ import {
   Inject,
   LoggerService,
 } from '@nestjs/common';
-import { SongsService } from './songs.service';
-import { CreateSongDto } from './dto/create-song.dto';
-import { UpdateSongDto } from './dto/update-song.dto';
-import { ListSongDto } from './dto/list-song.dto';
 import {
   ApiCreatedResponse,
   ApiNoContentResponse,
   ApiOkResponse,
   ApiTags,
 } from '@nestjs/swagger';
+import { WINSTON_MODULE_NEST_PROVIDER } from 'nest-winston';
+import { CreateSongDto } from './dto/create-song.dto';
+import { ListSongDto } from './dto/list-song.dto';
+import { UpdateSongDto } from './dto/update-song.dto';
 import {
   SongEntity,
   SongWithGameAndCategoriesEntity,
 } from './entities/song.entity';
-import { JwtAuthGuard } from '@/common/guards/jwt-auth.guard';
+import { SongsService } from './songs.service';
 import {
   DEFAULT_ORDER_BY,
   DEFAULT_TAKE,
 } from '@/common/constants/list.constant';
-import { WINSTON_MODULE_NEST_PROVIDER } from 'nest-winston';
+import { JwtAuthGuard } from '@/common/guards/jwt-auth.guard';
 
 @Controller('songs')
 @ApiTags('songs')

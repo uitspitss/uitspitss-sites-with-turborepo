@@ -1,4 +1,3 @@
-import { MDXProvider } from '@mdx-js/react';
 import {
   Heading,
   HeadingProps,
@@ -8,6 +7,7 @@ import {
   UnorderedList,
   Box,
 } from '@chakra-ui/react';
+import { MDXProvider } from '@mdx-js/react';
 import Image, { ImageProps } from 'next/image';
 import { ComponentPropsWithoutRef } from 'react';
 
