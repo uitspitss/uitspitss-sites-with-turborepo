@@ -1,13 +1,13 @@
+import { Container } from '@chakra-ui/react';
 import styled from '@emotion/styled';
 import Link from 'next/link';
-import { ReactNode, useCallback, useMemo } from 'react';
-import { Container } from '@chakra-ui/react';
-import { Footer, Navbar } from 'ui';
 import { useRouter } from 'next/router';
+import { ReactNode, useCallback, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FiInfo, FiMail } from 'react-icons/fi';
-import { MdWorkOutline } from 'react-icons/md';
 import { HiOutlineTemplate } from 'react-icons/hi';
+import { MdWorkOutline } from 'react-icons/md';
+import { Footer, Navbar } from 'ui';
 import { pagesPath } from '@/lib/$path';
 
 type MainLayoutProps = {

@@ -1,5 +1,5 @@
-import { NextApiHandler } from 'next';
 import sgMail, { MailDataRequired } from '@sendgrid/mail';
+import { NextApiHandler } from 'next';
 
 const SG_API_KEY = process.env.SG_API_KEY;
 const SG_CONTACT_TEMPLATE_EN_ID = process.env.SG_CONTACT_TEMPLATE_EN_ID;

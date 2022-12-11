@@ -1,8 +1,8 @@
 import { MDXProvider } from '@mdx-js/react';
 import { GetServerSideProps } from 'next';
-import { type ReactElement } from 'react';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import { type ReactElement } from 'react';
 
 import { PageHeader, PageContent } from 'ui';
 import { MainLayout } from '@/components/layouts/MainLayout';

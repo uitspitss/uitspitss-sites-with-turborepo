@@ -1,5 +1,5 @@
-import { render, screen, waitFor } from '@testing-library/react';
 import { composeStories } from '@storybook/testing-react';
+import { render, screen, waitFor } from '@testing-library/react';
 
 import * as stories from './index.stories';
 

@@ -1,5 +1,5 @@
-import axios, { AxiosRequestConfig } from 'axios';
 import aspida from '@aspida/axios';
+import axios, { AxiosRequestConfig } from 'axios';
 import qs from 'qs';
 import api from '@/lib/api/$api';
 

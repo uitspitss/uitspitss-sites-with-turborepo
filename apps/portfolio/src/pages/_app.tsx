@@ -1,10 +1,10 @@
 import '@fontsource/raleway/400.css';
 import '@fontsource/open-sans/700.css';
 
-import { AppProps } from 'next/app';
 import { ChakraProvider } from '@chakra-ui/react';
-import { GoogleAnalytics } from 'nextjs-google-analytics';
 import { appWithTranslation } from 'next-i18next';
+import { AppProps } from 'next/app';
+import { GoogleAnalytics } from 'nextjs-google-analytics';
 
 import theme from '../theme';
 import { NextPageWithLayout } from '../types/page';

@@ -1,5 +1,5 @@
-import { factory, primaryKey, oneOf, manyOf } from '@mswjs/data';
 import { faker } from '@faker-js/faker';
+import { factory, primaryKey, oneOf, manyOf } from '@mswjs/data';
 
 const EACH_DATA_COUNT = 3;
 

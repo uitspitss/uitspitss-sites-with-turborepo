@@ -1,10 +1,10 @@
+import { Container } from '@chakra-ui/react';
 import styled from '@emotion/styled';
 import Link from 'next/link';
-import { ReactNode, useCallback, useMemo } from 'react';
-import { Container } from '@chakra-ui/react';
-import { Footer, Navbar } from 'ui';
 import { useRouter } from 'next/router';
+import { ReactNode, useCallback, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
+import { Footer, Navbar } from 'ui';
 
 type MainLayoutProps = {
   children: ReactNode;
