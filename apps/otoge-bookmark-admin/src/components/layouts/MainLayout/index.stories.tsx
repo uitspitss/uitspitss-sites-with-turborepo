@@ -6,6 +6,7 @@ export default {
   component: MainLayout,
   args: {
     children: <span>children</span>,
+    pageTitle: 'Page Title',
   },
 } as ComponentMeta<typeof MainLayout>;
 

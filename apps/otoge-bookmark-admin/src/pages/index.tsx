@@ -56,7 +56,9 @@ const Page: NextPageWithLayout<PageProps> = (_props) => {
   );
 };
 
-Page.getLayout = (page: ReactElement) => <MainLayout>{page}</MainLayout>;
+Page.getLayout = (page: ReactElement) => (
+  <MainLayout pageTitle="Main">{page}</MainLayout>
+);
 
 export const getServerSideProps: GetServerSideProps = async ({ locale }) => ({
   props: {
