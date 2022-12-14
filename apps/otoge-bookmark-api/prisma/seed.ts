@@ -7,7 +7,6 @@ const users: User[] = [
   {
     id: '9b7ec578-fdec-434c-80a4-476e13df4768',
     email: 'test@example.com',
-    password: '$2b$10$AfuV7TCwFxbBLm7t37d7Ouhnfnrxgq1RzRx1OsnBQMrq28ll/GJJi',
     createdAt: new Date('2022-11-16T10:43:51Z'),
     updatedAt: new Date('2022-11-16T10:43:51Z'),
     refreshToken: null,
@@ -15,7 +14,6 @@ const users: User[] = [
   {
     id: 'e87a2f92-b38c-462b-9215-9ef0b4464536',
     email: 'hoge@example.com',
-    password: '$2b$10$AfuV7TCwFxbBLm7t37d7Ouhnfnrxgq1RzRx1OsnBQMrq28ll/GJJi',
     createdAt: new Date('2022-11-16T10:43:51Z'),
     updatedAt: new Date('2022-11-16T10:43:51Z'),
     refreshToken: null,

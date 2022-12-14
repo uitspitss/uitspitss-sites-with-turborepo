@@ -1,5 +1,4 @@
-import { Injectable } from '@nestjs/common';
-import { hash } from 'bcrypt';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import type { Prisma, User } from '@prisma/client';
@@ -10,10 +9,10 @@ export class UsersService {
   constructor(private prisma: PrismaService) {}
 
   async create(data: CreateUserDto) {
-    const { email, password } = data;
+    const { email } = data;
 
     return this.prisma.user.create({
-      data: { email, password: await hash(password, 10) },
+      data: { email },
     });
   }
 
@@ -40,5 +39,17 @@ export class UsersService {
 
   async remove(where: Prisma.UserWhereUniqueInput) {
     return this.prisma.user.delete({ where });
+  }
+
+  async registerUser(email: string): Promise<User> {
+    const registeredUser = await this.findOne({ email });
+
+    if (registeredUser) {
+      throw new BadRequestException('this email user has registered');
+    }
+
+    return this.create({
+      email,
+    });
   }
 }

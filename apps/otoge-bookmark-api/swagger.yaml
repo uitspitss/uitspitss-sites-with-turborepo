@@ -221,43 +221,6 @@ paths:
         '204':
           description: ''
       tags: *ref_1
-  /auth/register:
-    post:
-      operationId: AuthController_register
-      parameters: []
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/CreateUserDto'
-      responses:
-        '201':
-          description: ''
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/UserEntity'
-      tags: &ref_2
-        - auth
-  /auth/login:
-    post:
-      operationId: AuthController_login
-      parameters: []
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/LoginDto'
-      responses:
-        '200':
-          description: ''
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/LoggedInTokenEntity'
-      tags: *ref_2
   /auth/logout:
     get:
       operationId: AuthController_logout
@@ -265,10 +228,27 @@ paths:
       responses:
         '200':
           description: ''
-      tags: *ref_2
+      tags: &ref_2
+        - auth
   /auth/refresh:
     get:
       operationId: AuthController_refreshToken
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags: *ref_2
+  /auth/google:
+    get:
+      operationId: AuthController_googleAuth
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags: *ref_2
+  /auth/google/callback:
+    get:
+      operationId: AuthController_googleCallback
       parameters: []
       responses:
         '200':
@@ -522,11 +502,8 @@ components:
       properties:
         email:
           type: string
-        password:
-          type: string
       required:
         - email
-        - password
     UserEntity:
       type: object
       properties:
@@ -537,32 +514,10 @@ components:
       required:
         - id
         - email
-    LoginDto:
-      type: object
-      properties:
-        email:
-          type: string
-        password:
-          type: string
-      required:
-        - email
-        - password
-    LoggedInTokenEntity:
-      type: object
-      properties:
-        accessToken:
-          type: string
-        refreshToken:
-          type: string
-      required:
-        - accessToken
-        - refreshToken
     UpdateUserDto:
       type: object
       properties:
         email:
-          type: string
-        password:
           type: string
     CreateCategoryDto:
       type: object
