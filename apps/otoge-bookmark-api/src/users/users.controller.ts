@@ -39,7 +39,7 @@ export class UsersController {
   @UseGuards(JwtRolesGuard(Role.Admin))
   @ApiOkResponse({ type: UserEntity, isArray: true })
   async findAll() {
-    const users = await this.usersService.findAll({});
+    const users = await this.usersService.findAll();
     if (!users.length) {
       throw new NotFoundException();
     }

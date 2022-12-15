@@ -16,13 +16,15 @@ export class UsersService {
     });
   }
 
-  findAll(params: {
-    skip?: number;
-    take?: number;
-    cursor?: Prisma.GameWhereUniqueInput;
-    where?: Prisma.GameWhereInput;
-    orderBy?: Prisma.GameOrderByWithRelationInput;
-  }) {
+  findAll(
+    params: {
+      skip?: number;
+      take?: number;
+      cursor?: Prisma.GameWhereUniqueInput;
+      where?: Prisma.GameWhereInput;
+      orderBy?: Prisma.GameOrderByWithRelationInput;
+    } = {},
+  ) {
     return this.prisma.user.findMany(params);
   }
 

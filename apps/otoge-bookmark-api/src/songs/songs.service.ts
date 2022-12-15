@@ -12,13 +12,15 @@ export class SongsService {
     return this.prisma.song.create({ data });
   }
 
-  findAll(params: {
-    skip?: number;
-    take?: number;
-    cursor?: Prisma.SongWhereUniqueInput;
-    where?: Prisma.SongWhereInput;
-    orderBy?: Prisma.SongOrderByWithRelationInput;
-  }) {
+  findAll(
+    params: {
+      skip?: number;
+      take?: number;
+      cursor?: Prisma.SongWhereUniqueInput;
+      where?: Prisma.SongWhereInput;
+      orderBy?: Prisma.SongOrderByWithRelationInput;
+    } = {},
+  ) {
     return this.prisma.song.findMany({
       ...params,
       include: {
