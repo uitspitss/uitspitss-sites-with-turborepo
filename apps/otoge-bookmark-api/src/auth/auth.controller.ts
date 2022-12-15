@@ -1,15 +1,33 @@
-import { Controller, Get, Req, Request, UseGuards } from '@nestjs/common';
-import { ApiTags } from '@nestjs/swagger';
+import {
+  Body,
+  Controller,
+  Get,
+  HttpCode,
+  Post,
+  Req,
+  Request,
+  UseGuards,
+} from '@nestjs/common';
+import { ApiOkResponse, ApiTags } from '@nestjs/swagger';
 import { Request as RequestType } from 'express';
-import { AuthService } from './auth.service';
 import { GoogleOauthGuard } from '@/common/guards/google-oauth.guard';
 import { JwtAuthGuard } from '@/common/guards/jwt-auth.guard';
 import { JwtRefreshTokenGuard } from '@/common/guards/jwt-refresh-token.guard';
+import { AuthService } from './auth.service';
+import { LoginDto } from './dto/login.dto';
+import { LoggedInTokenEntity } from './entities/logged-in-token.entity';
 
 @Controller('auth')
 @ApiTags('auth')
 export class AuthController {
   constructor(private authService: AuthService) {}
+
+  @HttpCode(200)
+  @Post('login')
+  @ApiOkResponse({ type: LoggedInTokenEntity })
+  async login(@Body() data: LoginDto) {
+    return this.authService.login(data);
+  }
 
   @UseGuards(JwtAuthGuard)
   @Get('logout')
@@ -27,7 +45,7 @@ export class AuthController {
   }
 
   @UseGuards(GoogleOauthGuard)
-  @Get('google')
+  @Get('google/login')
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   async googleAuth() {}
 

@@ -17,16 +17,16 @@ import {
   ApiOkResponse,
   ApiTags,
 } from '@nestjs/swagger';
-import { CreateGameDto } from './dto/create-game.dto';
-import { ListGameDto } from './dto/list-game.dto';
-import { UpdateGameDto } from './dto/update-game.dto';
-import { GameEntity, GameWithSongsEntity } from './entities/game.entity';
-import { GamesService } from './games.service';
 import {
   DEFAULT_TAKE,
   DEFAULT_ORDER_BY,
 } from '@/common/constants/list.constant';
 import { JwtAuthGuard } from '@/common/guards/jwt-auth.guard';
+import { CreateGameDto } from './dto/create-game.dto';
+import { ListGameDto } from './dto/list-game.dto';
+import { UpdateGameDto } from './dto/update-game.dto';
+import { GameEntity, GameWithSongsEntity } from './entities/game.entity';
+import { GamesService } from './games.service';
 
 @Controller('games')
 @ApiTags('games')

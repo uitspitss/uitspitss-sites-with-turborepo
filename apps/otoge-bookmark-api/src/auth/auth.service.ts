@@ -1,8 +1,13 @@
-import { ForbiddenException, Injectable } from '@nestjs/common';
+import {
+  ForbiddenException,
+  Injectable,
+  UnauthorizedException,
+} from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { JwtService } from '@nestjs/jwt';
 import { compare, hash } from 'bcrypt';
 import { UsersService } from '@/users/users.service';
+import { LoginDto } from './dto/login.dto';
 
 @Injectable()
 export class AuthService {
@@ -12,13 +17,22 @@ export class AuthService {
     private configService: ConfigService,
   ) {}
 
+  async login(data: LoginDto) {
+    const user = await this.validateUser(data);
+
+    const tokens = await this.getTokens(user.id, user.email, user.role);
+    await this.updateRefreshToken(user.id, tokens.refresh_token);
+
+    return tokens;
+  }
+
   async loginOrRegister(email: string) {
     let user = await this.usersService.findOne({ email });
     if (!user) {
       user = await this.usersService.registerUser(email);
     }
 
-    const tokens = await this.getTokens(user.id, user.email);
+    const tokens = await this.getTokens(user.id, user.email, user.role);
     await this.updateRefreshToken(user.id, tokens.refresh_token);
 
     return tokens;
@@ -31,7 +45,7 @@ export class AuthService {
     });
   }
 
-  async updateRefreshToken(userId: string, refreshToken: string) {
+  private async updateRefreshToken(userId: string, refreshToken: string) {
     const hashed = await hash(refreshToken, 10);
     await this.usersService.update({
       where: { id: userId },
@@ -48,18 +62,19 @@ export class AuthService {
     if (!isCorrect) {
       throw new ForbiddenException();
     }
-    const tokens = await this.getTokens(user.id, user.email);
+    const tokens = await this.getTokens(user.id, user.email, user.role);
     await this.updateRefreshToken(user.id, tokens.refresh_token);
 
     return tokens;
   }
 
-  async getTokens(userId: string, username: string) {
+  private async getTokens(userId: string, username: string, userRole: string) {
     const [accessToken, refreshToken] = await Promise.all([
       this.jwtService.signAsync(
         {
           sub: userId,
           username,
+          roles: [userRole],
         },
         {
           secret: this.configService.get<string>('JWT_SECRET'),
@@ -72,6 +87,7 @@ export class AuthService {
         {
           sub: userId,
           username,
+          roles: [userRole],
         },
         {
           secret: this.configService.get<string>('JWT_REFRESH_SECRET'),
@@ -86,5 +102,21 @@ export class AuthService {
       access_token: accessToken,
       refresh_token: refreshToken,
     };
+  }
+
+  async validateUser(data: LoginDto) {
+    const user = await this.usersService.findOne({ email: data.email });
+    if (
+      !user ||
+      !user.password ||
+      !data.password ||
+      !(await compare(data.password, user.password))
+    ) {
+      throw new UnauthorizedException('Incorrect email or password');
+    }
+
+    const { password: _, refreshToken: _rt, ...retUser } = user;
+
+    return retUser;
   }
 }

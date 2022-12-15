@@ -1,8 +1,8 @@
 import { ConfigService } from '@nestjs/config';
 import { JwtModule } from '@nestjs/jwt';
 import { Test, TestingModule } from '@nestjs/testing';
-import { AuthService } from './auth.service';
 import { UsersModule } from '@/users/users.module';
+import { AuthService } from './auth.service';
 
 describe('AuthService', () => {
   let service: AuthService;
