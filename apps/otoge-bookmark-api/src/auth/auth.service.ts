@@ -5,7 +5,9 @@ import {
 } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { JwtService } from '@nestjs/jwt';
+import { Role } from '@prisma/client';
 import { compare, hash } from 'bcrypt';
+import { UserJwtPayload } from '@/common/interfaces/user-jwt-payload.interface';
 import { UsersService } from '@/users/users.service';
 import { LoginDto } from './dto/login.dto';
 
@@ -68,34 +70,24 @@ export class AuthService {
     return tokens;
   }
 
-  private async getTokens(userId: string, username: string, userRole: string) {
+  private async getTokens(userId: string, username: string, userRole: Role) {
+    const payload: UserJwtPayload = {
+      sub: userId,
+      username,
+      roles: [userRole],
+    };
+
     const [accessToken, refreshToken] = await Promise.all([
-      this.jwtService.signAsync(
-        {
-          sub: userId,
-          username,
-          roles: [userRole],
-        },
-        {
-          secret: this.configService.get<string>('JWT_SECRET'),
-          expiresIn: `${this.configService.get<number>(
-            'JWT_EXPIRATION_TIME',
-          )}s`,
-        },
-      ),
-      this.jwtService.signAsync(
-        {
-          sub: userId,
-          username,
-          roles: [userRole],
-        },
-        {
-          secret: this.configService.get<string>('JWT_REFRESH_SECRET'),
-          expiresIn: `${this.configService.get<number>(
-            'JWT_REFRESH_EXPIRATION_TIME',
-          )}d`,
-        },
-      ),
+      this.jwtService.signAsync(payload, {
+        secret: this.configService.get<string>('JWT_SECRET'),
+        expiresIn: `${this.configService.get<number>('JWT_EXPIRATION_TIME')}s`,
+      }),
+      this.jwtService.signAsync(payload, {
+        secret: this.configService.get<string>('JWT_REFRESH_SECRET'),
+        expiresIn: `${this.configService.get<number>(
+          'JWT_REFRESH_EXPIRATION_TIME',
+        )}d`,
+      }),
     ]);
 
     return {

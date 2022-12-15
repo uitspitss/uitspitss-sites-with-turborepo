@@ -4,15 +4,14 @@ import {
   Get,
   HttpCode,
   Post,
-  Req,
-  Request,
   UseGuards,
 } from '@nestjs/common';
 import { ApiOkResponse, ApiTags } from '@nestjs/swagger';
-import { Request as RequestType } from 'express';
+import { User } from '@/common/decorators/user.decorator';
 import { GoogleOauthGuard } from '@/common/guards/google-oauth.guard';
 import { JwtAuthGuard } from '@/common/guards/jwt-auth.guard';
 import { JwtRefreshTokenGuard } from '@/common/guards/jwt-refresh-token.guard';
+import { UserJwtPayload } from '@/common/interfaces/user-jwt-payload.interface';
 import { AuthService } from './auth.service';
 import { LoginDto } from './dto/login.dto';
 import { LoggedInTokenEntity } from './entities/logged-in-token.entity';
@@ -31,15 +30,15 @@ export class AuthController {
 
   @UseGuards(JwtAuthGuard)
   @Get('logout')
-  async logout(@Req() req: RequestType) {
-    this.authService.logout(req.user['sub']);
+  async logout(@User() user: UserJwtPayload) {
+    this.authService.logout(user.sub);
   }
 
   @UseGuards(JwtRefreshTokenGuard)
   @Get('refresh')
-  async refreshToken(@Req() req: RequestType) {
-    const userId = req.user['sub'];
-    const refreshToken = req.user['refresh_token'];
+  async refreshToken(@User() user: UserJwtPayload & { refresh_token: string }) {
+    const userId = user.sub;
+    const refreshToken = user.refresh_token;
 
     return this.authService.refreshToken(userId, refreshToken);
   }
@@ -51,7 +50,7 @@ export class AuthController {
 
   @UseGuards(GoogleOauthGuard)
   @Get('google/callback')
-  async googleCallback(@Request() req: RequestType) {
-    return this.authService.loginOrRegister(req.user['email']);
+  async googleCallback(@User() user: UserJwtPayload) {
+    return this.authService.loginOrRegister(user.username);
   }
 }
