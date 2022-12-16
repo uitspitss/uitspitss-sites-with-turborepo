@@ -15,8 +15,8 @@ import {
 import { useMemo } from 'react';
 import { Logo } from '../Logo';
 import { Sidebar } from '../Sidebar';
-import { NavPageItem } from '../types/NavPageItem';
 import { SiteSettings } from '../SiteSettings';
+import { NavPageItem } from '../types/NavPageItem';
 
 type NavbarProps = {
   pageItems: NavPageItem[];

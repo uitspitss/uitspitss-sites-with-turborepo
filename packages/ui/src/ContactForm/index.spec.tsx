@@ -1,10 +1,10 @@
+import { composeStories } from '@storybook/testing-react';
 import {
   render,
   screen,
   waitFor,
   waitForElementToBeRemoved,
 } from '@testing-library/react';
-import { composeStories } from '@storybook/testing-react';
 
 import * as stories from './index.stories';
 
