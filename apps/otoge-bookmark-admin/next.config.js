@@ -13,6 +13,13 @@ const { i18n } = require('./next-i18next.config');
 const nextConfig = {
   reactStrictMode: true,
   pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
+  compiler: {
+    reactRemoveProperties: true,
+    removeConsole: {
+      exclude: ['error'],
+    },
+    emotion: true,
+  },
   i18n,
 };
 
