@@ -221,25 +221,6 @@ paths:
         '204':
           description: ''
       tags: *ref_1
-  /auth/register:
-    post:
-      operationId: AuthController_register
-      parameters: []
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/CreateUserDto'
-      responses:
-        '201':
-          description: ''
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/UserEntity'
-      tags: &ref_2
-        - auth
   /auth/login:
     post:
       operationId: AuthController_login
@@ -257,7 +238,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/LoggedInTokenEntity'
-      tags: *ref_2
+      tags: &ref_2
+        - auth
   /auth/logout:
     get:
       operationId: AuthController_logout
@@ -269,6 +251,22 @@ paths:
   /auth/refresh:
     get:
       operationId: AuthController_refreshToken
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags: *ref_2
+  /auth/google/login:
+    get:
+      operationId: AuthController_googleAuth
+      parameters: []
+      responses:
+        '200':
+          description: ''
+      tags: *ref_2
+  /auth/google/callback:
+    get:
+      operationId: AuthController_googleCallback
       parameters: []
       responses:
         '200':
@@ -517,26 +515,6 @@ components:
           type: string
         gameId:
           type: string
-    CreateUserDto:
-      type: object
-      properties:
-        email:
-          type: string
-        password:
-          type: string
-      required:
-        - email
-        - password
-    UserEntity:
-      type: object
-      properties:
-        id:
-          type: string
-        email:
-          type: string
-      required:
-        - id
-        - email
     LoginDto:
       type: object
       properties:
@@ -557,12 +535,27 @@ components:
       required:
         - accessToken
         - refreshToken
-    UpdateUserDto:
+    CreateUserDto:
       type: object
       properties:
         email:
           type: string
-        password:
+      required:
+        - email
+    UserEntity:
+      type: object
+      properties:
+        id:
+          type: string
+        email:
+          type: string
+      required:
+        - id
+        - email
+    UpdateUserDto:
+      type: object
+      properties:
+        email:
           type: string
     CreateCategoryDto:
       type: object

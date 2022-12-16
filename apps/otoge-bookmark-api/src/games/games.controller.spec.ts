@@ -1,7 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
+import { PrismaModule } from '@/prisma/prisma.module';
 import { GamesController } from './games.controller';
 import { GamesService } from './games.service';
-import { PrismaModule } from '@/prisma/prisma.module';
 
 describe('GamesController', () => {
   let controller: GamesController;

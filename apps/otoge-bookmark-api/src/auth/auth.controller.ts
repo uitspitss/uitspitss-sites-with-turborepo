@@ -4,33 +4,22 @@ import {
   Get,
   HttpCode,
   Post,
-  Req,
   UseGuards,
 } from '@nestjs/common';
-import { ApiCreatedResponse, ApiOkResponse, ApiTags } from '@nestjs/swagger';
-import { Request } from 'express';
+import { ApiOkResponse, ApiTags } from '@nestjs/swagger';
+import { User } from '@/common/decorators/user.decorator';
+import { GoogleOauthGuard } from '@/common/guards/google-oauth.guard';
+import { JwtAuthGuard } from '@/common/guards/jwt-auth.guard';
+import { JwtRefreshTokenGuard } from '@/common/guards/jwt-refresh-token.guard';
+import { UserJwtPayload } from '@/common/interfaces/user-jwt-payload.interface';
 import { AuthService } from './auth.service';
 import { LoginDto } from './dto/login.dto';
 import { LoggedInTokenEntity } from './entities/logged-in-token.entity';
-import { JwtAuthGuard } from '@/common/guards/jwt-auth.guard';
-import { JwtRefreshTokenGuard } from '@/common/guards/jwt-refresh-token.guard';
-import { CreateUserDto } from '@/users/dto/create-user.dto';
-import { UserEntity } from '@/users/entities/user.entity';
-// eslint-disable-next-line import/no-extraneous-dependencies
 
 @Controller('auth')
 @ApiTags('auth')
 export class AuthController {
   constructor(private authService: AuthService) {}
-
-  @UseGuards(JwtAuthGuard)
-  @Post('register')
-  @ApiCreatedResponse({ type: UserEntity })
-  async register(@Body() data: CreateUserDto) {
-    const { email, password } = data;
-
-    return this.authService.registerUser(email, password);
-  }
 
   @HttpCode(200)
   @Post('login')
@@ -41,16 +30,27 @@ export class AuthController {
 
   @UseGuards(JwtAuthGuard)
   @Get('logout')
-  async logout(@Req() req: Request) {
-    this.authService.logout(req.user['sub']);
+  async logout(@User() user: UserJwtPayload) {
+    this.authService.logout(user.sub);
   }
 
   @UseGuards(JwtRefreshTokenGuard)
   @Get('refresh')
-  async refreshToken(@Req() req: Request) {
-    const userId = req.user['sub'];
-    const refreshToken = req.user['refresh_token'];
+  async refreshToken(@User() user: UserJwtPayload & { refresh_token: string }) {
+    const userId = user.sub;
+    const refreshToken = user.refresh_token;
 
     return this.authService.refreshToken(userId, refreshToken);
+  }
+
+  @UseGuards(GoogleOauthGuard)
+  @Get('google/login')
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  async googleAuth() {}
+
+  @UseGuards(GoogleOauthGuard)
+  @Get('google/callback')
+  async googleCallback(@User() user: UserJwtPayload) {
+    return this.authService.loginOrRegister(user.username);
   }
 }

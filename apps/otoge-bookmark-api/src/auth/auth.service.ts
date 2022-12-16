@@ -1,15 +1,15 @@
 import {
-  BadRequestException,
   ForbiddenException,
   Injectable,
   UnauthorizedException,
 } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { JwtService } from '@nestjs/jwt';
+import { Role } from '@prisma/client';
 import { compare, hash } from 'bcrypt';
-import { LoginDto } from './dto/login.dto';
-import type { User } from '@prisma/client';
+import { UserJwtPayload } from '@/common/interfaces/user-jwt-payload.interface';
 import { UsersService } from '@/users/users.service';
+import { LoginDto } from './dto/login.dto';
 
 @Injectable()
 export class AuthService {
@@ -19,32 +19,22 @@ export class AuthService {
     private configService: ConfigService,
   ) {}
 
-  async registerUser(
-    email: string,
-    password: string,
-  ): Promise<Omit<User, 'password' | 'refreshToken'>> {
-    const registeredUser = await this.usersService.findOne({ email });
-
-    if (registeredUser) {
-      throw new BadRequestException('this email user has registered');
-    }
-
-    const {
-      password: _,
-      refreshToken: _rt,
-      ...user
-    } = await this.usersService.create({
-      email,
-      password,
-    });
-
-    return user;
-  }
-
   async login(data: LoginDto) {
     const user = await this.validateUser(data);
 
-    const tokens = await this.getTokens(user.id, user.email);
+    const tokens = await this.getTokens(user.id, user.email, user.role);
+    await this.updateRefreshToken(user.id, tokens.refresh_token);
+
+    return tokens;
+  }
+
+  async loginOrRegister(email: string) {
+    let user = await this.usersService.findOne({ email });
+    if (!user) {
+      user = await this.usersService.registerUser(email);
+    }
+
+    const tokens = await this.getTokens(user.id, user.email, user.role);
     await this.updateRefreshToken(user.id, tokens.refresh_token);
 
     return tokens;
@@ -57,7 +47,7 @@ export class AuthService {
     });
   }
 
-  async updateRefreshToken(userId: string, refreshToken: string) {
+  private async updateRefreshToken(userId: string, refreshToken: string) {
     const hashed = await hash(refreshToken, 10);
     await this.usersService.update({
       where: { id: userId },
@@ -74,38 +64,30 @@ export class AuthService {
     if (!isCorrect) {
       throw new ForbiddenException();
     }
-    const tokens = await this.getTokens(user.id, user.email);
+    const tokens = await this.getTokens(user.id, user.email, user.role);
     await this.updateRefreshToken(user.id, tokens.refresh_token);
 
     return tokens;
   }
 
-  async getTokens(userId: string, username: string) {
+  private async getTokens(userId: string, username: string, userRole: Role) {
+    const payload: UserJwtPayload = {
+      sub: userId,
+      username,
+      roles: [userRole],
+    };
+
     const [accessToken, refreshToken] = await Promise.all([
-      this.jwtService.signAsync(
-        {
-          sub: userId,
-          username,
-        },
-        {
-          secret: this.configService.get<string>('JWT_SECRET'),
-          expiresIn: `${this.configService.get<number>(
-            'JWT_EXPIRATION_TIME',
-          )}s`,
-        },
-      ),
-      this.jwtService.signAsync(
-        {
-          sub: userId,
-          username,
-        },
-        {
-          secret: this.configService.get<string>('JWT_REFRESH_SECRET'),
-          expiresIn: `${this.configService.get<number>(
-            'JWT_REFRESH_EXPIRATION_TIME',
-          )}d`,
-        },
-      ),
+      this.jwtService.signAsync(payload, {
+        secret: this.configService.get<string>('JWT_SECRET'),
+        expiresIn: `${this.configService.get<number>('JWT_EXPIRATION_TIME')}s`,
+      }),
+      this.jwtService.signAsync(payload, {
+        secret: this.configService.get<string>('JWT_REFRESH_SECRET'),
+        expiresIn: `${this.configService.get<number>(
+          'JWT_REFRESH_EXPIRATION_TIME',
+        )}d`,
+      }),
     ]);
 
     return {
@@ -116,7 +98,12 @@ export class AuthService {
 
   async validateUser(data: LoginDto) {
     const user = await this.usersService.findOne({ email: data.email });
-    if (!user || !(await compare(data.password, user.password))) {
+    if (
+      !user ||
+      !user.password ||
+      !data.password ||
+      !(await compare(data.password, user.password))
+    ) {
       throw new UnauthorizedException('Incorrect email or password');
     }
 

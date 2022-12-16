@@ -21,6 +21,11 @@ import {
   ApiTags,
 } from '@nestjs/swagger';
 import { WINSTON_MODULE_NEST_PROVIDER } from 'nest-winston';
+import {
+  DEFAULT_ORDER_BY,
+  DEFAULT_TAKE,
+} from '@/common/constants/list.constant';
+import { JwtAuthGuard } from '@/common/guards/jwt-auth.guard';
 import { CreateSongDto } from './dto/create-song.dto';
 import { ListSongDto } from './dto/list-song.dto';
 import { UpdateSongDto } from './dto/update-song.dto';
@@ -29,11 +34,6 @@ import {
   SongWithGameAndCategoriesEntity,
 } from './entities/song.entity';
 import { SongsService } from './songs.service';
-import {
-  DEFAULT_ORDER_BY,
-  DEFAULT_TAKE,
-} from '@/common/constants/list.constant';
-import { JwtAuthGuard } from '@/common/guards/jwt-auth.guard';
 
 @Controller('songs')
 @ApiTags('songs')

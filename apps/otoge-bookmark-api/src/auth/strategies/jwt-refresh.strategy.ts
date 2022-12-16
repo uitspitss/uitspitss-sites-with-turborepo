@@ -3,7 +3,7 @@ import { ConfigService } from '@nestjs/config';
 import { PassportStrategy } from '@nestjs/passport';
 import { Request } from 'express';
 import { ExtractJwt, Strategy } from 'passport-jwt';
-// eslint-disable-next-line import/no-extraneous-dependencies
+import { UserJwtPayload } from '@/common/interfaces/user-jwt-payload.interface';
 
 @Injectable()
 export class JwtRefreshTokenStrategy extends PassportStrategy(
@@ -18,7 +18,7 @@ export class JwtRefreshTokenStrategy extends PassportStrategy(
     });
   }
 
-  async validate(req: Request, payload: any) {
+  async validate(req: Request, payload: UserJwtPayload) {
     const refreshToken = req.get('Authorization').replace('Bearer', '').trim();
     return { ...payload, refresh_token: refreshToken };
   }
