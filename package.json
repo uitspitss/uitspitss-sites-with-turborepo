@@ -16,7 +16,7 @@
     "test:watch": "turbo run test:watch --parallel",
     "storybook": "turbo run storybook",
     "storybook:portfolio": "turbo run storybook --parallel --filter=ui --filter=portfolio",
-    "storybook:otoge": "turbo run storybook --parallel --filter=ui --filter=otoge-bookmark-frontend",
+    "storybook:otoge": "turbo run storybook --parallel --filter=ui --filter=otoge-bookmark-*",
     "format": "prettier --write \"**/*.{ts,tsx,md,mdx}\"",
     "format:check": "prettier --check \"**/*.{ts,tsx,md,mdx}\"",
     "prepare": "husky install"

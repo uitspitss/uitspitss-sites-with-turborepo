@@ -17,6 +17,10 @@
       "path": "apps/otoge-bookmark-frontend"
     },
     {
+      "name": "otoge-admin",
+      "path": "apps/otoge-bookmark-admin"
+    },
+    {
       "name": "ui",
       "path": "packages/ui"
     },
