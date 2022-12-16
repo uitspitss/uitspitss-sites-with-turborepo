@@ -4,7 +4,7 @@ import qs from 'qs';
 import api from '@/lib/api/$api';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
-const loginUrl = `${API_URL}/auth/login`;
+const loginUrl = `${API_URL}/auth/google/login`;
 const refreshUrl = `${API_URL}/auth/refresh`;
 
 const baseConfig = {
