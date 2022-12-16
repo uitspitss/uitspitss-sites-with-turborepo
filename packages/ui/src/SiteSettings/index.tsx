@@ -1,7 +1,7 @@
 import { Icon, IconButton, useColorMode } from '@chakra-ui/react';
+import { motion } from 'framer-motion';
 import { FaLanguage } from 'react-icons/fa';
 import { FiSun, FiMoon } from 'react-icons/fi';
-import { motion } from 'framer-motion';
 
 type SiteSettingsProps = {
   changeLocale: () => void;

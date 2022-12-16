@@ -1,4 +1,5 @@
 export * from './Button';
+export * from './Logo';
 export * from './ContactForm';
 export * from './PageContent';
 export * from './Sidebar/NavButton';

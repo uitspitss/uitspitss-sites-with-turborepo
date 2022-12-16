@@ -8,12 +8,12 @@ import {
   Stack,
   Textarea,
 } from '@chakra-ui/react';
-import TextareaAutosize from 'react-textarea-autosize';
-import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useCallback } from 'react';
-import { z } from 'zod';
+import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
+import TextareaAutosize from 'react-textarea-autosize';
+import { z } from 'zod';
 
 const schema = z.object({
   email: z.string().email(),
