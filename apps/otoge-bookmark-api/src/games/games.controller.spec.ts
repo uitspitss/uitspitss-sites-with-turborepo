@@ -3,6 +3,10 @@ import { PrismaModule } from '@/prisma/prisma.module';
 import { GamesController } from './games.controller';
 import { GamesService } from './games.service';
 
+jest.mock('@/songs/entities/song.entity', () => ({
+  SongEntity: jest.fn(),
+}));
+
 describe('GamesController', () => {
   let controller: GamesController;
 
