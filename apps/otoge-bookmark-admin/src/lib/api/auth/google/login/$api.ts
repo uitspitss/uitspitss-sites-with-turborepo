@@ -3,7 +3,7 @@ import type { Methods as Methods0 } from '.'
 
 const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
   const prefix = (baseURL === undefined ? '' : baseURL).replace(/\/$/, '')
-  const PATH0 = '/auth/logout'
+  const PATH0 = '/auth/google/login'
   const GET = 'GET'
 
   return {
