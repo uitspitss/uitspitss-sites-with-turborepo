@@ -11,12 +11,7 @@ const customJestConfig = {
   preset: 'ts-jest',
   testEnvironment: 'jest-environment-jsdom',
   transform: {
-    '^.+\\.tsx?$': [
-      'ts-jest',
-      {
-        tsconfig: '<rootDir>/tsconfig.spec.json',
-      },
-    ],
+    '^.+\\.tsx?$': ['@swc/jest'],
   },
   setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
   coverageProvider: 'v8',
