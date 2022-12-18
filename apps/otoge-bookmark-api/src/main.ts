@@ -26,7 +26,7 @@ async function bootstrap() {
     app.enableCors();
   } else {
     app.enableCors({
-      origin: configService.get('ALLOW_ORIGIN'),
+      origin: configService.get<string>('ALLOW_ORIGIN'),
     });
   }
 

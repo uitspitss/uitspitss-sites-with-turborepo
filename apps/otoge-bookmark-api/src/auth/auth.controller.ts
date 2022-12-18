@@ -11,6 +11,7 @@ import { User } from '@/common/decorators/user.decorator';
 import { GoogleOauthGuard } from '@/common/guards/google-oauth.guard';
 import { JwtAuthGuard } from '@/common/guards/jwt-auth.guard';
 import { JwtRefreshTokenGuard } from '@/common/guards/jwt-refresh-token.guard';
+import { GoogleOauthUser } from '@/common/interfaces/google-oauth-user.interface';
 import { UserJwtPayload } from '@/common/interfaces/user-jwt-payload.interface';
 import { AuthService } from './auth.service';
 import { LoginDto } from './dto/login.dto';
@@ -50,7 +51,7 @@ export class AuthController {
 
   @UseGuards(GoogleOauthGuard)
   @Get('google/callback')
-  async googleCallback(@User() user: UserJwtPayload) {
-    return this.authService.loginOrRegister(user.username);
+  async googleCallback(@User() user: GoogleOauthUser) {
+    return this.authService.loginOrRegister(user.email);
   }
 }
