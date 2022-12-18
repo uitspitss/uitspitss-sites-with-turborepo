@@ -10,6 +10,9 @@ const withMDX = require('@next/mdx')({
 });
 const { i18n } = require('./next-i18next.config');
 
+/**
+ * @type {import('next').NextConfig}
+ */
 const nextConfig = {
   reactStrictMode: true,
   pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
@@ -19,6 +22,9 @@ const nextConfig = {
       exclude: ['error'],
     },
     emotion: true,
+  },
+  typescript: {
+    tsconfigPath: './tsconfig.build.json',
   },
   i18n,
 };
