@@ -3,7 +3,7 @@ const config = {
   rootDir: 'src',
   testRegex: '.*\\.spec\\.ts$',
   transform: {
-    '^.+\\.(t|j)s$': '@swc/jest',
+    '^.+\\.(t|j)s$': ['@swc/jest'],
   },
   moduleNameMapper: {
     '^src/(.*)$': '<rootDir>/$1',
