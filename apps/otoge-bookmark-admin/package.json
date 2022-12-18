@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "run-p dev:*",
-    "dev:next": "next dev",
+    "dev:next": "next dev -p 3002",
     "dev:path": "pathpida --ignorePath .gitignore --watch",
     "build": "pathpida --ignorePath .gitignore && next build",
     "start": "next start",
