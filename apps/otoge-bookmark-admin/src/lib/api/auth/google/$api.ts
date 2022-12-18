@@ -1,6 +1,6 @@
-import type { AspidaClient, BasicHeaders } from 'aspida'
 import type { Methods as Methods0 } from './callback'
 import type { Methods as Methods1 } from './login'
+import type { AspidaClient, BasicHeaders } from 'aspida'
 
 const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
   const prefix = (baseURL === undefined ? '' : baseURL).replace(/\/$/, '')
