@@ -8,7 +8,7 @@ import { appWithTranslation } from 'next-i18next';
 import { AppProps } from 'next/app';
 import { GoogleAnalytics } from 'nextjs-google-analytics';
 
-import { QueryErrorBoundary } from '@/components/error-boundaries/QueryErrorBoundary';
+import { QueryErrorBoundary } from '@/error-boundaries/QueryErrorBoundary';
 import theme from '../theme';
 import { NextPageWithLayout } from '../types/page';
 

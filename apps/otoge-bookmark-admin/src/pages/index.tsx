@@ -3,11 +3,11 @@ import { GetServerSideProps } from 'next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import Head from 'next/head';
 import { ReactElement, Suspense } from 'react';
-
 import { PageContent } from 'ui';
 import { MainLayout } from '@/components/layouts/MainLayout';
 import { GameList } from '@/components/parts/GameList';
 import { SongList } from '@/components/parts/SongList';
+import { AuthProvider } from '@/providers/AuthProvider';
 import { NextPageWithLayout } from '@/types/page';
 
 type PageProps = unknown;
@@ -57,7 +57,9 @@ const Page: NextPageWithLayout<PageProps> = (_props) => {
 };
 
 Page.getLayout = (page: ReactElement) => (
-  <MainLayout pageTitle="Main">{page}</MainLayout>
+  <AuthProvider>
+    <MainLayout pageTitle="Main">{page}</MainLayout>
+  </AuthProvider>
 );
 
 export const getServerSideProps: GetServerSideProps = async ({ locale }) => ({
