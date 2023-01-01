@@ -25,7 +25,7 @@ export const MainLayout = (props: MainLayoutProps) => {
       overflowY="auto"
     >
       <Sidebar />
-      <Container py="8" flex="1">
+      <Container py="8" flex="1" overflow="auto">
         <Stack spacing={{ base: '8', lg: '6' }}>
           <Stack
             spacing="4"
