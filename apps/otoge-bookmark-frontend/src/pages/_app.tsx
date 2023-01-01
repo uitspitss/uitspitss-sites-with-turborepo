@@ -9,8 +9,9 @@ import { AppProps } from 'next/app';
 import { GoogleAnalytics } from 'nextjs-google-analytics';
 
 import { QueryErrorBoundary } from '@/error-boundaries/QueryErrorBoundary';
-import theme from '../theme';
-import { NextPageWithLayout } from '../types/page';
+import { AuthProvider } from '@/providers/AuthProvider';
+import theme from '@/theme';
+import { NextPageWithLayout } from '@/types/page';
 
 type AppPropsWithLayout = AppProps & {
   Component: NextPageWithLayout;
@@ -22,7 +23,7 @@ const CustomApp = ({ Component, pageProps }: AppPropsWithLayout) => {
   const getLayout = Component.getLayout ?? ((page) => page);
 
   return (
-    <>
+    <AuthProvider>
       <QueryClientProvider client={queryClient}>
         <ReactQueryDevtools initialIsOpen={false} />
         <GoogleAnalytics trackPageViews />
@@ -32,7 +33,7 @@ const CustomApp = ({ Component, pageProps }: AppPropsWithLayout) => {
           </QueryErrorBoundary>
         </ChakraProvider>
       </QueryClientProvider>
-    </>
+    </AuthProvider>
   );
 };
 
