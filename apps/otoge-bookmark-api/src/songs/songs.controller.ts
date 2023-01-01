@@ -44,14 +44,15 @@ export class SongsController {
     private readonly logger: LoggerService,
   ) {}
 
-  @UseGuards(JwtAuthGuard)
   @Post()
+  @UseGuards(JwtAuthGuard)
   @ApiCreatedResponse({ type: SongEntity })
   async create(@Body() data: CreateSongDto) {
     return new SongEntity(await this.songsService.create(data));
   }
 
   @Get()
+  @UseGuards(JwtAuthGuard)
   @ApiOkResponse({ type: SongWithGameAndCategoriesEntity, isArray: true })
   async findAll(@Query() query: ListSongDto) {
     const { gameId, skip, take, cursor, orderBy } = query;
@@ -108,8 +109,8 @@ export class SongsController {
     return new SongWithGameAndCategoriesEntity(song);
   }
 
-  @UseGuards(JwtAuthGuard)
   @Patch(':id')
+  @UseGuards(JwtAuthGuard)
   @ApiOkResponse({ type: SongEntity })
   async update(@Param('id') id: string, @Body() data: UpdateSongDto) {
     return new SongEntity(

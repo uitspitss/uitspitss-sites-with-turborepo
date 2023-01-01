@@ -26,7 +26,7 @@ const nextConfig = {
   typescript: {
     tsconfigPath: './tsconfig.build.json',
   },
-  i18n,
+  // i18n,
 };
 
 module.exports = withTM(withMDX(nextConfig));

@@ -1,14 +1,8 @@
-import { useAuth0 } from '@auth0/auth0-react';
 import { Button, Heading, Stack, useBreakpointValue } from '@chakra-ui/react';
 import Head from 'next/head';
-import { ReactElement } from 'react';
-import { FcGoogle } from 'react-icons/fc';
 import { Logo, PageContent } from 'ui';
-import { AuthProvider } from '@/providers/AuthProvider';
 
 const Page = () => {
-  const { loginWithRedirect } = useAuth0();
-
   return (
     <>
       <Head>
@@ -23,13 +17,9 @@ const Page = () => {
             </Heading>
           </Stack>
           <Stack spacing="6">
-            <Button
-              onClick={loginWithRedirect}
-              variant="secondary"
-              leftIcon={<FcGoogle />}
-              iconSpacing="3"
-            >
-              Continue with Google
+            <Button type="button" variant="secondary" iconSpacing="3">
+              {/* eslint-disable-next-line */}
+              <a href="/api/auth/login">Continue with Auth0</a>
             </Button>
           </Stack>
         </Stack>
@@ -37,7 +27,5 @@ const Page = () => {
     </>
   );
 };
-
-Page.getLayout = (page: ReactElement) => <AuthProvider>{page}</AuthProvider>;
 
 export default Page;

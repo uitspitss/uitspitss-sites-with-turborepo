@@ -33,8 +33,8 @@ import { GamesService } from './games.service';
 export class GamesController {
   constructor(private readonly gamesService: GamesService) {}
 
-  @UseGuards(JwtAuthGuard)
   @Post()
+  @UseGuards(JwtAuthGuard)
   @ApiCreatedResponse({ type: GameEntity })
   async create(@Body() data: CreateGameDto) {
     return new GameEntity(await this.gamesService.create(data));
@@ -83,6 +83,7 @@ export class GamesController {
   }
 
   @Get(':id')
+  @UseGuards(JwtAuthGuard)
   @ApiOkResponse({ type: GameWithSongsEntity })
   async findOne(@Param('id') id: string) {
     const game = await this.gamesService.findOne({ id });
@@ -92,8 +93,8 @@ export class GamesController {
     return new GameWithSongsEntity(game);
   }
 
-  @UseGuards(JwtAuthGuard)
   @Patch(':id')
+  @UseGuards(JwtAuthGuard)
   @ApiOkResponse({ type: GameEntity })
   async update(@Param('id') id: string, @Body() data: UpdateGameDto) {
     return new GameEntity(

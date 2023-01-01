@@ -248,30 +248,6 @@ paths:
         '200':
           description: ''
       tags: *ref_2
-  /auth/refresh:
-    get:
-      operationId: AuthController_refreshToken
-      parameters: []
-      responses:
-        '200':
-          description: ''
-      tags: *ref_2
-  /auth/google/login:
-    get:
-      operationId: AuthController_googleAuth
-      parameters: []
-      responses:
-        '200':
-          description: ''
-      tags: *ref_2
-  /auth/google/callback:
-    get:
-      operationId: AuthController_googleCallback
-      parameters: []
-      responses:
-        '200':
-          description: ''
-      tags: *ref_2
   /users:
     post:
       operationId: UsersController_create

@@ -19,25 +19,10 @@ class EnvironmentVariables {
   ALLOW_ORIGIN: string;
 
   @IsString()
-  JWT_SECRET: string;
-
-  @IsNumber()
-  JWT_EXPIRATION_TIME: number;
+  AUTH0_ISSUER_URL: string;
 
   @IsString()
-  JWT_REFRESH_SECRET: string;
-
-  @IsNumber()
-  JWT_REFRESH_EXPIRATION_TIME: number;
-
-  @IsString()
-  GOOGLE_CLIENT_ID: string;
-
-  @IsString()
-  GOOGLE_CLIENT_SECRET: string;
-
-  @IsString()
-  GOOGLE_CALLBACK_URL: string;
+  AUTH0_AUDIENCE: string;
 }
 
 export function validate(config: Record<string, unknown>) {

@@ -1,6 +1,4 @@
 import { Box, Center, SkeletonText } from '@chakra-ui/react';
-import { GetServerSideProps } from 'next';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import Head from 'next/head';
 import { ReactElement, Suspense } from 'react';
 
@@ -57,11 +55,5 @@ const Page: NextPageWithLayout<PageProps> = (_props) => {
 };
 
 Page.getLayout = (page: ReactElement) => <MainLayout>{page}</MainLayout>;
-
-export const getServerSideProps: GetServerSideProps = async ({ locale }) => ({
-  props: {
-    ...(await serverSideTranslations(locale ?? 'en', ['common', 'ui'])),
-  },
-});
 
 export default Page;

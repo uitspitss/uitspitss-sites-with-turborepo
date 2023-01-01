@@ -16,8 +16,7 @@ import {
   ApiOkResponse,
   ApiTags,
 } from '@nestjs/swagger';
-import { Role } from '@/common/enums/role.enums';
-import { JwtRolesGuard } from '@/common/guards/jwt-roles.guard';
+import { JwtAuthGuard } from '@/common/guards/jwt-auth.guard';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { UserEntity } from './entities/user.entity';
@@ -29,14 +28,14 @@ export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
   @Post()
-  @UseGuards(JwtRolesGuard(Role.Admin))
+  @UseGuards(JwtAuthGuard)
   @ApiCreatedResponse({ type: UserEntity })
   async create(@Body() data: CreateUserDto) {
     return new UserEntity(await this.usersService.create(data));
   }
 
   @Get()
-  @UseGuards(JwtRolesGuard(Role.Admin))
+  @UseGuards(JwtAuthGuard)
   @ApiOkResponse({ type: UserEntity, isArray: true })
   async findAll() {
     const users = await this.usersService.findAll();
@@ -58,7 +57,7 @@ export class UsersController {
   }
 
   @Patch(':id')
-  @UseGuards(JwtRolesGuard(Role.Admin))
+  @UseGuards(JwtAuthGuard)
   @ApiOkResponse({ type: UserEntity })
   async update(@Param('id') id: string, @Body() data: UpdateUserDto) {
     return new UserEntity(
@@ -68,7 +67,7 @@ export class UsersController {
 
   @Delete(':id')
   @HttpCode(204)
-  @UseGuards(JwtRolesGuard(Role.Admin))
+  @UseGuards(JwtAuthGuard)
   @ApiNoContentResponse()
   async remove(@Param('id') id: string): Promise<void> {
     const user = await this.usersService.findOne({ id });

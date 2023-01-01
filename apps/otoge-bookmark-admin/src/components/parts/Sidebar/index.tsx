@@ -1,4 +1,4 @@
-import { useAuth0 } from '@auth0/auth0-react';
+import { useUser } from '@auth0/nextjs-auth0/client';
 import { Flex, Stack, useColorModeValue } from '@chakra-ui/react';
 import * as React from 'react';
 import { FiFile, FiFolder, FiUsers } from 'react-icons/fi';
@@ -7,7 +7,7 @@ import { UserProfile } from '@/components/parts/UserProfile';
 import { NavButton } from './NavButton';
 
 export const Sidebar = () => {
-  const { user } = useAuth0();
+  const { user } = useUser();
 
   return (
     <Flex as="section" minH="100vh" bg="bg-canvas">

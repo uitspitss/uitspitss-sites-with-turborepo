@@ -7,7 +7,7 @@ export const useSongs = () => {
   const { data: songs } = useQuery({
     queryKey: [api.songs.$path()],
     queryFn: () => api.songs.$get(),
-    suspense: process.env.NODE_ENV !== 'test',
+    // suspense: process.env.NODE_ENV !== 'test',
   });
 
   return { songs };

@@ -7,7 +7,7 @@ export const useGames = () => {
   const { data: games } = useQuery({
     queryKey: [api.games.$path()],
     queryFn: () => api.games.$get(),
-    suspense: process.env.NODE_ENV !== 'test',
+    // suspense: process.env.NODE_ENV !== 'test',
   });
 
   return { games };

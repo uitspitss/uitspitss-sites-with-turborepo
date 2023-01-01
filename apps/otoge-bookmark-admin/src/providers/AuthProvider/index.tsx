@@ -1,29 +1,10 @@
-import { Auth0Provider } from '@auth0/auth0-react';
-import { ReactNode, useMemo } from 'react';
+import { UserProvider } from '@auth0/nextjs-auth0/client';
+import { ReactNode } from 'react';
 
-const DOMAIN = `${process.env.NEXT_PUBLIC_AUTH0_DOMAIN}`;
-const CLIENT_ID = `${process.env.NEXT_PUBLIC_AUTH0_CLIENT_ID}`;
-
-type AuthProviderProps = {
+type Props = {
   children: ReactNode;
 };
 
-export const AuthProvider = ({ children }: AuthProviderProps) => {
-  const redirectUri = useMemo(() => {
-    if (typeof window === 'undefined') {
-      return '/';
-    }
-
-    return window.location.origin;
-  }, []);
-
-  return (
-    <Auth0Provider
-      domain={DOMAIN}
-      clientId={CLIENT_ID}
-      redirectUri={redirectUri}
-    >
-      {children}
-    </Auth0Provider>
-  );
-};
+export const AuthProvider = ({ children }: Props) => (
+  <UserProvider>{children}</UserProvider>
+);

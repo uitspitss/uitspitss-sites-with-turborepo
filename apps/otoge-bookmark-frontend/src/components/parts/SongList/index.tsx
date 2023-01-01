@@ -6,6 +6,7 @@ import {
   Text,
   Wrap,
   Tag,
+  WrapItem,
 } from '@chakra-ui/react';
 import { useSongs } from '@/hooks/useSongs';
 
@@ -26,25 +27,19 @@ export const SongList = (_props: SongListProps) => {
                     {song.name}
                   </Text>
                 </Box>
-                <Text color="muted">{song.game.name}</Text>
+                <Box>
+                  <Text color="muted">{song.game.name}</Text>
+                </Box>
               </Stack>
-              <Text
-                color="muted"
-                sx={{
-                  WebkitBoxOrient: 'vertical',
-                  WebkitLineClamp: '2',
-                  overflow: 'hidden',
-                  display: '-webkit-box',
-                }}
-              >
-                <Wrap spacing={2}>
-                  {song.categories.map((category) => (
+              <Wrap as={Box} spacing={2}>
+                {song.categories.map((category) => (
+                  <WrapItem key={category.id}>
                     <Tag size="sm" key={category.id} variant="solid">
                       {category.name}
                     </Tag>
-                  ))}
-                </Wrap>
-              </Text>
+                  </WrapItem>
+                ))}
+              </Wrap>
             </Stack>
           ))}
         </Stack>
