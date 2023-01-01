@@ -1,4 +1,3 @@
-import type { AspidaClient, BasicHeaders } from 'aspida'
 import { dataToURLString } from 'aspida'
 import type { Methods as Methods0 } from './categories'
 import type { Methods as Methods1 } from './categories/_id@string'
@@ -8,6 +7,7 @@ import type { Methods as Methods4 } from './songs'
 import type { Methods as Methods5 } from './songs/_id@string'
 import type { Methods as Methods6 } from './users'
 import type { Methods as Methods7 } from './users/_id@string'
+import type { AspidaClient, BasicHeaders } from 'aspida'
 
 const api = <T>({ baseURL, fetch }: AspidaClient<T>) => {
   const prefix = (baseURL === undefined ? '' : baseURL).replace(/\/$/, '')

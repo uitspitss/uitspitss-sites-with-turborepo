@@ -12,7 +12,7 @@ export const PageContent = (props: PageContentProps) => {
     <Container
       centerContent
       px={{ base: 0, md: '24' }}
-      py={{ base: 8, md: '24' }}
+      py={{ base: 8, md: '12' }}
     >
       <Box>{children}</Box>
     </Container>

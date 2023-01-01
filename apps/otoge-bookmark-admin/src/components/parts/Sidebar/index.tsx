@@ -1,5 +1,6 @@
 import { useAuth0 } from '@auth0/auth0-react';
-import { Flex, Stack, useColorModeValue } from '@chakra-ui/react';
+import { Flex, Link, Stack, useColorModeValue } from '@chakra-ui/react';
+import NextLink from 'next/link';
 import * as React from 'react';
 import { FiFile, FiFolder, FiUsers } from 'react-icons/fi';
 import { Logo } from '@/components/parts/Logo';
@@ -24,8 +25,12 @@ export const Sidebar = () => {
           <Stack spacing={{ base: '5', sm: '6' }} shouldWrapChildren>
             <Logo />
             <Stack spacing="1">
-              <NavButton label="Games" icon={FiFolder} />
-              <NavButton label="Songs" icon={FiFile} />
+              <Link as={NextLink} href="/games">
+                <NavButton label="Games" icon={FiFolder} />
+              </Link>
+              <Link as={NextLink} href="/songs">
+                <NavButton label="Songs" icon={FiFile} />
+              </Link>
               <NavButton label="Users" icon={FiUsers} />
             </Stack>
           </Stack>

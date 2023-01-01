@@ -27,6 +27,9 @@ const nextConfig = {
     tsconfigPath: './tsconfig.build.json',
   },
   // i18n,
+  async redirects() {
+    return [{ source: '/', destination: '/games', permanent: false }];
+  },
 };
 
 module.exports = withTM(withMDX(nextConfig));

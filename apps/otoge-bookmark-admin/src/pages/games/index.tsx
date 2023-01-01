@@ -5,8 +5,9 @@ import { Suspense } from 'react';
 import { PageContent } from 'ui';
 import { MainLayout } from '@/components/layouts/MainLayout';
 import { GameList } from '@/components/parts/GameList';
-import { SongList } from '@/components/parts/SongList';
 import { NextPageWithLayout } from '@/types/page';
+
+const PAGE_TITLE = 'Games';
 
 type PageProps = unknown;
 
@@ -14,9 +15,9 @@ const Page: NextPageWithLayout<PageProps> = (_props) => {
   return (
     <>
       <Head>
-        <title>Search | Otoge Bookmark</title>
+        <title>{PAGE_TITLE} | Otoge Bookmark Admin</title>
       </Head>
-      <MainLayout pageTitle="Main">
+      <MainLayout pageTitle={PAGE_TITLE}>
         <PageContent>
           <Suspense
             fallback={
@@ -33,22 +34,6 @@ const Page: NextPageWithLayout<PageProps> = (_props) => {
             }
           >
             <GameList />
-          </Suspense>
-          <Suspense
-            fallback={
-              <Center maxW="sm" mx="auto" py={{ base: '4', md: '8' }}>
-                <Box minW="sm" padding="6" boxShadow="lg" bg="white">
-                  <SkeletonText
-                    mt="4"
-                    noOfLines={4}
-                    spacing="4"
-                    skeletonHeight="2"
-                  />
-                </Box>
-              </Center>
-            }
-          >
-            <SongList />
           </Suspense>
         </PageContent>
       </MainLayout>
