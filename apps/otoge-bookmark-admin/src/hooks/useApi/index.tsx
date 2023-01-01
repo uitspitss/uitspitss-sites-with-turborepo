@@ -17,21 +17,27 @@ const aspidaConfig: AxiosRequestConfig = {
   },
 };
 
+const auth0Config = { audience: API_URL };
+
 export const useApi = () => {
-  const { getAccessTokenSilently } = useAuth0();
+  const { getAccessTokenSilently, getAccessTokenWithPopup } = useAuth0();
   const [accessToken, setAccessToken] = useState('');
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     (async () => {
       if (typeof window === 'undefined') return;
-      const token = await getAccessTokenSilently({
-        audience: API_URL,
-      });
+      const token = await getAccessTokenSilently(auth0Config);
+
+      // TODO: To fix "consent error" when localhost, but occurs "invalid state error"
+      // const token =
+      //   window.location.hostname === 'localhost'
+      //     ? await getAccessTokenWithPopup(auth0Config)
+      //     : await getAccessTokenSilently(auth0Config);
       setAccessToken(token);
       setIsLoading(false);
     })();
-  }, [getAccessTokenSilently]);
+  }, [getAccessTokenSilently, getAccessTokenWithPopup]);
 
   const config = {
     ...baseConfig,
