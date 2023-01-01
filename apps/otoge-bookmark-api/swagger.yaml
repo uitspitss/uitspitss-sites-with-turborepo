@@ -221,33 +221,6 @@ paths:
         '204':
           description: ''
       tags: *ref_1
-  /auth/login:
-    post:
-      operationId: AuthController_login
-      parameters: []
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/LoginDto'
-      responses:
-        '200':
-          description: ''
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/LoggedInTokenEntity'
-      tags: &ref_2
-        - auth
-  /auth/logout:
-    get:
-      operationId: AuthController_logout
-      parameters: []
-      responses:
-        '200':
-          description: ''
-      tags: *ref_2
   /users:
     post:
       operationId: UsersController_create
@@ -265,7 +238,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/UserEntity'
-      tags: &ref_3
+      tags: &ref_2
         - users
     get:
       operationId: UsersController_findAll
@@ -279,7 +252,7 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/UserEntity'
-      tags: *ref_3
+      tags: *ref_2
   /users/{id}:
     get:
       operationId: UsersController_findOne
@@ -296,7 +269,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/UserEntity'
-      tags: *ref_3
+      tags: *ref_2
     patch:
       operationId: UsersController_update
       parameters:
@@ -318,7 +291,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/UserEntity'
-      tags: *ref_3
+      tags: *ref_2
     delete:
       operationId: UsersController_remove
       parameters:
@@ -330,7 +303,7 @@ paths:
       responses:
         '204':
           description: ''
-      tags: *ref_3
+      tags: *ref_2
   /categories:
     post:
       operationId: CategoriesController_create
@@ -491,26 +464,6 @@ components:
           type: string
         gameId:
           type: string
-    LoginDto:
-      type: object
-      properties:
-        email:
-          type: string
-        password:
-          type: string
-      required:
-        - email
-        - password
-    LoggedInTokenEntity:
-      type: object
-      properties:
-        accessToken:
-          type: string
-        refreshToken:
-          type: string
-      required:
-        - accessToken
-        - refreshToken
     CreateUserDto:
       type: object
       properties:
