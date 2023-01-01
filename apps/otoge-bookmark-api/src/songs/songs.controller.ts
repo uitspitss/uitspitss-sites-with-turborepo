@@ -118,8 +118,8 @@ export class SongsController {
     );
   }
 
-  @UseGuards(JwtAuthGuard)
   @Delete(':id')
+  @UseGuards(JwtAuthGuard)
   @HttpCode(204)
   @ApiNoContentResponse()
   async remove(@Param('id') id: string): Promise<void> {

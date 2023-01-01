@@ -102,8 +102,8 @@ export class GamesController {
     );
   }
 
-  @UseGuards(JwtAuthGuard)
   @Delete(':id')
+  @UseGuards(JwtAuthGuard)
   @ApiNoContentResponse()
   async remove(@Param('id') id: string): Promise<void> {
     const game = await this.gamesService.findOne({ id });

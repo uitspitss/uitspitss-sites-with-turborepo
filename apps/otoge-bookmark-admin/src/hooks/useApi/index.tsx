@@ -1,11 +1,11 @@
 import aspida from '@aspida/axios';
+import { useAuth0 } from '@auth0/auth0-react';
 import axios, { AxiosRequestConfig } from 'axios';
 import qs from 'qs';
+import { useEffect, useState } from 'react';
 import api from '@/lib/api/$api';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
-const loginUrl = `${API_URL}/auth/google/login`;
-const refreshUrl = `${API_URL}/auth/refresh`;
 
 const baseConfig = {
   baseURL: API_URL,
@@ -17,38 +17,26 @@ const aspidaConfig: AxiosRequestConfig = {
   },
 };
 
-const redirectLogin = () => {
-  location.href = loginUrl;
-};
-
-const refreshTokens = async () => {
-  const tokens = await axios
-    .get(refreshUrl, {
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem('refresh_token')}`,
-      },
-    })
-    .then((res) => res.data)
-    .catch((_err) => {
-      redirectLogin();
-    });
-
-  const { access_token, refresh_token } = tokens;
-  localStorage.setItem('access_token', access_token);
-  localStorage.setItem('refresh_token', refresh_token);
-};
-
 export const useApi = () => {
-  if (typeof window === 'undefined') {
-    const instance = axios.create(baseConfig);
+  const { getAccessTokenSilently } = useAuth0();
+  const [accessToken, setAccessToken] = useState('');
+  const [isLoading, setIsLoading] = useState(true);
 
-    return api(aspida(instance, aspidaConfig));
-  }
+  useEffect(() => {
+    (async () => {
+      if (typeof window === 'undefined') return;
+      const token = await getAccessTokenSilently({
+        audience: API_URL,
+      });
+      setAccessToken(token);
+      setIsLoading(false);
+    })();
+  }, [getAccessTokenSilently]);
 
   const config = {
     ...baseConfig,
     headers: {
-      Authorization: `Bearer ${localStorage.getItem('access_token')}`,
+      Authorization: `Bearer ${accessToken}`,
     },
   };
 
@@ -59,27 +47,9 @@ export const useApi = () => {
       return res;
     },
     async (err) => {
-      if (err.response.status === 401) {
-        const refreshToken = localStorage.getItem('refresh_token');
-        if (refreshToken) {
-          await refreshTokens();
-        }
-
-        const res = await axios
-          .request({
-            ...err.config,
-            headers: {
-              Authorization: `Bearer ${localStorage.getItem('access_token')}`,
-            },
-          })
-          .catch((_err) => {
-            redirectLogin();
-          });
-
-        return res;
-      }
+      console.error(err);
     },
   );
 
-  return api(aspida(instance, aspidaConfig));
+  return { api: api(aspida(instance, aspidaConfig)), isLoading };
 };

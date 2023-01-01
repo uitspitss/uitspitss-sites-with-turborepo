@@ -1,7 +1,7 @@
-import { useUser } from '@auth0/nextjs-auth0/client';
+import { withAuthenticationRequired } from '@auth0/auth0-react';
 import { Box, Center, SkeletonText } from '@chakra-ui/react';
 import Head from 'next/head';
-import { ReactElement, Suspense } from 'react';
+import { Suspense } from 'react';
 import { PageContent } from 'ui';
 import { MainLayout } from '@/components/layouts/MainLayout';
 import { GameList } from '@/components/parts/GameList';
@@ -11,15 +11,12 @@ import { NextPageWithLayout } from '@/types/page';
 type PageProps = unknown;
 
 const Page: NextPageWithLayout<PageProps> = (_props) => {
-  const { user } = useUser();
-
   return (
-    <>
+    <MainLayout pageTitle="Main">
       <Head>
         <title>Search | Otoge Bookmark</title>
       </Head>
       <PageContent>
-        username: {user?.name}
         <Suspense
           fallback={
             <Center maxW="sm" mx="auto" py={{ base: '4', md: '8' }}>
@@ -53,12 +50,8 @@ const Page: NextPageWithLayout<PageProps> = (_props) => {
           <SongList />
         </Suspense>
       </PageContent>
-    </>
+    </MainLayout>
   );
 };
 
-Page.getLayout = (page: ReactElement) => (
-  <MainLayout pageTitle="Main">{page}</MainLayout>
-);
-
-export default Page;
+export default withAuthenticationRequired(Page);
