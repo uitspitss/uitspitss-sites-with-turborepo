@@ -47,7 +47,6 @@ export type UpdateSongDto = {
 
 export type CreateUserDto = {
   email: string
-  password: string
 }
 
 export type UserEntity = {
@@ -55,19 +54,8 @@ export type UserEntity = {
   email: string
 }
 
-export type LoginDto = {
-  email: string
-  password: string
-}
-
-export type LoggedInTokenEntity = {
-  accessToken: string
-  refreshToken: string
-}
-
 export type UpdateUserDto = {
   email?: string | undefined
-  password?: string | undefined
 }
 
 export type CreateCategoryDto = {

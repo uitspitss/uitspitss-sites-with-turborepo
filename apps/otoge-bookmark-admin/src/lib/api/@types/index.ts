@@ -45,16 +45,6 @@ export type UpdateSongDto = {
   gameId?: string | undefined
 }
 
-export type LoginDto = {
-  email: string
-  password: string
-}
-
-export type LoggedInTokenEntity = {
-  accessToken: string
-  refreshToken: string
-}
-
 export type CreateUserDto = {
   email: string
 }
