@@ -8,7 +8,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { initialize, mswDecorator } from 'msw-storybook-addon';
 import React from 'react';
 
-import { handlers } from '../src/mocks/handlers';
+import { handlers } from '../src/mocks/msw/handlers';
 import theme from '../src/theme';
 
 // msw

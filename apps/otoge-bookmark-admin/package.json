@@ -64,6 +64,7 @@
     "pathpida": "^0.20.1",
     "react-error-boundary": "^3.1.4",
     "rimraf": "^3.0.2",
+    "storybook-addon-auth0-react": "^1.2.0",
     "storybook-addon-next": "^1.7.1",
     "storybook-config": "*",
     "tsconfig": "*",

@@ -3,7 +3,7 @@ import 'jest-config/next/jest.setup';
 import { loadEnvConfig } from '@next/env';
 import { setGlobalConfig } from '@storybook/testing-react';
 import * as globalStorybookConfig from './.storybook/preview';
-import { server } from './src/mocks/server';
+import { server } from './src/mocks/msw/server';
 
 loadEnvConfig(process.cwd());
 

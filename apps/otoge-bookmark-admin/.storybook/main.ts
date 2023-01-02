@@ -4,7 +4,11 @@ import rootMain from 'storybook-config/main';
 const config = {
   ...rootMain,
   staticDirs: ['../public'],
-  addons: [...rootMain.addons, 'storybook-addon-next'],
+  addons: [
+    ...rootMain.addons,
+    'storybook-addon-next',
+    'storybook-addon-auth0-react',
+  ],
   env: (config) => ({
     ...config,
     NEXT_PUBLIC_API_URL: '',

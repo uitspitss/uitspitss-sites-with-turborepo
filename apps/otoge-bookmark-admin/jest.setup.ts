@@ -3,7 +3,7 @@ import 'jest-config/next/jest.setup';
 import { loadEnvConfig } from '@next/env';
 import { setGlobalConfig } from '@storybook/testing-react';
 import * as globalStorybookConfig from './.storybook/preview';
-import { server } from './src/mocks/server';
+import { server } from './src/mocks/msw/server';
 
 loadEnvConfig(process.cwd());
 
@@ -22,3 +22,11 @@ afterAll(() => server.close());
 
 // // Print mocked handlers
 // server.printHandlers();
+
+// auth0
+jest.mock('@auth0/auth0-react', () => ({
+  useAuth0: () => ({
+    getAccessTokenSilently: (_config: unknown) =>
+      new Promise((res) => res('token')),
+  }),
+}));

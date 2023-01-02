@@ -1,13 +1,16 @@
 import { composeStories } from '@storybook/testing-react';
-import { render } from '@testing-library/react';
+import { render, waitFor } from '@testing-library/react';
 
 import * as stories from './index.stories';
 
 const { Default } = composeStories(stories);
 
 describe('SongList', () => {
-  it('should render successfully', () => {
+  it('should render successfully', async () => {
     const { baseElement } = render(<Default />);
-    expect(baseElement).toBeTruthy();
+
+    await waitFor(() => {
+      expect(baseElement).toBeTruthy();
+    });
   });
 });

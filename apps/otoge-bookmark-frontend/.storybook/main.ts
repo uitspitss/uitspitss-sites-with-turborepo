@@ -7,7 +7,7 @@ const config = {
   addons: [...rootMain.addons, 'storybook-addon-next'],
   env: (config) => ({
     ...config,
-    NEXT_PUBLIC_API_URL: '',
+    NEXT_PUBLIC_API_PATH: '',
   }),
 
   webpackFinal: async (config, { configType }) => {

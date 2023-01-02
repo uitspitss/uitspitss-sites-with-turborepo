@@ -32,6 +32,7 @@ export const db = factory({
 // games
 for (let i = 1; i <= EACH_DATA_COUNT; i++) {
   db.game.create({
+    id: `game-${i}`,
     name: `Game ${i}`,
   });
 }
@@ -41,6 +42,7 @@ for (let i = 1; i <= EACH_DATA_COUNT; i++) {
   const game = db.game.findFirst({ where: { name: { equals: 'Game 1' } } });
   if (game) {
     db.song.create({
+      id: `song-${i}`,
       name: `Song ${i}`,
       game,
       categories: [...Array(30).keys()].map(() => db.category.create()),

@@ -6,9 +6,12 @@ import * as stories from './index.stories';
 const { Default } = composeStories(stories);
 
 describe('GameList', () => {
-  it('should render successfully', () => {
+  it('should render successfully', async () => {
     const { baseElement } = render(<Default />);
-    expect(baseElement).toBeTruthy();
+
+    await waitFor(() => {
+      expect(baseElement).toBeTruthy();
+    });
   });
 
   it('show 3 items', async () => {
