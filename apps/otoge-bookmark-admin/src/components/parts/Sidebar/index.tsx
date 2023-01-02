@@ -1,10 +1,11 @@
 import { useAuth0 } from '@auth0/auth0-react';
-import { Flex, Link, Stack, useColorModeValue } from '@chakra-ui/react';
-import NextLink from 'next/link';
+import { Flex, Stack, useColorModeValue } from '@chakra-ui/react';
 import * as React from 'react';
 import { FiFile, FiFolder, FiUsers } from 'react-icons/fi';
+import { Link } from '@/components/parts/Link';
 import { Logo } from '@/components/parts/Logo';
 import { UserProfile } from '@/components/parts/UserProfile';
+import { pagesPath } from '@/lib/$path';
 import { NavButton } from './NavButton';
 
 export const Sidebar = () => {
@@ -25,10 +26,10 @@ export const Sidebar = () => {
           <Stack spacing={{ base: '5', sm: '6' }} shouldWrapChildren>
             <Logo />
             <Stack spacing="1">
-              <Link as={NextLink} href="/games">
+              <Link href={pagesPath.games.$url()}>
                 <NavButton label="Games" icon={FiFolder} />
               </Link>
-              <Link as={NextLink} href="/songs">
+              <Link href={pagesPath.songs.$url()}>
                 <NavButton label="Songs" icon={FiFile} />
               </Link>
               <NavButton label="Users" icon={FiUsers} />

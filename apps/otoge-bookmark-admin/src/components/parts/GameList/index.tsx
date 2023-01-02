@@ -1,5 +1,7 @@
 import { Box, Center, Stack, StackDivider, Text } from '@chakra-ui/react';
+import { Link } from '@/components/parts/Link';
 import { useGames } from '@/hooks/useGames';
+import { pagesPath } from '@/lib/$path';
 
 type GameListProps = unknown;
 
@@ -14,9 +16,11 @@ export const GameList = (_props: GameListProps) => {
             <Stack key={game.id} fontSize="sm" px="4" spacing="4">
               <Stack direction="row" justify="space-between" spacing="4">
                 <Box>
-                  <Text fontWeight="medium" fontSize="2xl" color="emphasized">
-                    {game.name}
-                  </Text>
+                  <Link href={pagesPath.games._gameId(game.id).edit.$url()}>
+                    <Text fontWeight="medium" fontSize="2xl" color="emphasized">
+                      {game.name}
+                    </Text>
+                  </Link>
                 </Box>
               </Stack>
               <Text
