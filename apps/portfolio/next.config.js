@@ -18,9 +18,12 @@ const nextConfig = {
   pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
   compiler: {
     reactRemoveProperties: true,
-    removeConsole: {
-      exclude: ['error'],
-    },
+    removeConsole:
+      process.env.NODE_ENV === 'production'
+        ? {
+            exclude: ['error'],
+          }
+        : false,
     emotion: true,
   },
   typescript: {
