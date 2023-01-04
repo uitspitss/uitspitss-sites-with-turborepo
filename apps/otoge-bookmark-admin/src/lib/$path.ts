@@ -1,5 +1,10 @@
 export const pagesPath = {
   "games": {
+    _gameId: (gameId: string | number) => ({
+      "edit": {
+        $url: (url?: { hash?: string }) => ({ pathname: '/games/[gameId]/edit' as const, query: { gameId }, hash: url?.hash })
+      }
+    }),
     $url: (url?: { hash?: string }) => ({ pathname: '/games' as const, hash: url?.hash })
   },
   "login": {
