@@ -9,18 +9,6 @@
       "path": "apps/portfolio"
     },
     {
-      "name": "otoge-api",
-      "path": "apps/otoge-bookmark-api"
-    },
-    {
-      "name": "otoge-frontend",
-      "path": "apps/otoge-bookmark-frontend"
-    },
-    {
-      "name": "otoge-admin",
-      "path": "apps/otoge-bookmark-admin"
-    },
-    {
       "name": "ui",
       "path": "packages/ui"
     },
