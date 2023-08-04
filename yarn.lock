@@ -2301,14 +2301,14 @@
     strip-json-comments "^3.1.1"
 
 "@fontsource/open-sans@^4.5.13":
-  version "4.5.13"
-  resolved "https://registry.yarnpkg.com/@fontsource/open-sans/-/open-sans-4.5.13.tgz#2c99e4c055d129a75f14c11b77d040282e0388b8"
-  integrity sha512-/UzqP7ZFk145XAq8KG4pvFPP7UQhtreDGXgqXZjagCDreKxcrhwn/x7DYz9rPcycWkLUVApIybcoczGZiM0cRg==
+  version "4.5.14"
+  resolved "https://registry.yarnpkg.com/@fontsource/open-sans/-/open-sans-4.5.14.tgz#b3e1665c0b3fdfc1f030ded2843749e3cf3a5900"
+  integrity sha512-mBXIIETBlW8q/ocuUN0hyGow2iuf75hQEHQt8R/RJ/HcphVbLg8KB7pHYGbFGDqs75W+SWvTC7JkVeAjT65BuQ==
 
 "@fontsource/raleway@^4.5.11":
-  version "4.5.11"
-  resolved "https://registry.yarnpkg.com/@fontsource/raleway/-/raleway-4.5.11.tgz#6da0bad1f44e0360fe465663ac0683601d29bda7"
-  integrity sha512-WrFuS5q3tPqNci4iDwIf7lnkHY5jrkWswy6B007W//cAB7Iiw2NuxBNxrCetYpe3efPbEoFPcoKeTPqDzoWQ3A==
+  version "4.5.12"
+  resolved "https://registry.yarnpkg.com/@fontsource/raleway/-/raleway-4.5.12.tgz#25a7bc448a8440a46205e7259e1f8cb03fa59e18"
+  integrity sha512-uKs13d6NFWU4vf5LSDHK/cbaAw+UXkzz03fKjyvkKq8Nop+CeB6o8STEDkZD9/uOo3v3sgm59Wyw8uGWvxoCiA==
 
 "@gar/promisify@^1.0.1":
   version "1.1.3"
