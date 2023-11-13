@@ -36,7 +36,7 @@
     "trim-newlines": "^4.0.0",
     "loader-utils": "^2.0.4",
     "qs": "^6.9.7",
-    "decode-uri-component": "^0.2.1"
+    "decode-uri-component": "^0.4.0"
   },
   "packageManager": "yarn@1.22.19"
 }
